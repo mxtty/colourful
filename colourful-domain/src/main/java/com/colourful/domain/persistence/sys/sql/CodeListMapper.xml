@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.colourful.domain.generated.mapper.CodeListMapper">
+
+  <cache />
+  
+  <select id="getAllCodeList"  resultType="com.colourful.domain.record.CodeDefineImpl">
+    SELECT
+      CODE_NAME AS codeName,
+      CODE_KEY  AS codeKey,
+      CODE_VALUE AS codeValue,
+      CODE_COMMENT AS codeComment
+    FROM CODE_LIST
+    ORDER BY
+      CODE_NAME,
+      CODE_ORDER
+  </select>
+
+</mapper>

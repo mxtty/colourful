@@ -1,0 +1,45 @@
+<!DOCTYPE tiles-definitions PUBLIC
+        "-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN" "http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
+<tiles-definitions>
+	<definition name="baseLayout" template="/WEB-INF/views/jsp/layout.jsp">
+		<put-attribute name="title" value="Sample Title" />
+		<put-attribute name="header" value="/WEB-INF/views/jsp/header.jsp" />
+		<put-attribute name="menu" value="/WEB-INF/views/jsp/menu.jsp" />
+		<put-attribute name="body" value="" />
+		<put-attribute name="footer" value="/WEB-INF/views/jsp/footer.jsp" />
+	</definition>
+
+	<definition name="defaultLayout" template="/WEB-INF/views/templates/template.jsp">
+		<put-attribute name="title" value="Sample Title" />
+		<put-attribute name="header" value="/WEB-INF/views/common/header.jsp" />
+		<put-attribute name="body" value="" />
+		<put-attribute name="footer" value="/WEB-INF/views/common/footer.jsp" />
+	</definition>	
+
+	
+	<definition name="home" extends="baseLayout">
+		<put-attribute name="title" value="Home" />
+		<put-attribute name="body" value="/WEB-INF/views/jsp/home.jsp" />
+	</definition>
+	
+	<definition name="pages/done" extends="baseLayout">
+		<put-attribute name="title" value="Page" />
+		<put-attribute name="body" value="/WEB-INF/views/pages/Done.jsp" />
+	</definition>
+	
+	<definition name="registerUser/new" extends="defaultLayout">
+		<put-attribute name="title" value="注册新用户" />
+		<put-attribute name="body" value="/WEB-INF/views/account/RegisterUser.jsp" />
+	</definition>
+
+	<definition name="registerUser/done" extends="defaultLayout">
+		<put-attribute name="title" value="注册新用户" />
+		<put-attribute name="body" value="/WEB-INF/views/account/RegisterDone.jsp" />
+	</definition>
+
+	
+	<definition name="order" extends="defaultLayout">
+		<put-attribute name="title" value="注册新用户" />
+		<put-attribute name="body" value="/WEB-INF/views/account/order.jsp" />
+	</definition>
+</tiles-definitions>  

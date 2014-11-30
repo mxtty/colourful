@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans
+     xmlns="http://www.springframework.org/schema/beans"
+     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+     xmlns:p="http://www.springframework.org/schema/p"
+     xmlns:mvc="http://www.springframework.org/schema/mvc"
+     xmlns:aop="http://www.springframework.org/schema/aop"
+     xmlns:context="http://www.springframework.org/schema/context"
+
+     xsi:schemaLocation="
+         http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.1.xsd" default-autowire="byName">
+	<!-- DispatcherServlet Context: defines this servlet's request-processing infrastructure -->
+	
+	<!-- Enables the Spring MVC @Controller programming model -->
+ 
+	<!-- Handles HTTP GET requests for /resources/** by efficiently serving up static resources in the ${webappRoot}/resources directory -->
+	
+	<mvc:resources mapping="/resources/**" location="/resources/" />
+
+	<!-- Resolves views selected for rendering by @Controllers to .jsp resources in the /WEB-INF/views directory 
+	<bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="prefix" value="/WEB-INF/views/" />
+		<property name="suffix" value=".jsp" />
+	</bean>-->
+
+    <bean id="tilesConfigurer"
+          class="org.springframework.web.servlet.view.tiles3.TilesConfigurer"
+          p:definitions="/WEB-INF/tile-defs/tilesJsp.xml"/>
+
+
+    <bean id="viewResolver"
+          class="org.springframework.web.servlet.view.UrlBasedViewResolver"
+          p:viewClass="org.springframework.web.servlet.view.tiles3.TilesView"/>
+          
+
+    <bean id="messageSource"
+	class="org.springframework.context.support.ReloadableResourceBundleMessageSource" autowire="byName">
+	   <property name="basenames">
+	     <list>
+	       <value>WEB-INF/properties/colourful</value>
+	     </list>
+	    </property>
+	    <property name="cacheSeconds" value="1"/>
+	</bean>
+	
+	<bean id="controllerAspect" class="com.rainbow.fw.core.exception.handler.AnotationExceptionHandler" >
+		<property name="commExceptionUrl" value="/common/Error" />
+		<property name="messageSource" ref="messageSource" />
+	</bean>
+    
+    <aop:aspectj-autoproxy  proxy-target-class="true">
+        <aop:include name="controllerAspect" />
+    </aop:aspectj-autoproxy>
+
+<!-- 	<mvc:annotation-driven conversion-service="conversionService"/>
+
+ 	<bean id= "conversionService" class= "org.springframework.format.support.FormattingConversionServiceFactoryBean">
+	    <property name= "converters">
+	       <list>
+		            <bean class="com.rainbow.fw.web.converter.StringToNumberConverterFactory"/>
+	        </list>
+	    </property>
+	</bean> --> 
+	<bean id="env" class="com.rainbow.fw.core.env.Enviroment"/>
+	
+	<context:component-scan base-package="com.rainbow.fw.web.context" />
+	<context:component-scan base-package="com.colourful.domain" />
+	<context:component-scan base-package="com.colourful.domain.session" />
+	<context:component-scan base-package="com.colourful.controller" />
+
+</beans>
