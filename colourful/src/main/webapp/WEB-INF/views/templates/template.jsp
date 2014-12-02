@@ -11,6 +11,7 @@
 <title><tiles:insertAttribute name="title"/></title>
 <link rel="StyleSheet" href="<c:url value = "/resources/css/reset.css"/>" type="text/css" media="screen" />
 <link rel="StyleSheet" href="<c:url value = "/resources/css/style.css"/>" type="text/css" media="screen" />
+<link rel="stylesheet" href="<c:url value = "/resources/css/navistyles.css"/>" type="text/css" media="screen" />
 <script src="<c:url value = "/resources/js/jquery-1.11.1.min.js"/>"></script>
 <script src="<c:url value = "/resources/js/jquery.easing.1.3.js"/>"></script>
 <script src="<c:url value = "/resources/js/colour.js"/>"></script>
@@ -26,7 +27,9 @@
    		<script type="text/javascript" src="js/html5.js"></script>
     	<link rel="stylesheet" type="text/css" media="screen" href="css/ie.css">
 	<![endif]-->
+
 </head>
+
 <body>
 
 <div class="bg-top">
