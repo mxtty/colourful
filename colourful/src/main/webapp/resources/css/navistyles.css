@@ -1,0 +1,236 @@
+/*----------------------------
+	CSS3 Animated Navigation
+-----------------------------*/
+
+
+.fancyNav{
+	/* Affects the UL element */
+	overflow: hidden;
+	display: inline-block;
+}
+
+.fancyNav li{
+	/* Specifying a fallback color and we define CSS3 gradients for the major browsers: */
+	
+	background-color: #f0f0f0;
+	background-image: -webkit-gradient(linear,left top, left bottom,from(#fefefe), color-stop(0.5,#f0f0f0), color-stop(0.51, #e6e6e6));
+	background-image: -moz-linear-gradient(#fefefe 0%, #f0f0f0 50%, #e6e6e6 51%);
+	background-image: -o-linear-gradient(#fefefe 0%, #f0f0f0 50%, #e6e6e6 51%);
+	background-image: -ms-linear-gradient(#fefefe 0%, #f0f0f0 50%, #e6e6e6 51%);
+	background-image: linear-gradient(#fefefe 0%, #f0f0f0 50%, #e6e6e6 51%);
+	
+	border-right: 1px solid rgba(9, 9, 9, 0.125);
+	
+	/* Adding a 1px inset highlight for a more polished efect: */
+	
+	box-shadow: 1px -1px 0 rgba(255, 255, 255, 0.6) inset;
+	-moz-box-shadow: 1px -1px 0 rgba(255, 255, 255, 0.6) inset;
+	-webkit-box-shadow: 1px -1px 0 rgba(255, 255, 255, 0.6) inset;
+	
+	position:relative;
+	
+	float: left;
+	list-style: none;
+}
+
+.fancyNav li:after{
+
+	/* This creates a pseudo element inslide each LI */	
+	
+	content:'.';
+	text-indent:-9999px;
+	overflow:hidden;
+	position:absolute;
+	width:100%;
+	height:100%;
+	top:0;
+	left:0;
+	z-index:1;
+	opacity:0;
+	
+	/* Gradients! */
+	
+	background-image:-webkit-gradient(linear, left top, right top, from(rgba(168,168,168,0.5)),color-stop(0.5,rgba(168,168,168,0)), to(rgba(168,168,168,0.5)));
+	background-image:-moz-linear-gradient(left, rgba(168,168,168,0.5), rgba(168,168,168,0) 50%, rgba(168,168,168,0.5));
+	background-image:-o-linear-gradient(left, rgba(168,168,168,0.5), rgba(168,168,168,0) 50%, rgba(168,168,168,0.5));
+	background-image:-ms-linear-gradient(left, rgba(168,168,168,0.5), rgba(168,168,168,0) 50%, rgba(168,168,168,0.5));
+	background-image:linear-gradient(left, rgba(168,168,168,0.5), rgba(168,168,168,0) 50%, rgba(168,168,168,0.5));
+	
+	/* Creating borders with box-shadow. Useful, as they don't affect the size of the element. */
+	
+	box-shadow:-1px 0 0 #a3a3a3,-2px 0 0 #fff,1px 0 0 #a3a3a3,2px 0 0 #fff;
+	-moz-box-shadow:-1px 0 0 #a3a3a3,-2px 0 0 #fff,1px 0 0 #a3a3a3,2px 0 0 #fff;
+	-webkit-box-shadow:-1px 0 0 #a3a3a3,-2px 0 0 #fff,1px 0 0 #a3a3a3,2px 0 0 #fff;
+	
+	/* This will create a smooth transition for the opacity property */
+	
+	-moz-transition:0.25s all;
+	-webkit-transition:0.25s all;
+	-o-transition:0.25s all;
+	transition:0.25s all;
+}
+
+/* Treating the first LI and li:after elements separately */
+
+.fancyNav li:first-child{
+	border-radius: 4px 0 0 4px;
+}
+
+.fancyNav li:first-child:after,
+.fancyNav li.selected:first-child:after{
+	box-shadow:1px 0 0 #a3a3a3,2px 0 0 #fff;
+	-moz-box-shadow:1px 0 0 #a3a3a3,2px 0 0 #fff;
+	-webkit-box-shadow:1px 0 0 #a3a3a3,2px 0 0 #fff;
+	
+	border-radius:4px 0 0 4px;
+}
+
+.fancyNav li:last-child{
+	border-radius: 0 4px 4px 0;
+}
+
+/* Treating the last LI and li:after elements separately */
+
+.fancyNav li:last-child:after,
+.fancyNav li.selected:last-child:after{
+	box-shadow:-1px 0 0 #a3a3a3,-2px 0 0 #fff;
+	-moz-box-shadow:-1px 0 0 #a3a3a3,-2px 0 0 #fff;
+	-webkit-box-shadow:-1px 0 0 #a3a3a3,-2px 0 0 #fff;
+	
+	border-radius:0 4px 4px 0;
+}
+
+.fancyNav li:hover:after,
+.fancyNav li.selected:after,
+.fancyNav li:target:after{
+	/* This property triggers the CSS3 transition */
+	opacity:1;
+}
+
+.fancyNav:hover li.selected:after,
+.fancyNav:hover li:target:after{
+	/* Hides the targeted li when we are hovering on the UL */
+	opacity:0;
+}
+
+.fancyNav li.selected:hover:after,
+.fancyNav li:target:hover:after{
+	opacity:1 !important;
+}
+
+/* Styling the anchor elements */
+
+.fancyNav li a{
+	color: #5d5d5d;
+	display: inline-block;
+	font: 20px/1 Lobster,Arial,sans-serif;
+	padding: 12px 35px 14px;
+	position: relative;
+	text-shadow: 1px 1px 0 rgba(255, 255, 255, 0.6);
+    text-align:center;
+	z-index:2;
+	text-decoration:none !important;
+	width:64.43px;
+	white-space:nowrap;
+}
+
+.fancyNav a.homeIcon{
+	background:url('../img/home.png') no-repeat center center;
+	display: block;
+	overflow: hidden;
+	padding-left: 12px;
+	padding-right: 12px;
+	text-indent: -9999px;
+	width: 16px;
+}
+
+
+/*-------------------------
+	Demo Page Styles
+--------------------------*/
+
+
+.navbar nav a {
+	position: relative;
+	display: inline-block;
+	margin: 5px 5px;
+	outline: none;
+	color: #696969;
+	text-decoration: none;
+	text-transform: uppercase;
+	letter-spacing: 1px;
+	float:right;
+	font-weight: 200;
+	text-shadow: 0 0 1px rgba(255,255,255,0.3);
+	font-size: 0.75em;
+}
+
+.navbar nav a:hover,
+.navbar nav a:focus {
+	outline: none;
+}
+
+/* Effect 21: borders slight translate */
+.cl-effect-21 a {
+	padding: 5px;
+	color: #696969;
+	font-weight: 500;
+	text-shadow: none;
+	-webkit-transition: color 0.3s;
+	-moz-transition: color 0.3s;
+	transition: color 0.3s;
+}
+
+.cl-effect-21 a::before,
+.cl-effect-21 a::after {
+	position: absolute;
+	left: 0;
+	width: 100%;
+	height: 2px;
+	background: #fff;
+	content: '';
+	opacity: 0;
+	-webkit-transition: opacity 0.3s, -webkit-transform 0.3s;
+	-moz-transition: opacity 0.3s, -moz-transform 0.3s;
+	transition: opacity 0.3s, transform 0.3s;
+	-webkit-transform: translateY(-10px);
+	-moz-transform: translateY(-10px);
+	transform: translateY(-10px);
+}
+
+.cl-effect-21 a::before {
+	top: 0;
+	-webkit-transform: translateY(-10px);
+	-moz-transform: translateY(-10px);
+	transform: translateY(-10px);
+}
+
+.cl-effect-21 a::after {
+	bottom: 0;
+	-webkit-transform: translateY(10px);
+	-moz-transform: translateY(10px);
+	transform: translateY(10px);
+}
+
+.cl-effect-21 a:hover,
+.cl-effect-21 a:focus {
+	color: #CD5C5C;
+}
+
+.cl-effect-21 a:hover::before,
+.cl-effect-21 a:focus::before,
+.cl-effect-21 a:hover::after,
+.cl-effect-21 a:focus::after {
+	opacity: 1;
+	-webkit-transform: translateY(0px);
+	-moz-transform: translateY(0px);
+	transform: translateY(0px);
+}
+
+.cl-effect-21  a.basket-summary {
+background:transparent url(../images/shopping-cart.png) no-repeat scroll 15px  center;
+border-left:solid 1px #e9e9e9;
+font-size:0.75em;
+margin:0;
+padding:10px 2px 12px 50px;
+}
