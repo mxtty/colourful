@@ -44,9 +44,7 @@
 <tiles:insertAttribute name="header"/>
    <section id="content">
      <div class="block-2 pad-2">
-       <div class="col-10">
           <tiles:insertAttribute name="body" />
-       </div>
      </div>
 </section>
 <tiles:insertAttribute name="footer" />

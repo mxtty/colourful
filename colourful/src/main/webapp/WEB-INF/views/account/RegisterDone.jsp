@@ -2,6 +2,7 @@
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!--==============================content================================-->
+<div class="col-10">
 <h3 class="h3-line">新用户<c:out value="${registerUserForm.realName}"/>注册成功</h3>
 <form:form id="form" method="post"  modelAttribute="registerUserForm" action="registerUser/register">
        <fieldset>
@@ -15,4 +16,4 @@
         </fieldset>  
        <label><strong class="left-25"><a href="registerUser" class="myButton width-8" >继续购物</a></strong></label>
 </form:form>
-
+</div>

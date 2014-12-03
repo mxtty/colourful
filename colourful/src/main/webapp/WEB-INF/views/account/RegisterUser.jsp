@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" language="java"%>
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 
+<div class="col-10">
 <h3 class="h3-line">注册新用户</h3>
 <form:form id="add_user_form" method="post"  modelAttribute="registerUserForm" action="registerUser/register">
    <fieldset>
@@ -16,3 +17,4 @@
     </fieldset>
    <label ><strong class="left-25" id="lb1"><a class="myButton width-8" >注册新用户</a></strong></label>
 </form:form>
+</div>
