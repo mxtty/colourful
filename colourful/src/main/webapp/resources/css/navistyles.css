@@ -1,6 +1,6 @@
-/*----------------------------
-	CSS3 Animated Navigation
------------------------------*/
+/*-------------------------
+	menu Styles
+--------------------------*/
 
 
 .fancyNav{
@@ -146,10 +146,8 @@
 
 
 /*-------------------------
-	Demo Page Styles
+	navigation bar Styles
 --------------------------*/
-
-
 .navbar nav a {
 	position: relative;
 	display: inline-block;

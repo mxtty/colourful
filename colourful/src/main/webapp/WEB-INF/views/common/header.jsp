@@ -2,7 +2,6 @@
 <%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles"%>  
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!--==============================header=================================-->
-
 <header>
 	<div  class="navbar">
 		<nav class="navbar cl-effect-21">
@@ -16,7 +15,7 @@
     <nav>  
         <ul class=fancyNav>
             <li><a href="index.html">首页</a></li>
-            <li class="current"><a href="cuisine.html">在线订餐</a></li>
+            <li  class="selected"><a href="registerUser">在线订餐</a></li>
             <li><a href="wine_list.html">菜单</a></li>
             <li><a href="cookbook.html">cookbook</a></li>
             <li><a href="gallery.html">相册</a></li>

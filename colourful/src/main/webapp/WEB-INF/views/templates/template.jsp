@@ -12,6 +12,7 @@
 <link rel="StyleSheet" href="<c:url value = "/resources/css/reset.css"/>" type="text/css" media="screen" />
 <link rel="StyleSheet" href="<c:url value = "/resources/css/style.css"/>" type="text/css" media="screen" />
 <link rel="stylesheet" href="<c:url value = "/resources/css/navistyles.css"/>" type="text/css" media="screen" />
+
 <script src="<c:url value = "/resources/js/jquery-1.11.1.min.js"/>"></script>
 <script src="<c:url value = "/resources/js/jquery.easing.1.3.js"/>"></script>
 <script src="<c:url value = "/resources/js/colour.js"/>"></script>
@@ -27,6 +28,11 @@
    		<script type="text/javascript" src="js/html5.js"></script>
     	<link rel="stylesheet" type="text/css" media="screen" href="css/ie.css">
 	<![endif]-->
+	
+    <!-- Enabling HTML5 support for Internet Explorer -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
 
 </head>
 
@@ -36,9 +42,13 @@
 <div class="bgr">
 
 <tiles:insertAttribute name="header"/>
-  <!--==============================content================================-->
- 
-<tiles:insertAttribute name="body" />
+   <section id="content">
+     <div class="block-2 pad-2">
+       <div class="col-10">
+          <tiles:insertAttribute name="body" />
+       </div>
+     </div>
+</section>
 <tiles:insertAttribute name="footer" />
 </div>
 </div>
