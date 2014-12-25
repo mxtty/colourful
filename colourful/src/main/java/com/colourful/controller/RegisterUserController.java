@@ -12,11 +12,9 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.colourful.domain.entity.BrnUserDetailEntity;
 import com.colourful.domain.entity.BrnUserEntity;
-import com.colourful.domain.service.OrderService4Validate;
 import com.colourful.domain.service.base.EntityFactory;
 import com.colourful.io.RegisterUserForm;
 import com.rainbow.fw.core.exception.handler.ExceptionHandlerAdvice;
@@ -24,9 +22,6 @@ import com.rainbow.fw.core.exception.handler.ExceptionHandlerAdvice;
 @Controller
 @RequestMapping("/registerUser")
 public class RegisterUserController {
-
-	@Autowired
-	private OrderService4Validate vservice;
 
 	@Autowired
 	private MessageSource messageSource;
@@ -42,7 +37,7 @@ public class RegisterUserController {
 	@ExceptionHandlerAdvice(errorPath = "registerUser/new")
 	public String addNewUser(
 			@Valid @ModelAttribute RegisterUserForm registerUserForm,
-			BindingResult result,Model model) {
+			BindingResult result, Model model) {
 
 		BrnUserDetailEntity detailEntity = EntityFactory
 				.newBrnUserDetailEntity(registerUserForm.getUserId());

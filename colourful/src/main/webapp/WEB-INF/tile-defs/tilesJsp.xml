@@ -36,10 +36,19 @@
 		<put-attribute name="title" value="注册新用户" />
 		<put-attribute name="body" value="/WEB-INF/views/account/RegisterDone.jsp" />
 	</definition>
-
 	
 	<definition name="product/displayProducts" extends="defaultLayout">
-		<put-attribute name="title" value="产品列表" />
+		<put-attribute name="title" value="菜单" />
+		<put-attribute name="body" value="/WEB-INF/views/product/ProductList.jsp" />
+	</definition>
+	
+	<definition name="catalog/displayCategories" extends="defaultLayout">
+		<put-attribute name="title" value="菜单分类" />
+		<put-attribute name="body" value="/WEB-INF/views/catalog/Category.jsp" />
+	</definition>
+	
+	<definition name="catalog/showProducts" extends="defaultLayout">
+		<put-attribute name="title" value="菜单分类" />
 		<put-attribute name="body" value="/WEB-INF/views/product/ProductList.jsp" />
 	</definition>
 </tiles-definitions>  
