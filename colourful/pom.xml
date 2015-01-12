@@ -171,6 +171,11 @@
 			<artifactId>jetspeed-fileutils-maven-plugin</artifactId>
 			<version>2.2.2</version>
 		</dependency>
+		<dependency>
+			<groupId>org.apache.struts</groupId>
+			<artifactId>struts2-core</artifactId>
+			<version>2.3.16.3</version>
+		</dependency>
 
 	</dependencies>
 	<build>

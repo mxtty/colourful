@@ -15,12 +15,12 @@
     <nav>  
         <ul class=fancyNav>
             <li><a href="index.html">首页</a></li>
-            <li  class="selected"><a href="registerUser">在线订餐</a></li>
+            <li  class="selected"><a href="catalog">在线订餐</a></li>
             <li><a href="wine_list.html">菜单</a></li>
             <li><a href="cookbook.html">cookbook</a></li>
             <li><a href="gallery.html">相册</a></li>
             <li><a href="contacts.html">客户留言</a></li>
-            <li><a href="contacts.html">用户中心</a></li>
+            <li><a href="registerUser">用户中心</a></li>
         </ul>
         <div class="clear"></div>
      </nav>

@@ -47,7 +47,7 @@
 	</bean>
 	
 	<bean id="controllerAspect" class="com.rainbow.fw.core.exception.handler.AnotationExceptionHandler" >
-		<property name="commExceptionUrl" value="/common/Error" />
+		<property name="commExceptionUrl" value="common/Error" />
 		<property name="messageSource" ref="messageSource" />
 	</bean>
     

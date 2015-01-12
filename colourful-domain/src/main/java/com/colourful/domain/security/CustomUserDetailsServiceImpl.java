@@ -15,7 +15,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.colourful.domain.generated.mapper.CodeListMapper;
+import com.colourful.domain.persistence.sys.mapper.CodeListMapper;
 
 /**
  * A custom service for retrieving users from a custom datasource, such as a

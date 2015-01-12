@@ -16,6 +16,7 @@
 <script src="<c:url value = "/resources/js/jquery-1.11.1.min.js"/>"></script>
 <script src="<c:url value = "/resources/js/jquery.easing.1.3.js"/>"></script>
 <script src="<c:url value = "/resources/js/colour.js"/>"></script>
+
 <base href="${pageContext.request.scheme}://${pageContext.request.serverName}:${pageContext.request.serverPort}${pageContext.request.contextPath}/" />
 	<!--[if lt IE 8]>
        <div style=' clear: both; text-align:center; position: relative;'>

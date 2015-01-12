@@ -1,16 +1,12 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8" language="java"%>
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
-<%@ taglib prefix="rb" uri="/WEB-INF/tlds/rainbow.tld"%>
+<!--==============================content================================-->
+<div class="block-4 col-3">
 
-<html>
-<head>
-<%@ include file="../common/IncludeTop.jsp"%>
-</head>
+      		<div class="col-4 left-2">
+			<h3 class="h3-line">${errors}</h3>
+		</div>
 
-<div class="errorblock" >
-${errors}
 </div>
-<%@ include file="../common/IncludeBottom.jsp"%>
-</html>

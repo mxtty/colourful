@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.colourful.domain.generated.mapper.BrnProductMapper">
+	<cache/>
+	<select id="readByPk" parameterType="com.colourful.domain.generated.record.BrnProduct" resultType="com.colourful.domain.generated.record.BrnProduct">
+    select
+       PRODUCT_ID,PRODUCT_NAME,UNIT,UNIT_PRICE,UNIT_COST,CATEGORY_ID1,CATEGORY_ID2,CATEGORY_ID3,CATEGORY_ID4,CATEGORY_ID5,DESCRIPTION,STATUS,CREATE_DATE,UPDATE_DATE,DEL_FLG 
+    from
+       BRN_PRODUCT 
+    where
+       PRODUCT_ID = #{productId}
+    </select>
+	<insert id="insert" parameterType="com.colourful.domain.generated.record.BrnProduct">
+    insert into
+       BRN_PRODUCT 
+    values
+       (#{productId},#{productName},#{unit},#{unitPrice},#{unitCost},#{categoryId1},#{categoryId2},#{categoryId3},#{categoryId4},#{categoryId5},#{description},#{status},CURRENT_TIMESTAMP,CURRENT_TIMESTAMP,0)
+    </insert>
+	<update id="update" parameterType="com.colourful.domain.generated.record.BrnProduct">
+    update
+       BRN_PRODUCT 
+    set
+       PRODUCT_NAME = #{productName} ,UNIT = #{unit} ,UNIT_PRICE = #{unitPrice} ,UNIT_COST = #{unitCost} ,CATEGORY_ID1 = #{categoryId1} ,CATEGORY_ID2 = #{categoryId2} ,CATEGORY_ID3 = #{categoryId3} ,CATEGORY_ID4 = #{categoryId4} ,CATEGORY_ID5 = #{categoryId5} ,DESCRIPTION = #{description} ,STATUS = #{status} ,UPDATE_DATE = CURRENT_TIMESTAMP 
+    where
+       PRODUCT_ID = #{productId} and UPDATE_DATE = #{updateDate}
+    </update>
+	<update id="delete" parameterType="com.colourful.domain.generated.record.BrnProduct">
+    update
+       BRN_PRODUCT 
+    set
+       UPDATE_DATE = CURRENT_TIMESTAMP,DEL_FLG = 1 
+    where
+       UPDATE_DATE = #{updateDate} and DEL_FLG = 0
+    </update>
+</mapper>

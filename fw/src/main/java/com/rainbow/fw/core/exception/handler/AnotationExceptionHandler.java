@@ -55,7 +55,7 @@ public class AnotationExceptionHandler {
 	 */
 	@Around("execution(* *..controller.*.*(..))")
 	public Object around(ProceedingJoinPoint pjp) {
-
+		System.out.println("iN");
 		Method method = null;
 		// 获取处理方法
 		try {
@@ -69,10 +69,12 @@ public class AnotationExceptionHandler {
 
 		// System.out.println("beginning----" + method.getName());
 		// 方法异常处理结果
-		BindingResult bindingResult = ControllerUtil.getCurrentBindingResult(pjp);
+		BindingResult bindingResult = ControllerUtil
+				.getCurrentBindingResult(pjp);
 
 		// 方法注解
-		ExceptionHandlerAdvice ea = method.getAnnotation(ExceptionHandlerAdvice.class);
+		ExceptionHandlerAdvice ea = method
+				.getAnnotation(ExceptionHandlerAdvice.class);
 		if (null != bindingResult && bindingResult.hasErrors()) {
 			// 方法执行有错，并且定义了返回错误页面
 			return ea.errorPath();
@@ -88,20 +90,24 @@ public class AnotationExceptionHandler {
 			if (e instanceof BaseException) {
 				BaseException exception = (BaseException) e;
 
-				errMsg = messageSource.getMessage(exception.getMessageId(), exception.getArges(), null).concat("(")
+				errMsg = messageSource
+						.getMessage(exception.getMessageId(),
+								exception.getArges(), null).concat("(")
 						.concat(exception.getMessageId()).concat(")");
 			}
 
 			if (e instanceof AppException) {
 				// 业务异常
 				AppException appException = (AppException) e;
-				bindingResult.reject(appException.getMessageId(), appException.getArges(), "");
+				bindingResult.reject(appException.getMessageId(),
+						appException.getArges(), "");
 				applog.info(errMsg, e);
 				return (null != ea) ? ea.errorPath() : commExceptionUrl;
 			} else if (e instanceof SysException) {
 				// 系统异常
 				syslog.error(errMsg, e);
-				ControllerUtil.setRequestAttribute("errors", (null == errMsg) ? "System Error!" : errMsg);
+				ControllerUtil.setRequestAttribute("errors",
+						(null == errMsg) ? "System Error!" : errMsg);
 				return commExceptionUrl;
 			} else {
 				// 未知致命异常
@@ -111,8 +117,10 @@ public class AnotationExceptionHandler {
 					fatalMsg.append("\n");
 					fatalMsg.append("\t".concat(ste.toString()));
 				}
-				syslog.fatal(fatalMsg.toString());
-				ControllerUtil.setRequestAttribute("errors", "系统发生错误，请重新操作或与管理员联系！");
+				//syslog.fatal(fatalMsg.toString());
+				ControllerUtil.setRequestAttribute("errors",
+						"系统发生错误，请重新操作或与管理员联系！");
+				System.out.println("Return "+commExceptionUrl);
 				return commExceptionUrl;
 			}
 		}

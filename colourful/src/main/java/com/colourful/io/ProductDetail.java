@@ -1,23 +1,38 @@
 package com.colourful.io;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
 
 import lombok.Data;
 
 @Data
 public class ProductDetail {
 	/** 图片路径 */
-	protected String picturePath;
+	private String imgFileMain;
+
+	private List<String> imgFileSubList = new ArrayList<String>();
 
 	/** 商品名 */
-	protected String productName;
+	private String productName;
 
 	/** 单价 */
-	protected BigDecimal unitPrice;
+	private BigDecimal unitPrice;
 
 	/** 单位 */
-	protected String unit;
+	private String unit;
+
+	private BigDecimal quantity;
+
+	private String description;
 
 	/** 商品ID */
-	protected long productId;
+	private long productId;
+
+	public void addImgFileSub(String imgFileSub) {
+		if (null != imgFileSub) {
+			imgFileSubList.add(imgFileSub);
+		}
+	}
+
 }

@@ -9,7 +9,7 @@ public class CategoryDetail {
 	protected long categoryId;
 
 	/** 图片路径 */
-	protected String picturePath;
+	protected String imgFile;
 
 	/** 商品种别名 */
 	protected String categoryName;

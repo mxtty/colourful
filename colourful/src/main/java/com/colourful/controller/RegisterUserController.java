@@ -34,7 +34,7 @@ public class RegisterUserController {
 	}
 
 	@RequestMapping(value = "register", method = RequestMethod.POST)
-	@ExceptionHandlerAdvice(errorPath = "registerUser/new")
+	// @ExceptionHandlerAdvice(errorPath = "registerUser/register")
 	public String addNewUser(
 			@Valid @ModelAttribute RegisterUserForm registerUserForm,
 			BindingResult result, Model model) {
@@ -45,11 +45,13 @@ public class RegisterUserController {
 		detailEntity.fromObject(registerUserForm);
 		detailEntity.setDefaultFlg(1);
 		detailEntity.insert();
-
+		System.out.println("ERROR");
 		BrnUserEntity userEntity = EntityFactory
 				.newBrnUserEntity(registerUserForm.getUserId());
 		userEntity.fromObject(registerUserForm);
-
+		if (1 == 1) {
+			throw new RuntimeException("ERROR");
+		}
 		boolean ret = userEntity.insert();
 		System.out.println("============IN ADD NEW==============" + ret);
 		return "registerUser/done";

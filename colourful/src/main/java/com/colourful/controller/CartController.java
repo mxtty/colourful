@@ -15,8 +15,8 @@ import com.colourful.io.ProductDetail;
  * 
  */
 @Controller
-@RequestMapping("/product")
-public class ProductController {
+@RequestMapping("/cart")
+public class CartController {
 
 	@ModelAttribute("orderDetailForm")
 	public OrderDetailForm initForm(Model model) {
@@ -24,15 +24,15 @@ public class ProductController {
 	}
 
 	@RequestMapping(value = "add")
-	public String addToCart(@PathVariable String itemId, Model model) {
+	public String addToCart(Model model) {
 
 		// cartService.addItem(itemId);
 
 		// model.addAttribute("cart", cartService.getCartEntity());
-		return "cart/CartEntity";
+		return "cart/Cart";
 	}
 
-	@RequestMapping(value = "showProduct/{productId}", method = RequestMethod.GET)
+	@RequestMapping(value = "showProduct/{productId}")
 	public String displayProducts(@PathVariable long productId, ModelMap model) {
 		ProductDetail productDetail = new ProductDetail();
 		productDetail.setImgFileMain("c1001_10001_img2.jpg");
@@ -47,5 +47,10 @@ public class ProductController {
 		model.addAttribute(productDetail);
 		return "product/showProduct";
 
+	}
+
+	@RequestMapping(value = "checkout")
+	public String checkOut(ModelMap model) {
+		return "cart/Checkout";
 	}
 }

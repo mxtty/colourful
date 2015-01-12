@@ -1,13 +1,6 @@
 <!DOCTYPE tiles-definitions PUBLIC
         "-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN" "http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
 <tiles-definitions>
-	<definition name="baseLayout" template="/WEB-INF/views/jsp/layout.jsp">
-		<put-attribute name="title" value="Sample Title" />
-		<put-attribute name="header" value="/WEB-INF/views/jsp/header.jsp" />
-		<put-attribute name="menu" value="/WEB-INF/views/jsp/menu.jsp" />
-		<put-attribute name="body" value="" />
-		<put-attribute name="footer" value="/WEB-INF/views/jsp/footer.jsp" />
-	</definition>
 
 	<definition name="defaultLayout" template="/WEB-INF/views/templates/template.jsp">
 		<put-attribute name="title" value="Sample Title" />
@@ -16,15 +9,9 @@
 		<put-attribute name="footer" value="/WEB-INF/views/common/footer.jsp" />
 	</definition>	
 
-	
-	<definition name="home" extends="baseLayout">
-		<put-attribute name="title" value="Home" />
-		<put-attribute name="body" value="/WEB-INF/views/jsp/home.jsp" />
-	</definition>
-	
-	<definition name="pages/done" extends="baseLayout">
-		<put-attribute name="title" value="Page" />
-		<put-attribute name="body" value="/WEB-INF/views/pages/Done.jsp" />
+	<definition name="common/Error" extends="defaultLayout">
+		<put-attribute name="title" value="错误" />
+		<put-attribute name="body" value="/WEB-INF/views/common/Error.jsp" />
 	</definition>
 	
 	<definition name="registerUser/new" extends="defaultLayout">
@@ -42,6 +29,16 @@
 		<put-attribute name="body" value="/WEB-INF/views/product/ProductList.jsp" />
 	</definition>
 	
+	<definition name="product/showProduct" extends="defaultLayout">
+		<put-attribute name="title" value="详细" />
+		<put-attribute name="body" value="/WEB-INF/views/product/ProductDetail.jsp" />
+	</definition>
+	
+	<definition name="cart/Cart" extends="defaultLayout">
+		<put-attribute name="title" value="详细" />
+		<put-attribute name="body" value="/WEB-INF/views/cart/Cart.jsp" />
+	</definition>
+	
 	<definition name="catalog/displayCategories" extends="defaultLayout">
 		<put-attribute name="title" value="菜单分类" />
 		<put-attribute name="body" value="/WEB-INF/views/catalog/Category.jsp" />
@@ -50,5 +47,20 @@
 	<definition name="catalog/showProducts" extends="defaultLayout">
 		<put-attribute name="title" value="菜单分类" />
 		<put-attribute name="body" value="/WEB-INF/views/product/ProductList.jsp" />
+	</definition>
+	
+	<definition name="cart/Checkout" extends="defaultLayout">
+		<put-attribute name="title" value="结算" />
+		<put-attribute name="body" value="/WEB-INF/views/cart/Checkout.jsp" />
+	</definition>
+	
+	<definition name="order/OrderFinish" extends="defaultLayout">
+		<put-attribute name="title" value="订单完成" />
+		<put-attribute name="body" value="/WEB-INF/views/order/OrderFinish.jsp" />
+	</definition>
+	
+	<definition name="order/ViewOrder" extends="defaultLayout">
+		<put-attribute name="title" value="订单完成" />
+		<put-attribute name="body" value="/WEB-INF/views/order/ViewOrder.jsp" />
 	</definition>
 </tiles-definitions>  

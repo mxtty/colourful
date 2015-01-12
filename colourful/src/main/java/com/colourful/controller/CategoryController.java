@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.colourful.io.CategoryDetail;
 import com.colourful.io.ProductDetail;
 import com.colourful.io.Products;
+import com.rainbow.fw.core.exception.handler.ExceptionHandlerAdvice;
 
 /**
  * Handles requests for the application home page.
@@ -33,41 +34,42 @@ public class CategoryController {
 		CategoryDetail cd = new CategoryDetail();
 		cd.setCategoryId(10001);
 		cd.setCategoryName("水饺类");
-		cd.setPicturePath("page2-img1.jpg.res");
+		cd.setImgFile("c1001_10001_img1.jpg");
 		cd.setDescription("本店特制手工水饺");
 
 		CategoryDetail cd1 = new CategoryDetail();
 		cd1.setCategoryId(10001);
 		cd1.setCategoryName("包子类");
-		cd1.setPicturePath("page2-img2.jpg.res");
+		cd1.setImgFile("c1001_10001_img2.jpg");
 		cd1.setDescription("本店特制手工包子");
-		
+
 		categories.add(cd);
 		categories.add(cd1);
-		model.addAttribute("categories", categories);
-		return "catalog/displayCategories";
 
+		model.addAttribute("categories",categories);
+		return "catalog/displayCategories";
 	}
 
 	@RequestMapping(value = "/{categoryId}", method = RequestMethod.GET)
 	public String showProducts(@PathVariable String categoryId, ModelMap model) {
 		System.out.println(categoryId);
 
-
 		ProductDetail pd1 = new ProductDetail();
-		pd1.setPicturePath("C:\\Users\\WangQi\\Pictures\\Model Plane\\F3A\\F3A_1.jpg");
+		pd1.setImgFileMain("c1001_10001_img3.jpg");
 		pd1.setProductId(10001);
 		pd1.setProductName("猪肉水饺");
 
+		Products products = new Products();
+		products.setCategoryId(categoryId);
+		products.setCategoryName("水饺类");
+		products.addProduct(pd1);
+		products.addProduct(pd1);
+		products.addProduct(pd1);
+		products.addProduct(pd1);
+		products.addProduct(pd1);
+		products.addProduct(pd1);
 
-		List<ProductDetail> productsList = new ArrayList<ProductDetail>();
-		productsList.add(pd1);
-		productsList.add(pd1);
-		productsList.add(pd1);
-		productsList.add(pd1);
-
-		model.addAttribute("productsList",productsList);
-		model.addAttribute("catetoryName", "凉菜类");
+		model.addAttribute(products);
 		return "product/displayProducts";
 
 	}

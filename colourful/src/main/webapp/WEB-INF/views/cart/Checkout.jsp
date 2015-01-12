@@ -1,66 +1,32 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" language="java"%>
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<!--==============================content================================-->
+        <div class="col-5">
+        	<h3 class="h3-line">送货信息</h3>
+            <form id="form" method="post" >
+              <fieldset>
+                <label><strong class="right width-10">联系人:</strong><input type="text" value="" class="width250" placeholder="请输入联系人姓名"><strong class="clear"></strong></label>
+                <label><strong class="right width-10">电话:</strong><input type="text" value="" class="width250" placeholder="请输入联系人电话"><strong class="clear"></strong></label>
+                <label><strong class="right width-10">送货时间:</strong><input type="text" value="" class="width250" placeholder="请输入送货时间"><strong class="clear"></strong></label>
+                <label><strong class="right width-10">送货地点:</strong><textarea  cols="35" rows="4" value="" class="width250" maxlength="200" placeholder="请输入送货地点"></textarea><strong class="clear"></strong></label>
+               </fieldset>  
+	
+                <label><strong class="left-25"><a href="order/submit" class="myButton width-8" >提交订单</a></strong></label>
 
-<html>
-<head>
-<%@ include file="../common/IncludeTop.jsp"%>
-</head>
-<body>
-<form:form method="post"   modelAttribute="orderForm"  action="order/insert">
-<div id="BackLink"><a href ="">
-	Return to Shopping Cart</a></div>
+			   </form> 
 
-<div id="Catalog">
+        </div>
+        <div class="col-4 left-2">
+        	<h3 class="h3-line">我是会员:</h3>
+            <form id="form" method="post" >
+              <fieldset>
+                <label><strong class="right width-10">会员帐号:</strong><input type="text" value="" class="left width150" placeholder="请输入会员帐号"><strong class="clear"></strong></label>
+                <label><strong class="right width-10">密码:</strong><input type="text" value="" class="left width150" placeholder="请输入会员密码"><strong class="clear"></strong></label>
+               </fieldset>  
+	
+                <label><strong class="left-7"> <a href="checkout.html" >忘记密码?</a> </strong ><strong class="left-05"><a href="order.html" class="myButton width-6">登录</a></strong></label>
+                <br><label><strong class="left-18"> <a href="registerUser.html" >立即注册新用户</a></strong></label>
+			   </form> 
 
-<table>
-	<tr>
-		<td>
-		<h2>Checkout Summary</h2>
-
-		<table>
-
-			<tr>
-				<td><b>Item ID</b></td>
-				<td><b>Product ID</b></td>
-				<td><b>Description</b></td>
-				<td><b>In Stock?</b></td>
-				<td><b>Quantity</b></td>
-				<td><b>List Price</b></td>
-				<td><b>Total Cost</b></td>
-			</tr>
-
-			<c:forEach var="cartItem" items="${cart.cartItems}">
-				<tr>
-					<td><a href="detail?itemId=${cartItem.item.itemId}">
-				  ${cartItem.item.itemId}
-			    </a></td>
-					<td>${cartItem.item.product.productId}</td>
-					<td>${cartItem.item.attribute1} ${cartItem.item.attribute2}
-					${cartItem.item.attribute3} ${cartItem.item.attribute4}
-					${cartItem.item.attribute5} ${cartItem.item.product.name}</td>
-					<td>${cartItem.inStock}</td>
-					<td>${cartItem.quantity}</td>
-					<td><fmt:formatNumber value="${cartItem.item.listPrice}"
-						pattern="$#,##0.00" /></td>
-					<td><fmt:formatNumber value="${cartItem.total}"
-						pattern="$#,##0.00" /></td>
-				</tr>
-			</c:forEach>
-			<tr>
-				<td colspan="7">Sub Total: <fmt:formatNumber
-					value="${actionBean.cart.subTotal}" pattern="$#,##0.00" /></td>
-			</tr>
-		</table>
-	</tr>
-</table>
-		<a href ="${flowExecutionUrl}&_eventId=accountAdded">
-      	Proceed to Checkout
-      </a>
-
-</div>
-</form:form>
-</body>
-<%@ include file="../common/IncludeBottom.jsp"%>
-</html>
+	    </div>

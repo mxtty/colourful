@@ -1,73 +1,59 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java"%>
-<%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8" language="java"%>
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
-<%@ taglib prefix="security" uri="http://www.springframework.org/security/tags" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
-<html>
-<head>
-<%@ include file="../common/IncludeTop.jsp"%>
-</head>
-<body>
+<link rel="StyleSheet" href="<c:url value = "/resources/css/cart.css"/>" type="text/css" media="screen" />
+<script src="<c:url value = "/resources/js/cart.js"/>"></script>
+<!--==============================content================================-->
+       <div class="block-4 col-3">
+       <div class="h2"><h2 class="h2-line-2">我点的菜:</h2></div>
+     <ul class="item-list">
+	  <li class="item">
+		<div class="item_information">
+		  <div class="item_image">
+			<img src="image/imageDisplay/c1001_10001_img3.jpg">
+		  </div>
+		  <div class="item_body">
+			<h2 class="item_title">猪肉三鲜水饺</h2>
+			<p class="item_description">美味可口，回味无穷.</p>
+		  </div>
+		  <div class="item_price js-item-price" data-price="11.99">¥1199</div>
+		</div>
+		<div class="item_interactions">
+		  <p class="item_quantity">
+			<a class="js-item-increase" title="Add another copy">+</a>
+			<a class="js-item-decrease decrease--disabled" title="Remove a copy">-</a>
+			<span data-quantity="1">
+			  <b>1</b>
+			  份
+			</span>
+			/每份 ¥11.99
+		  </p>
+		  <a class="item_remove js-item-remove" title="Remove this item">&times;</a>
+		</div>
+	  </li>
+	</ul>
+	</div>	   
 
-<form:form method="post"  modelAttribute="orderForm"  action="order/newOrder">
 
-<div id ="Main">
-<div id="Catalog">
-<div id="Cart">
-
-<h2>Shopping Cart</h2>
-<security:authentication property="principal.username" />
-	<table>
-		<tr>
-			<th><b>Item ID</b></th>
-			<th><b>Product ID</b></th>
-			<th><b>Description</b></th>
-			<th><b>In Stock?</b></th>
-			<th><b>Quantity</b></th>
-			<th><b>List Price</b></th>
-			<th><b>Total Cost</b></th>
-			<th>&nbsp;</th>
-		</tr>
-
-		<c:if test="${myCart.numberOfItems == 0}">
-			<tr>
-				<td colspan="8"><b>Your cart is empty.</b></td>
-			</tr>
-		</c:if>
-
-		<c:forEach var="cartItem" items="${orderForm.cartList}" varStatus="status">
-			<tr>
-				<td><a href ="itemId = ${cartItem.itemId}">
-				${cartItem.itemId}<form:hidden path="cartList[${status.index}].itemId"/>
-			  </a></td>
-				<td>${cartItem.productId}</td>
-				<td>${cartItem.description}</td>
-				<td>false</td>
-				<td><form:input size="3" path="cartList[${status.index}].quantity" /></td>
-				<td><fmt:formatNumber value="${cartItem.listPrice}"
-					pattern="$#,##0.00" /></td>
-				<td><fmt:formatNumber value="${cartItem.totalCost}"
-					pattern="$#,##0.00" /></td>
-				<td><a href ="link">Remove </a></td>
-			</tr>
-		</c:forEach>
-		<tr>
-			<td colspan="7">Sub Total1: <fmt:formatNumber
-				value="111" pattern="$#,##0.00" /> <a href="updateCartQuantities">Update Cart</a></td>
-			<td>&nbsp;</td>
-		</tr>
-	</table>
-
-<c:if test="${myCart.numberOfItems > 0}">
-     <input  type="submit" value="Proceed to Checkout"/>
-</c:if>
-</div>
-
-<div id="Separator">&nbsp;</div>
-</div>
-</div>
-</form:form>
-</body>
-<%@ include file="../common/IncludeBottom.jsp"%>
-</html>
+	<div class="summary js-summary">
+	  <ul class="steps">
+		<li>
+		  <b>合计:</b>
+		  <span class="sum js-subtotal">¥32.86</span>
+		</li>
+		<li>
+		  <b>运费:</b>
+		  <span class="sum js-shipping">¥5.00</span>
+		</li>
+	  </ul>
+	  <ul class="checkout">
+		<li>
+		  <b>总计:</b>
+		  <span class="sum js-total">¥39.50</span>
+		</li>
+		<li>
+		  <a href="cart/checkout" class="myButton width-8">结算</a>
+		</li>
+	  </ul>
+	</div> 

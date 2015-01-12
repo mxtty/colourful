@@ -9,7 +9,9 @@ import lombok.Data;
 public class Products {
 
 	/** 商品种别名 */
-	private String catetoryName;
+	private String categoryName;
+
+	private String categoryId;
 
 	private List<ProductDetail> productList = new ArrayList<ProductDetail>();
 
