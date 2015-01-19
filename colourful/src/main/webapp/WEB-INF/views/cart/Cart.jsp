@@ -25,9 +25,9 @@
 			<a class="js-item-decrease decrease--disabled" title="Remove a copy">-</a>
 			<span data-quantity="1">
 			  <b>1</b>
-			  份
+			  
 			</span>
-			/每份 ¥11.99
+			份/每份 ¥11.99
 		  </p>
 		  <a class="item_remove js-item-remove" title="Remove this item">&times;</a>
 		</div>

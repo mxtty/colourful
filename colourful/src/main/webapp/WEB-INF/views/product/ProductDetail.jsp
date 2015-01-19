@@ -23,7 +23,7 @@
 					<form:form id="product_list_form" method="post"	modelAttribute="orderDetailForm" action="cart/add">
 						<form:hidden path="productId" value ="${productDetail.productId}"/>
 						<fieldset>
-							<label><strong>数量:</strong><input type ="number" name="quantity" class="width15" maxlength="3"/>
+							<label><strong>数量:</strong><input type ="number" name="quantity" value="1" class="width40" max="999" min="1"/>
 							<strong>盘</strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 							<a href="cart/add" class="myButton">立即购买</a></label>
 						</fieldset>

@@ -4,8 +4,8 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <link rel="StyleSheet" href="<c:url value = "/resources/css/cart.css"/>" type="text/css" media="screen" />
 <!--==============================content================================-->
-       <div class="block-4 col-3">
-       <div class="h2"><h2 class="h2-line-2">订单详细(100012125)</h2></div>
+     <div class="block-4 col-3">
+     <div class="h2"><h2 class="h2-line-2">订单详细(11102121247)</h2></div>
      <ul class="item-list">
 	  <li class="item">
 		<div class="item_information">
@@ -29,14 +29,12 @@
 		</div>
 	  </li>
 	</ul>
-	</div>	   
-	<div class="summary">
-        <fieldset>
+	<div id="shipInfo" class="info-detail" >
           <label><strong class="right width-10">订单号:</strong><strong class="left width-10">11102121247</strong></label>
           <label><strong class="right width-10">联系人:</strong><strong class="left width-10">喜洋洋</strong></label>
           <label><strong class="right width-10">电话:</strong><strong class="left width-10">13501230214</strong></label>
-          <label><strong class="right width-10">送货时间:</strong><strong class="left width-10">2014年11月3日</strong></label>
+          <label><strong class="right width-10">送货时间:</strong><strong class="left width-30">2014年11月3日</strong></label>
           <label><strong class="right width-10">送货地点:</strong><strong class="left width-30">乌鲁木齐市河北路12号，美丽家园小区，3号楼，2单元918号</strong></label>
-         </fieldset>  
+	</div>
+	</div>   
 
-	</div> 

@@ -268,7 +268,8 @@ dl.adr dd a:hover {}
 
 form { margin: 33px 0 0px 0px; }
 form input {border:#d8d5d5 1px solid;background:#e4e4e4;font: 14px "Times New Roman", Times, serif;color:#48484e;padding:4px 10px 4px 10px;outline: medium none;height:13px;float:left;}
-form input.width15{width:30px;}
+form input.width30{width:30px;}
+form input.width40{width:40px;}
 form input.width100{width:100px;}
 form input.width150{width:150px;}
 form input.width200{width:200px;}
@@ -281,6 +282,9 @@ form label strong {font-weight:normal; float:left; display:inline-block; padding
 form label.float-right {font-weight:normal; float:right; text-align:right; display:inline-block; width:60px; padding-top:4px; padding-right:9px;}
 .btns {text-align:right; width:310px; padding-top:6px;}
 .btns a {display:inline-block; margin:0 0px 0 20px;}
+
+.info-detail label {position:relative;overflow:hidden;display: block;min-height:37px;}
+.info-detail label strong {font-weight:normal; float:left; display:inline-block; padding-top:4px; padding-right:9px;margin-left:1em}
 
 .myButton {
 	-moz-box-shadow:inset 0px 1px 0px 0px #97c4fe;

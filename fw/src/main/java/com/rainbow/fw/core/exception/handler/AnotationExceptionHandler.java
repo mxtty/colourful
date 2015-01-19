@@ -55,7 +55,6 @@ public class AnotationExceptionHandler {
 	 */
 	@Around("execution(* *..controller.*.*(..))")
 	public Object around(ProceedingJoinPoint pjp) {
-		System.out.println("iN");
 		Method method = null;
 		// 获取处理方法
 		try {

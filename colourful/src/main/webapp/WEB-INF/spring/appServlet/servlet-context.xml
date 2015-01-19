@@ -67,7 +67,7 @@
 	<bean id="env" class="com.rainbow.fw.core.env.Enviroment"/>
 	
 	<context:component-scan base-package="com.rainbow.fw.web.context" />
-	<context:component-scan base-package="com.colourful.domain" />
+	<context:component-scan base-package="com.colourful.domain" />	
 	<context:component-scan base-package="com.colourful.domain.session" />
 	<context:component-scan base-package="com.colourful.controller" />
 

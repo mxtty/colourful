@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.colourful.domain.generated.mapper.BrnCategoryMapper">
+	<cache/>
+	<select id="readByPk" parameterType="com.colourful.domain.generated.record.BrnCategory" resultType="com.colourful.domain.generated.record.BrnCategory">
+    select
+       CATEGORY_ID,CATEGORY_NAME,DESCRIPTION,CREATE_DATE,UPDATE_DATE,DEL_FLG 
+    from
+       BRN_CATEGORY 
+    where
+       CATEGORY_ID = #{categoryId}
+    </select>
+	<insert id="insert" parameterType="com.colourful.domain.generated.record.BrnCategory">
+    insert into
+       BRN_CATEGORY 
+    values
+       (#{categoryId},#{categoryName},#{description},CURRENT_TIMESTAMP,CURRENT_TIMESTAMP,0)
+    </insert>
+	<update id="update" parameterType="com.colourful.domain.generated.record.BrnCategory">
+    update
+       BRN_CATEGORY 
+    set
+       CATEGORY_NAME = #{categoryName} ,DESCRIPTION = #{description} ,UPDATE_DATE = CURRENT_TIMESTAMP 
+    where
+       CATEGORY_ID = #{categoryId} and UPDATE_DATE = #{updateDate}
+    </update>
+	<update id="delete" parameterType="com.colourful.domain.generated.record.BrnCategory">
+    update
+       BRN_CATEGORY 
+    set
+       UPDATE_DATE = CURRENT_TIMESTAMP,DEL_FLG = 1 
+    where
+       UPDATE_DATE = #{updateDate} and DEL_FLG = 0
+    </update>
+</mapper>

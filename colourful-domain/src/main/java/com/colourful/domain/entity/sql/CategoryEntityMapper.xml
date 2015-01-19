@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.colourful.domain.entity.mapper.CategoryEntityMapper">
+  <select id="getAllCategories" resultType="com.colourful.domain.data.CategoryDetail">
+    SELECT
+       CATEGORY.CATEGORY_ID categoryId,
+       CATEGORY.CATEGORY_NAME categoryName,
+       CATEGORY.DESCRIPTION description,
+       IMAGE.IMAGE_FILE imgFile
+    FROM 
+       BRN_CATEGORY CATEGORY,
+       BRN_IMAGE IMAGE
+    WHERE 
+       CATEGORY.IMAGE_ID = IMAGE.IMAGE_ID
+  </select>
+  
+</mapper>

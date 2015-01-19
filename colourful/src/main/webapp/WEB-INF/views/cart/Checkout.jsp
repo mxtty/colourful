@@ -25,8 +25,8 @@
                 <label><strong class="right width-10">密码:</strong><input type="text" value="" class="left width150" placeholder="请输入会员密码"><strong class="clear"></strong></label>
                </fieldset>  
 	
-                <label><strong class="left-7"> <a href="checkout.html" >忘记密码?</a> </strong ><strong class="left-05"><a href="order.html" class="myButton width-6">登录</a></strong></label>
-                <br><label><strong class="left-18"> <a href="registerUser.html" >立即注册新用户</a></strong></label>
+                <label><strong class="left-18"><a href="order.html" class="myButton width-6">登录</a></strong></label>
+                <br><label><strong class="left-12"> <a href="checkout.html" >忘记密码?</a> &nbsp;&nbsp;&nbsp;<a href="registerUser.html" >立即注册新用户</a></strong></label>
 			   </form> 
 
 	    </div>

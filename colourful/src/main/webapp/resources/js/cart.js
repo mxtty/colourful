@@ -52,7 +52,7 @@ function changeQuantity (emitter, action) {
     }
   }
   
-  quantityField.innerHTML = '<b>' + (action === 'increase' ? ++quantity : --quantity) + '</b> ' + (quantity > 1 ? 'copies' : 'copy')
+  quantityField.innerHTML = '<b>' + (action === 'increase' ? ++quantity : --quantity) + '</b> '
   quantityField.setAttribute('data-quantity', quantity)
 
   price = emitter.parentElement.parentElement.parentElement.querySelector('.js-item-price')

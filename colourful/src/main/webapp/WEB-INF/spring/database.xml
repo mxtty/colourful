@@ -32,6 +32,7 @@
         <property name="mapperLocations"  >
            <list>
               <value>classpath*:com/colourful/domain/persistence/**/*.xml</value>
+              <value>classpath*:com/colourful/domain/entity/**/*.xml</value>
               <value>classpath*:com/colourful/domain/generated/**/*.xml</value>
            </list>
         </property>

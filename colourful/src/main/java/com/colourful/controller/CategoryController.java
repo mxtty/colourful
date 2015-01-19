@@ -1,6 +1,5 @@
 package com.colourful.controller;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -11,10 +10,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.colourful.io.CategoryDetail;
+import com.colourful.domain.data.CategoryDetail;
+import com.colourful.domain.service.base.EntityFactory;
 import com.colourful.io.ProductDetail;
 import com.colourful.io.Products;
-import com.rainbow.fw.core.exception.handler.ExceptionHandlerAdvice;
 
 /**
  * Handles requests for the application home page.
@@ -29,24 +28,27 @@ public class CategoryController {
 	@RequestMapping(value = "", method = RequestMethod.GET)
 	public String showCategories(ModelMap model) {
 
-		List<CategoryDetail> categories = new ArrayList<CategoryDetail>();
+		// List<CategoryDetail> categories = new ArrayList<CategoryDetail>();
+		//
+		// CategoryDetail cd = new CategoryDetail();
+		// cd.setCategoryId(10001);
+		// cd.setCategoryName("水饺类");
+		// cd.setImgFile("c1001_10001_img1.jpg");
+		// cd.setDescription("本店特制手工水饺");
+		//
+		// CategoryDetail cd1 = new CategoryDetail();
+		// cd1.setCategoryId(10001);
+		// cd1.setCategoryName("包子类");
+		// cd1.setImgFile("c1001_10001_img2.jpg");
+		// cd1.setDescription("本店特制手工包子");
+		//
+		// categories.add(cd);
+		// categories.add(cd1);
 
-		CategoryDetail cd = new CategoryDetail();
-		cd.setCategoryId(10001);
-		cd.setCategoryName("水饺类");
-		cd.setImgFile("c1001_10001_img1.jpg");
-		cd.setDescription("本店特制手工水饺");
+		List<CategoryDetail> categories = EntityFactory.newBrnCategoryEntity()
+				.getAllCategories();
 
-		CategoryDetail cd1 = new CategoryDetail();
-		cd1.setCategoryId(10001);
-		cd1.setCategoryName("包子类");
-		cd1.setImgFile("c1001_10001_img2.jpg");
-		cd1.setDescription("本店特制手工包子");
-
-		categories.add(cd);
-		categories.add(cd1);
-
-		model.addAttribute("categories",categories);
+		model.addAttribute("categories", categories);
 		return "catalog/displayCategories";
 	}
 
