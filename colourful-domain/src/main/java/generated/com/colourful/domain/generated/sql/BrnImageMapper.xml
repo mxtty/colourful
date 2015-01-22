@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.colourful.domain.generated.mapper.BrnImageMapper">
+	<cache/>
+	<select id="readByPk" parameterType="com.colourful.domain.generated.record.BrnImage" resultType="com.colourful.domain.generated.record.BrnImage">
+    select
+       IMAGE_ID imageId,ID id,SEQ seq,NOTE note,DESCRIPTION description,IMAGE_FILE imageFile,CREATE_DATE createDate,UPDATE_DATE updateDate,DEL_FLG delFlg 
+    from
+       BRN_IMAGE 
+    where
+       IMAGE_ID = #{imageId}
+    </select>
+	<insert id="insert" parameterType="com.colourful.domain.generated.record.BrnImage">
+    insert into
+       BRN_IMAGE 
+    values
+       (#{imageId},#{id},#{seq},#{note},#{description},#{imageFile},CURRENT_TIMESTAMP,CURRENT_TIMESTAMP,0)
+    </insert>
+	<update id="update" parameterType="com.colourful.domain.generated.record.BrnImage">
+    update
+       BRN_IMAGE 
+    set
+       ID = #{id} ,SEQ = #{seq} ,NOTE = #{note} ,DESCRIPTION = #{description} ,IMAGE_FILE = #{imageFile} ,UPDATE_DATE = CURRENT_TIMESTAMP 
+    where
+       IMAGE_ID = #{imageId} and UPDATE_DATE = #{updateDate}
+    </update>
+	<update id="delete" parameterType="com.colourful.domain.generated.record.BrnImage">
+    update
+       BRN_IMAGE 
+    set
+       UPDATE_DATE = CURRENT_TIMESTAMP,DEL_FLG = 1 
+    where
+       UPDATE_DATE = #{updateDate} and DEL_FLG = 0
+    </update>
+</mapper>

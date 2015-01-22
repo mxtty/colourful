@@ -17,50 +17,42 @@ import com.colourful.domain.entity.BrnUserDetailEntity;
 import com.colourful.domain.entity.BrnUserEntity;
 import com.colourful.domain.service.base.EntityFactory;
 import com.colourful.io.RegisterUserForm;
-import com.rainbow.fw.core.exception.handler.ExceptionHandlerAdvice;
 
 @Controller
 @RequestMapping("/registerUser")
 public class RegisterUserController {
 
-	@Autowired
-	private MessageSource messageSource;
+    @Autowired
+    private MessageSource messageSource;
 
-	private static Logger log = Logger.getLogger(RegisterUserController.class);
+    private static Logger log = Logger.getLogger(RegisterUserController.class);
 
-	@ModelAttribute("registerUserForm")
-	public RegisterUserForm initForm(Model model) {
-		return new RegisterUserForm();
-	}
+    @ModelAttribute("registerUserForm")
+    public RegisterUserForm initForm(Model model) {
+	return new RegisterUserForm();
+    }
 
-	@RequestMapping(value = "register", method = RequestMethod.POST)
-	// @ExceptionHandlerAdvice(errorPath = "registerUser/register")
-	public String addNewUser(
-			@Valid @ModelAttribute RegisterUserForm registerUserForm,
-			BindingResult result, Model model) {
+    @RequestMapping(value = "register", method = RequestMethod.POST)
+    // @ExceptionHandlerAdvice(errorPath = "registerUser/register")
+    public String addNewUser(@Valid @ModelAttribute RegisterUserForm registerUserForm, BindingResult result, Model model) {
 
-		BrnUserDetailEntity detailEntity = EntityFactory
-				.newBrnUserDetailEntity(registerUserForm.getUserId());
+	BrnUserDetailEntity detailEntity = EntityFactory.newBrnUserDetailEntity(registerUserForm.getUserId());
 
-		detailEntity.fromObject(registerUserForm);
-		detailEntity.setDefaultFlg(1);
-		detailEntity.insert();
-		System.out.println("ERROR");
-		BrnUserEntity userEntity = EntityFactory
-				.newBrnUserEntity(registerUserForm.getUserId());
-		userEntity.fromObject(registerUserForm);
-		if (1 == 1) {
-			throw new RuntimeException("ERROR");
-		}
-		boolean ret = userEntity.insert();
-		System.out.println("============IN ADD NEW==============" + ret);
-		return "registerUser/done";
-	}
+	detailEntity.fromObject(registerUserForm);
+	detailEntity.setDefaultFlg(1);
+	detailEntity.insert();
+	BrnUserEntity userEntity = EntityFactory.newBrnUserEntity(registerUserForm.getUserId());
+	userEntity.fromObject(registerUserForm);
 
-	@RequestMapping(value = "", method = RequestMethod.GET)
-	public String displayRegisterUserForm(ModelMap model) {
+	boolean ret = userEntity.insert();
+	System.out.println("============IN ADD NEW==============" + ret);
+	return "registerUser/done";
+    }
 
-		return "registerUser/new";
+    @RequestMapping(value = "", method = RequestMethod.GET)
+    public String displayRegisterUserForm(ModelMap model) {
 
-	}
+	return "registerUser/new";
+
+    }
 }

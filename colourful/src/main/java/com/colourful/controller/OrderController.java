@@ -8,8 +8,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.colourful.domain.data.ProductDetail;
 import com.colourful.io.OrderDetailForm;
-import com.colourful.io.ProductDetail;
 
 /**
  * 

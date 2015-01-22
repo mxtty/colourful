@@ -16,4 +16,20 @@
        CATEGORY.IMAGE_ID = IMAGE.IMAGE_ID
   </select>
   
+  <select id="getAllProductsByCategoryId"  parameterType="long" resultType="com.colourful.domain.data.ProductDetail">
+    SELECT
+       PRODUCT.PRODUCT_NAME productName,
+       IMAGE.IMAGE_FILE imgFileMain,
+       PRODUCT.UNIT_PRICE unitPrice,
+       PRODUCT.UNIT unit,
+       PRODUCT.PRODUCT_ID productId
+    FROM 
+       BRN_PRODUCT as PRODUCT LEFT JOIN 
+       BRN_IMAGE as IMAGE
+     ON
+       PRODUCT.PRODUCT_ID = IMAGE.ID AND
+    IMAGE.SEQ =1
+  </select>
+  
+  
 </mapper>

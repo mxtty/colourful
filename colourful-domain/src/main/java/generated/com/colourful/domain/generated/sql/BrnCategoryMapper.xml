@@ -6,17 +6,17 @@
 	<cache/>
 	<select id="readByPk" parameterType="com.colourful.domain.generated.record.BrnCategory" resultType="com.colourful.domain.generated.record.BrnCategory">
     select
-       CATEGORY_ID,CATEGORY_NAME,DESCRIPTION,CREATE_DATE,UPDATE_DATE,DEL_FLG 
+       CATEGORY_ID categoryId,IMAGE_ID imageId,CATEGORY_NAME categoryName,DESCRIPTION description,CREATE_DATE createDate,UPDATE_DATE updateDate,DEL_FLG delFlg 
     from
        BRN_CATEGORY 
     where
-       CATEGORY_ID = #{categoryId}
+       CATEGORY_ID = #{categoryId} and IMAGE_ID = #{imageId}
     </select>
 	<insert id="insert" parameterType="com.colourful.domain.generated.record.BrnCategory">
     insert into
        BRN_CATEGORY 
     values
-       (#{categoryId},#{categoryName},#{description},CURRENT_TIMESTAMP,CURRENT_TIMESTAMP,0)
+       (#{categoryId},#{imageId},#{categoryName},#{description},CURRENT_TIMESTAMP,CURRENT_TIMESTAMP,0)
     </insert>
 	<update id="update" parameterType="com.colourful.domain.generated.record.BrnCategory">
     update
@@ -24,7 +24,7 @@
     set
        CATEGORY_NAME = #{categoryName} ,DESCRIPTION = #{description} ,UPDATE_DATE = CURRENT_TIMESTAMP 
     where
-       CATEGORY_ID = #{categoryId} and UPDATE_DATE = #{updateDate}
+       CATEGORY_ID = #{categoryId} and IMAGE_ID = #{imageId} and UPDATE_DATE = #{updateDate}
     </update>
 	<update id="delete" parameterType="com.colourful.domain.generated.record.BrnCategory">
     update

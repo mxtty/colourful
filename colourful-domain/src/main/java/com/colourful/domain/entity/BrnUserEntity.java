@@ -1,15 +1,9 @@
 package com.colourful.domain.entity;
 
-import java.io.Serializable;
-
-import org.springframework.context.annotation.Scope;
-import org.springframework.stereotype.Component;
-
 import com.colourful.domain.generated.base.BrnUserBase;
+import com.colourful.domain.stereotype.Entity;
 
-@Component
-@Scope("prototype")
-@SuppressWarnings("serial")
-public class BrnUserEntity extends BrnUserBase implements Serializable {
+@Entity
+public class BrnUserEntity extends BrnUserBase  {
 
 }

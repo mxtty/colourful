@@ -11,7 +11,7 @@
 			<div>
 				<h4>${product.productName}</h4>
 				<div class="img-border"><img src="image/imageDisplay/${product.imgFileMain}" /></div>
-				<div class="price">¥11.8/份 </div>
+				<div class="price">¥${product.unitPrice}/${product.unit} </div>
 				<a href="product/showProduct/${product.productId}" class="myButton addToCartBtn" >加入购物车</a>
 			</div>
 		</c:forEach>

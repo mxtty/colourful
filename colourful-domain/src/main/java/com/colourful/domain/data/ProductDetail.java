@@ -1,4 +1,4 @@
-package com.colourful.io;
+package com.colourful.domain.data;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;

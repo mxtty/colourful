@@ -6,7 +6,7 @@
 	<cache/>
 	<select id="readByPk" parameterType="com.colourful.domain.generated.record.BrnProduct" resultType="com.colourful.domain.generated.record.BrnProduct">
     select
-       PRODUCT_ID,PRODUCT_NAME,UNIT,UNIT_PRICE,UNIT_COST,CATEGORY_ID1,CATEGORY_ID2,CATEGORY_ID3,CATEGORY_ID4,CATEGORY_ID5,DESCRIPTION,STATUS,CREATE_DATE,UPDATE_DATE,DEL_FLG 
+       PRODUCT_ID productId,PRODUCT_NAME productName,UNIT unit,UNIT_PRICE unitPrice,UNIT_COST unitCost,CATEGORY_ID1 categoryId1,CATEGORY_ID2 categoryId2,CATEGORY_ID3 categoryId3,CATEGORY_ID4 categoryId4,CATEGORY_ID5 categoryId5,DESCRIPTION description,STATUS status,CREATE_DATE createDate,UPDATE_DATE updateDate,DEL_FLG delFlg 
     from
        BRN_PRODUCT 
     where
