@@ -29,7 +29,7 @@ public class ImageController {
 		byte[] img = FileUtils.readFileToByteArray(new File(IMG_BASE_PATH
 				.concat(imgFile)));
 
-		response.setContentType("image/jpeg, image/jpg, image/png, image/gif");
+		response.setContentType("image/jpeg;image/jpg;image/png;image/gif");
 		response.getOutputStream().write(img);
 
 		response.getOutputStream().close();

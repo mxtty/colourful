@@ -5,7 +5,6 @@
 <div class="block-4 col-3">
 	<form:form id="product_list_form" method="post"  modelAttribute="registerUserForm" action="registerUser/register">
 		<div class="h2"><h2 class="h2-line-2">${products.categoryName}</h2></div>
-
 		<div class="box-4 border-3">
 		<c:forEach var="product" items="${products.productList}">
 			<div>

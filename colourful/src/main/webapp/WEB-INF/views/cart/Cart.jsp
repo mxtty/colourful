@@ -7,6 +7,7 @@
 <!--==============================content================================-->
        <div class="block-4 col-3">
        <div class="h2"><h2 class="h2-line-2">我点的菜:</h2></div>
+		<div class="box-4 ">
      <ul class="item-list">
 	  <li class="item">
 		<div class="item_information">
@@ -33,7 +34,7 @@
 		</div>
 	  </li>
 	</ul>
-	</div>	   
+		</div>	
 
 
 	<div class="summary js-summary">
@@ -57,3 +58,5 @@
 		</li>
 	  </ul>
 	</div> 
+	</div> 
+   
