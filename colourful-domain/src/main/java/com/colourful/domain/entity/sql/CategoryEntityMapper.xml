@@ -10,10 +10,11 @@
        CATEGORY.DESCRIPTION description,
        IMAGE.IMAGE_FILE imgFile
     FROM 
-       BRN_CATEGORY CATEGORY,
-       BRN_IMAGE IMAGE
-    WHERE 
-       CATEGORY.IMAGE_ID = IMAGE.IMAGE_ID
+       BRN_CATEGORY as CATEGORY LEFT JOIN 
+       BRN_IMAGE as IMAGE
+     ON
+       CATEGORY.CATEGORY_ID = IMAGE.ID AND
+       IMAGE.SEQ =1
   </select>
   
   <select id="getAllProductsByCategoryId"  parameterType="long" resultType="com.colourful.domain.data.ProductDetail">
@@ -28,7 +29,7 @@
        BRN_IMAGE as IMAGE
      ON
        PRODUCT.PRODUCT_ID = IMAGE.ID AND
-    IMAGE.SEQ =1
+       IMAGE.SEQ =1
   </select>
   
   

@@ -8,8 +8,6 @@ public class BrnCategory implements Serializable{
 	private static final long serialVersionUID = 1L;
 	/** 种别ID */
 	protected long categoryId;
-	/** 图片ID */
-	protected long imageId;
 	/** 商品种别名 */
 	protected String categoryName;
 	/** 种别说明 */

@@ -89,7 +89,7 @@ ul.list-1 li a:hover {text-decoration:none;}
 .left {text-align:left;}
 .right {text-align:right;}
 .nowrap {white-space:nowrap;} 
-.it-bold {font-family:·ÂËÎÌå;font-style:italic; font-weight:bold;}
+.it-bold {font-family:ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½;font-style:italic; font-weight:bold;}
 .img-indent {float:left; margin:3px 50px 0px 0;}	
 
 .last {margin-right:0px !important; padding-right:0px !important;}
@@ -147,7 +147,7 @@ ul.menu li:hover a, ul.menu li.current a  { background:#e4e4e4; }
 .border-2 {background:url(../images/line.jpg) center bottom no-repeat;  padding-bottom:6px; margin-bottom:5px; }
 .border-3 {border-bottom:#d6d6d6 1px solid; padding-bottom:20px; margin-bottom:2px; }
 
-.img-border {background:#fff; display:inline-block; padding:3px; border:#d7d7d7 1px solid;position:relative;}
+.img-border {background:#fff; display:inline-block; padding:3px; border:#d7d7d7 1px solid;position:relative;margin-right:6px;}
 .img-border h6 {color:#FFF;text-align:center;position:absolute;width:60px;left:125px;top:4px;background:#7CCD7C;}
 
 

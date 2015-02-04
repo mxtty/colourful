@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @RequestMapping("/image")
 public class ImageController {
 
-	private static final String IMG_BASE_PATH = "C:\\Users\\WangQi\\git\\mxtty\\colourful\\colourful\\src\\main\\webapp\\resources\\images\\";
+	private static final String IMG_BASE_PATH = "C:\\Users\\WangQi\\git\\colourful\\colourful\\src\\main\\webapp\\resources\\images\\";
 
 	@RequestMapping(value = "/imageDisplay/{imgFile:.*}", method = RequestMethod.GET)
 	public void showImage(@PathVariable String imgFile,

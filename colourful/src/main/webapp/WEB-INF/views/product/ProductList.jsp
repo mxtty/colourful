@@ -9,7 +9,7 @@
 		<c:forEach var="product" items="${products.productList}">
 			<div>
 				<h4>${product.productName}</h4>
-				<div class="img-border"><img src="image/imageDisplay/${product.imgFileMain}" /></div>
+				<div class="img-border"><img height ="110px" src="image/imageDisplay/${product.imgFileMain}" /></div>
 				<div class="price">¥${product.unitPrice}/${product.unit} </div>
 				<a href="product/showProduct/${product.productId}" class="myButton addToCartBtn" >加入购物车</a>
 			</div>
