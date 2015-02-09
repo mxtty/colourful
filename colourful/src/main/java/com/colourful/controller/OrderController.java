@@ -4,12 +4,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.colourful.domain.data.ProductDetail;
-import com.colourful.io.OrderDetailForm;
+import com.colourful.form.OrderEntryForm;
 
 /**
  * 
@@ -19,8 +16,8 @@ import com.colourful.io.OrderDetailForm;
 public class OrderController {
 
 	@ModelAttribute("orderDetailForm")
-	public OrderDetailForm initForm(Model model) {
-		return new OrderDetailForm();
+	public OrderEntryForm initForm(Model model) {
+		return new OrderEntryForm();
 	}
 
 	@RequestMapping(value = "viewOrder")
@@ -33,7 +30,7 @@ public class OrderController {
 	}
 
 	@RequestMapping(value = "submit")
-	public String submit( ModelMap model) {
+	public String submit(ModelMap model) {
 
 		return "order/OrderFinish";
 

@@ -1,4 +1,4 @@
-package com.colourful.io;
+package com.colourful.form;
 
 import org.hibernate.validator.constraints.NotEmpty;
 import org.hibernate.validator.constraints.Range;

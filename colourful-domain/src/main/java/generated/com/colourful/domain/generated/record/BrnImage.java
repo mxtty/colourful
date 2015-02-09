@@ -1,11 +1,17 @@
 ﻿package com.colourful.domain.generated.record;
+
 import java.io.Serializable;
-import lombok.Data;
 import java.util.Date;
+
+import lombok.Data;
+
 @Data
-public class BrnImage implements Serializable{
-	/** SerialVersion */
-	private static final long serialVersionUID = 1L;
+public class BrnImage implements Serializable {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 2161539088541574506L;
 	/** 图片ID */
 	protected long imageId;
 	/** 商品ID */

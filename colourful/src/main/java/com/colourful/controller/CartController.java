@@ -1,15 +1,22 @@
 package com.colourful.controller;
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
+
+import org.apache.commons.lang3.StringUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.colourful.domain.data.ProductDetail;
-import com.colourful.io.OrderDetailForm;
+import com.colourful.domain.service.CartService;
+import com.colourful.form.OrderEntryForm;
 
 /**
  * 
@@ -18,35 +25,39 @@ import com.colourful.io.OrderDetailForm;
 @RequestMapping("/cart")
 public class CartController {
 
-	@ModelAttribute("orderDetailForm")
-	public OrderDetailForm initForm(Model model) {
-		return new OrderDetailForm();
+	@Autowired
+	private CartService cartService;
+
+	@ModelAttribute("orderEntryForm")
+	public OrderEntryForm initForm(Model model) {
+		return new OrderEntryForm();
 	}
 
 	@RequestMapping(value = "add")
-	public String addToCart(Model model) {
+	public String addToCart(HttpSession session, @CookieValue(value = "sid", defaultValue = "") String sid,
+			HttpServletResponse response, @Valid @ModelAttribute OrderEntryForm orderEntryForm, BindingResult result,
+			Model model) {
+		System.out.println("PID:" + orderEntryForm.getProductId() + "QAN:" + orderEntryForm.getQuantity());
+		if (StringUtils.isEmpty(sid)) {
+			Cookie cookie = new Cookie("sid", session.getId());
+			// 有效期限180天
+			cookie.setMaxAge(60 * 60 * 24 * 180);
+			// cookie.setSecure(true);
+			sid = session.getId();
+			response.addCookie(cookie);
+		}
+
+		cartService.addToCart(orderEntryForm.getProductId(), orderEntryForm.getQuantity(), sid);
 
 		// cartService.addItem(itemId);
 
 		// model.addAttribute("cart", cartService.getCartEntity());
-		return "cart/Cart";
+		return "forward:/cart/showCart";
 	}
 
-	@RequestMapping(value = "showProduct/{productId}")
-	public String displayProducts(@PathVariable long productId, ModelMap model) {
-		ProductDetail productDetail = new ProductDetail();
-		productDetail.setImgFileMain("c1001_10001_img2.jpg");
-		productDetail.setProductId(productId);
-		productDetail.setProductName("猪肉水饺");
-		productDetail.addImgFileSub("c1001_10001_img3.jpg");
-		productDetail.addImgFileSub("c1001_10001_img3.jpg");
-		productDetail.addImgFileSub("c1001_10001_img3.jpg");
-		productDetail.addImgFileSub("c1001_10001_img3.jpg");
-		productDetail
-				.setDescription("酱香牛肉是本店一道招牌菜，味道好，价格适中。居家旅游之必备凉菜。欢迎选购，数量有限，欲购者从速。");
-		model.addAttribute(productDetail);
-		return "product/showProduct";
-
+	@RequestMapping(value = "showCart")
+	public String showCart(HttpSession session, @CookieValue(value = "sid", defaultValue = "") String sid) {
+		return "cart/Cart";
 	}
 
 	@RequestMapping(value = "checkout")

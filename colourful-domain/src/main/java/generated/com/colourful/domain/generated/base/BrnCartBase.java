@@ -3,23 +3,22 @@ package com.colourful.domain.generated.base;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.colourful.domain.exception.ExceptionId;
-import com.colourful.domain.generated.mapper.BrnProductMapper;
-import com.colourful.domain.generated.record.BrnProduct;
+import com.colourful.domain.generated.mapper.BrnCartMapper;
+import com.colourful.domain.generated.record.BrnCart;
 
 /**
- * 产品Base类
+ * 购物车Base类
  * 
  * 
  * @author WangQi
  * 
  */
 @SuppressWarnings("serial")
-public class BrnProductBase extends BrnProduct {
+public class BrnCartBase extends BrnCart {
 
 	/** 管理Mapper */
 	@Autowired
-	private BrnProductMapper mapper;
+	private BrnCartMapper mapper;
 
 	public void fromObject(Object from) {
 		BeanUtils.copyProperties(from, this);
@@ -30,24 +29,18 @@ public class BrnProductBase extends BrnProduct {
 
 	}
 
-	public void checkPkNotNull() {
-		if (0 == this.productId) {
-			ExceptionId.PK_NULL.rejectApp("BRN_PRODUCT", "PRODUCT_ID");
-		}
-	}
-
 	/**
 	 * 以PK获取Entity
 	 * 
 	 * @return 获取到的Entity
 	 */
 	public boolean getEntityByPk() {
-		BrnProduct detail = mapper.readByPk(this);
+		BrnCart detail = mapper.readByPk(this);
 		if (null == detail) {
 			return false;
 		}
 
-		BeanUtils.copyProperties(detail, this);
+		BeanUtils.copyProperties(mapper.readByPk(this), this);
 		return true;
 	}
 

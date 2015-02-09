@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.colourful.domain.generated.mapper.BrnCartDetailMapper">
+	<cache/>
+	<select id="readByPk" parameterType="com.colourful.domain.generated.record.BrnCartDetail" resultType="com.colourful.domain.generated.record.BrnCartDetail">
+    select
+       CART_ID cartId,PRODUCT_ID productId,QUANTITY quantity,STATUS status,CREATE_DATE createDate,UPDATE_DATE updateDate,DEL_FLG delFlg 
+    from
+       BRN_CART_DETAIL 
+    where
+       CART_ID = #{cartId} and PRODUCT_ID = #{productId}
+    </select>
+	<insert id="insert" parameterType="com.colourful.domain.generated.record.BrnCartDetail">
+    insert into
+       BRN_CART_DETAIL 
+    values
+       (#{cartId},#{productId},#{quantity},#{status},CURRENT_TIMESTAMP,CURRENT_TIMESTAMP,0)
+    </insert>
+	<update id="update" parameterType="com.colourful.domain.generated.record.BrnCartDetail">
+    update
+       BRN_CART_DETAIL 
+    set
+       QUANTITY = #{quantity} ,STATUS = #{status} ,UPDATE_DATE = CURRENT_TIMESTAMP 
+    where
+       CART_ID = #{cartId} and PRODUCT_ID = #{productId} and UPDATE_DATE = #{updateDate}
+    </update>
+	<update id="delete" parameterType="com.colourful.domain.generated.record.BrnCartDetail">
+    update
+       BRN_CART_DETAIL 
+    set
+       UPDATE_DATE = CURRENT_TIMESTAMP,DEL_FLG = 1 
+    where
+       UPDATE_DATE = #{updateDate} and DEL_FLG = 0
+    </update>
+</mapper>

@@ -1,25 +1,27 @@
 package com.colourful.domain.generated.base;
 
+import java.util.List;
+
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.colourful.domain.exception.ExceptionId;
-import com.colourful.domain.generated.mapper.BrnProductMapper;
-import com.colourful.domain.generated.record.BrnProduct;
+import com.colourful.domain.generated.mapper.BrnImageMapper;
+import com.colourful.domain.generated.record.BrnImage;
 
 /**
- * 产品Base类
+ * 图片Base类
  * 
  * 
  * @author WangQi
  * 
  */
 @SuppressWarnings("serial")
-public class BrnProductBase extends BrnProduct {
+public class BrnImageBase extends BrnImage {
 
 	/** 管理Mapper */
 	@Autowired
-	private BrnProductMapper mapper;
+	private BrnImageMapper mapper;
 
 	public void fromObject(Object from) {
 		BeanUtils.copyProperties(from, this);
@@ -31,9 +33,13 @@ public class BrnProductBase extends BrnProduct {
 	}
 
 	public void checkPkNotNull() {
-		if (0 == this.productId) {
-			ExceptionId.PK_NULL.rejectApp("BRN_PRODUCT", "PRODUCT_ID");
+		if (0 == this.imageId) {
+			ExceptionId.PK_NULL.rejectApp("BRN_IMAGE", "IMAGE_ID");
 		}
+	}
+
+	public List<BrnImage> getRecords() {
+		return mapper.getBrnImages(this);
 	}
 
 	/**
@@ -42,7 +48,7 @@ public class BrnProductBase extends BrnProduct {
 	 * @return 获取到的Entity
 	 */
 	public boolean getEntityByPk() {
-		BrnProduct detail = mapper.readByPk(this);
+		BrnImage detail = mapper.readByPk(this);
 		if (null == detail) {
 			return false;
 		}
