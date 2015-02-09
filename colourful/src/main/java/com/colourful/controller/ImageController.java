@@ -23,7 +23,7 @@ public class ImageController {
 	public void showImage(@PathVariable String imgFile,
 			HttpServletResponse response, HttpServletRequest request)
 			throws ServletException, IOException {
-		System.out.println(imgFile);
+		//System.out.println(imgFile);
 		imgFile = imgFile.replace("_", "\\");
 
 		byte[] img = FileUtils.readFileToByteArray(new File(IMG_BASE_PATH
