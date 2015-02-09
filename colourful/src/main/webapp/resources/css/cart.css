@@ -280,7 +280,7 @@ ul {
     background-color: #fcfcfc;
   }
 }
-
+/* 增减按钮字体 */
 .item_interactions {
   display: block;
   padding: 1.5em;
@@ -319,7 +319,8 @@ ul {
   background-color: #e66b1e;
 }
 .item_interactions a:not([class*="decrease--disabled"]):active {
-  background-color: #e5e5e5;
+   background-color: #e5e5e5; 
+
 }
 @media (min-width: 40em) {
   .item_interactions {

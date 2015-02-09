@@ -22,15 +22,11 @@
 		</div>
 		<div class="item_interactions">
 		  <p class="item_quantity">
-			<a class="js-item-increase" title="Add another copy">+</a>
-			<a class="js-item-decrease decrease--disabled" title="Remove a copy">-</a>
-			<span data-quantity="1">
-			  <b>1</b>
-			  
-			</span>
-			份/每份 ¥11.99
-		  </p>
-		  <a class="item_remove js-item-remove" title="Remove this item">&times;</a>
+			<a class="js-item-increase" title="加上一个">+</a>
+			<a class="js-item-decrease decrease--disabled" title="去掉一个">-</a>
+			<span data-quantity="1"> <b>1</b></span>份/每份 ¥11.99 </p>
+		  <a class="item_remove js-item-remove" title="这次不买">&times;</a>
+		   <a class="item_remove js-item-remove1" title="从购物车清除"><img height="18" src="<c:url value = "/resources/images/icon_trash.png"/>"></a> 
 		</div>
 	  </li>
 	</ul>

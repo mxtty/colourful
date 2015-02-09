@@ -76,7 +76,7 @@ function removeItem (emitter) {
     priceFields = document.querySelectorAll('.item .js-item-price')
       
     if (!priceFields.length) {
-      itemList.innerHTML = '<li class="item empty-hint"><p>Bummer, you removed all items! Wanna <a class="js-restore-list">start over again</a>?</li>'
+      itemList.innerHTML = '<li class="item empty-hint"><p>结账的东西都没有啦 <a class="js-restore-list">再看看我的购物车</a>?</li>'
       itemList.firstElementChild.classList.add('is-visible')
     }
       
