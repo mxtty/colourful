@@ -1,5 +1,13 @@
 $(document).ready(function() { 
 	
+	$('.js-item-increase').click(function(e) {
+    	//按钮最接近的Form提交
+//		var ul = $("base").attr("href");
+//		alert (ul);
+		//$(this).closest('input').attr("value",100);
+		alert ($(this).val);
+    });
+	
 	var subtotal = document.querySelector('.js-subtotal'),
     itemList = document.querySelector('.item-list'),
     priceFields = document.querySelectorAll('.item .js-item-price'),
@@ -43,6 +51,8 @@ function changeQuantity (emitter, action) {
       quantityField = emitter.parentElement.querySelector('span'),
       quantity = +quantityField.getAttribute('data-quantity'),
       price
+      
+      
   
   if (action === 'increase') {
     emitter.nextElementSibling.classList.remove('decrease--disabled')
@@ -57,6 +67,13 @@ function changeQuantity (emitter, action) {
   quantityField.innerHTML = '<b>' + (action === 'increase' ? ++quantity : --quantity) + '</b> '
   quantityField.setAttribute('data-quantity', quantity)
 
+  
+  
+ // var quantityInput =  emitter.parentElement.querySelector('input')
+ // quantityInput.setAttribute('value',quantity)
+  
+  alert(quantityField.closest('input').value())
+  //alert(quantityInput.attr('value'))
   price = emitter.parentElement.parentElement.parentElement.querySelector('.js-item-price')
 
   price.textContent = '¥' + (quantity * price.getAttribute('data-price')).toFixed(2)

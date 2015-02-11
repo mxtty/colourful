@@ -6,6 +6,7 @@ import com.colourful.domain.entity.BrnCartDetailEntity;
 import com.colourful.domain.entity.BrnCartEntity;
 import com.colourful.domain.entity.BrnCategoryEntity;
 import com.colourful.domain.entity.BrnImageEntity;
+import com.colourful.domain.entity.BrnOrderDetailEntity;
 import com.colourful.domain.entity.BrnProductEntity;
 import com.colourful.domain.entity.BrnUserDetailEntity;
 import com.colourful.domain.entity.BrnUserEntity;
@@ -82,5 +83,16 @@ public class EntityFactory {
 
 		return entity;
 	}
-	
+
+	public static BrnOrderDetailEntity newBrnOrderDetailEntity() {
+		BrnOrderDetailEntity entity = ContextProvider.getBean(BrnOrderDetailEntity.class);
+
+		return entity;
+	}
+
+	public static <T> T newEntity(Class<T> cls) {
+		T entity = ContextProvider.getBean(cls);
+
+		return entity;
+	}
 }

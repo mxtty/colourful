@@ -5,7 +5,7 @@
 <header>
 	<div  class="navbar">
 		<nav class="navbar cl-effect-21">
-			<a class="basket-summary" href="#">购物车</a>
+			<a class="basket-summary" href="cart/showCart">购物车</a>
 			<a href="#">退出</a>
 			<a href="#">登录</a>
 			<a href="#">注册新用户</a>

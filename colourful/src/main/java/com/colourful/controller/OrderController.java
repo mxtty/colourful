@@ -15,21 +15,12 @@ import com.colourful.form.OrderEntryForm;
 @RequestMapping("/order")
 public class OrderController {
 
-	@ModelAttribute("orderDetailForm")
+	@ModelAttribute("orderEntryForm")
 	public OrderEntryForm initForm(Model model) {
 		return new OrderEntryForm();
 	}
 
-	@RequestMapping(value = "viewOrder")
-	public String addToCart(Model model) {
-
-		// cartService.addItem(itemId);
-
-		// model.addAttribute("cart", cartService.getCartEntity());
-		return "order/ViewOrder";
-	}
-
-	@RequestMapping(value = "submit")
+	@RequestMapping(value = "newOrder")
 	public String submit(ModelMap model) {
 
 		return "order/OrderFinish";

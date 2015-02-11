@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.colourful.domain.generated.mapper.BrnOrderMapper">
+	<cache/>
+	<select id="readByPk" parameterType="com.colourful.domain.generated.record.BrnOrder" resultType="com.colourful.domain.generated.record.BrnOrder">
+    select
+       ORDER_ID orderId,STATUS status,TOTAL_PRICE totalPrice,SHIP_NAME shipName,SHIP_ZIP shipZip,SHIP_COUNTRY shipCountry,SHIP_CITY shipCity,SHIP_ADDRESS shipAddress,PHONE phone,CELL_PHONE cellPhone,EMAIL email,CRTCARD_NO crtcardNo,CRTCARD_HOLDER crtcardHolder,EXPRDATE exprdate,CARDTYPE cardtype,CREATE_DATE createDate,UPDATE_DATE updateDate,DEL_FLG delFlg 
+    from
+       BRN_ORDER 
+    where
+       ORDER_ID = #{orderId}
+    </select>
+	<insert id="insert" parameterType="com.colourful.domain.generated.record.BrnOrder">
+    insert into
+       BRN_ORDER 
+    values
+       (#{orderId},#{status},#{totalPrice},#{shipName},#{shipZip},#{shipCountry},#{shipCity},#{shipAddress},#{phone},#{cellPhone},#{email},#{crtcardNo},#{crtcardHolder},#{exprdate},#{cardtype},CURRENT_TIMESTAMP,CURRENT_TIMESTAMP,0)
+    </insert>
+	<update id="update" parameterType="com.colourful.domain.generated.record.BrnOrder">
+    update
+       BRN_ORDER 
+    set
+       STATUS = #{status} ,TOTAL_PRICE = #{totalPrice} ,SHIP_NAME = #{shipName} ,SHIP_ZIP = #{shipZip} ,SHIP_COUNTRY = #{shipCountry} ,SHIP_CITY = #{shipCity} ,SHIP_ADDRESS = #{shipAddress} ,PHONE = #{phone} ,CELL_PHONE = #{cellPhone} ,EMAIL = #{email} ,CRTCARD_NO = #{crtcardNo} ,CRTCARD_HOLDER = #{crtcardHolder} ,EXPRDATE = #{exprdate} ,CARDTYPE = #{cardtype} ,UPDATE_DATE = CURRENT_TIMESTAMP 
+    where
+       ORDER_ID = #{orderId} and UPDATE_DATE = #{updateDate}
+    </update>
+	<update id="delete" parameterType="com.colourful.domain.generated.record.BrnOrder">
+    update
+       BRN_ORDER 
+    set
+       UPDATE_DATE = CURRENT_TIMESTAMP,DEL_FLG = 1 
+    where
+       UPDATE_DATE = #{updateDate} and DEL_FLG = 0
+    </update>
+</mapper>

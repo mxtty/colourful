@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.colourful.domain.entity.mapper.OrderDetailEntityMapper">
+    <select id="getSelectedProductDetailList"  parameterType="String" resultType="com.colourful.domain.generated.record.BrnOrderDetail">
+    SELECT
+       PRODUCT.PRODUCT_NAME productName,
+       PRODUCT.UNIT_PRICE unitPrice,
+       PRODUCT.UNIT unit,
+       PRODUCT.DESCRIPTION description,
+       PRODUCT.PRODUCT_ID productId,
+       CART_DETAIL.QUANTITY quantity,
+       IMAGE.IMAGE_FILE imgFileMain
+    FROM
+       BRN_CART_DETAIL as CART_DETAIL, 
+       BRN_PRODUCT as PRODUCT
+    LEFT JOIN BRN_IMAGE as IMAGE ON
+       IMAGE.ID  =  PRODUCT.PRODUCT_ID  AND
+       IMAGE.SEQ = 1 
+    WHERE
+       CART_DETAIL.PRODUCT_ID = PRODUCT.PRODUCT_ID AND
+       CART_DETAIL.CART_ID = #{cartId}
+  </select>
+  
+</mapper>

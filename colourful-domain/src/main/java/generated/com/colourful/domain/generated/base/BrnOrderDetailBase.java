@@ -3,25 +3,22 @@ package com.colourful.domain.generated.base;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.colourful.domain.entity.BrnCartDetailEntity;
-import com.colourful.domain.generated.mapper.BrnCartMapper;
-import com.colourful.domain.generated.record.BrnCart;
-import com.colourful.domain.service.base.EntityFactory;
-import com.rainbow.fw.core.util.EntityChecker;
+import com.colourful.domain.generated.mapper.BrnOrderDetailMapper;
+import com.colourful.domain.generated.record.BrnOrderDetail;
 
 /**
- * 购物车Base类
+ * 订单详细Base类
  * 
  * 
  * @author WangQi
  * 
  */
 @SuppressWarnings("serial")
-public class BrnCartBase extends BrnCart {
+public class BrnOrderDetailBase extends BrnOrderDetail {
 
 	/** 管理Mapper */
 	@Autowired
-	private BrnCartMapper mapper;
+	private BrnOrderDetailMapper mapper;
 
 	public void fromObject(Object from) {
 		BeanUtils.copyProperties(from, this);
@@ -38,7 +35,7 @@ public class BrnCartBase extends BrnCart {
 	 * @return 获取到的Entity
 	 */
 	public boolean getEntityByPk() {
-		BrnCart detail = mapper.readByPk(this);
+		BrnOrderDetail detail = mapper.readByPk(this);
 		if (null == detail) {
 			return false;
 		}
@@ -46,8 +43,6 @@ public class BrnCartBase extends BrnCart {
 		BeanUtils.copyProperties(detail, this);
 		return true;
 	}
-
-
 
 	/**
 	 * 插入记录

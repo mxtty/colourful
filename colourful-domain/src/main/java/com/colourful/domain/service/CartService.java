@@ -11,18 +11,21 @@ import com.colourful.domain.service.base.EntityFactory;
 public class CartService {
 
 	public void addToCart(long productId, BigDecimal quantity, String cartId) {
+
+		BrnCartEntity cartEntity = EntityFactory.newBrnCartEntity(cartId);
+		cartEntity.getBrnCartDetailEntity(productId).addProduct(quantity);
+
+	}
+
+	public void removeFromCart(long productId, BigDecimal quantity, String cartId) {
 		BrnCartEntity cartEntity = EntityFactory.newBrnCartEntity(cartId);
 
 		if (!cartEntity.getEntityByPk()) {
-			cartEntity.insert();
+			throw new RuntimeException();
 
 		}
 
-		cartEntity.addCartDetail(productId, quantity);
-
-		System.out.println("SID:" + cartId);
-		System.out.println("CART_ID:" + cartEntity.getCartId());
-
+		cartEntity.getBrnCartDetailEntity(productId).removeProduct(quantity);
 	}
 
 }

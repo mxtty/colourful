@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.colourful.domain.generated.mapper.BrnOrderDetailMapper">
+	<cache/>
+	<select id="readByPk" parameterType="com.colourful.domain.generated.record.BrnOrderDetail" resultType="com.colourful.domain.generated.record.BrnOrderDetail">
+    select
+       DETAIL_ID detailId,ORDER_ID orderId,PRODUCT_ID productId,QUANTITY quantity,LIST_PRICE listPrice,UNIT_COST unitCost,SUBTOTAL subtotal,STATUS status,CREATE_DATE createDate,UPDATE_DATE updateDate,DEL_FLG delFlg 
+    from
+       BRN_ORDER_DETAIL 
+    where
+       DETAIL_ID = #{detailId}
+    </select>
+	<insert id="insert" parameterType="com.colourful.domain.generated.record.BrnOrderDetail">
+    insert into
+       BRN_ORDER_DETAIL 
+    values
+       (#{detailId},#{orderId},#{productId},#{quantity},#{listPrice},#{unitCost},#{subtotal},#{status},CURRENT_TIMESTAMP,CURRENT_TIMESTAMP,0)
+    </insert>
+	<update id="update" parameterType="com.colourful.domain.generated.record.BrnOrderDetail">
+    update
+       BRN_ORDER_DETAIL 
+    set
+       ORDER_ID = #{orderId} ,PRODUCT_ID = #{productId} ,QUANTITY = #{quantity} ,LIST_PRICE = #{listPrice} ,UNIT_COST = #{unitCost} ,SUBTOTAL = #{subtotal} ,STATUS = #{status} ,UPDATE_DATE = CURRENT_TIMESTAMP 
+    where
+       DETAIL_ID = #{detailId} and UPDATE_DATE = #{updateDate}
+    </update>
+	<update id="delete" parameterType="com.colourful.domain.generated.record.BrnOrderDetail">
+    update
+       BRN_ORDER_DETAIL 
+    set
+       UPDATE_DATE = CURRENT_TIMESTAMP,DEL_FLG = 1 
+    where
+       UPDATE_DATE = #{updateDate} and DEL_FLG = 0
+    </update>
+</mapper>

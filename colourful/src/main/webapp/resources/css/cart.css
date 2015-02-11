@@ -270,6 +270,7 @@ ul {
   font-weight: bold;
   border-radius: 0 3px 3px 0;
   vertical-align: middle;
+
 }
 @media (min-width: 40em) {
   .item_price {
