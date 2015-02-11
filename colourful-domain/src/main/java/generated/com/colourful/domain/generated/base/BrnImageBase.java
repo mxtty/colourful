@@ -39,7 +39,7 @@ public class BrnImageBase extends BrnImage {
 	}
 
 	public List<BrnImage> getRecords() {
-		return mapper.getBrnImages(this);
+		return mapper.getRecords(this);
 	}
 
 	/**

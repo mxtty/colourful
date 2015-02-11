@@ -76,4 +76,11 @@ public class EntityFactory {
 		return entity;
 	}
 
+	public static BrnCartDetailEntity newBrnCartDetailEntity() {
+
+		BrnCartDetailEntity entity = ContextProvider.getBean(BrnCartDetailEntity.class);
+
+		return entity;
+	}
+	
 }

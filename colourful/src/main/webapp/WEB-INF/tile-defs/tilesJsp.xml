@@ -35,9 +35,15 @@
 	</definition>
 	
 	<definition name="cart/Cart" extends="defaultLayout">
-		<put-attribute name="title" value="详细" />
+		<put-attribute name="title" value="购物车" />
 		<put-attribute name="body" value="/WEB-INF/views/cart/Cart.jsp" />
 	</definition>
+
+	<definition name="cart/CartEmpty" extends="defaultLayout">
+		<put-attribute name="title" value="购物车是空的" />
+		<put-attribute name="body" value="/WEB-INF/views/cart/CartEmpty.jsp" />
+	</definition>
+
 	
 	<definition name="catalog/displayCategories" extends="defaultLayout">
 		<put-attribute name="title" value="菜单分类" />

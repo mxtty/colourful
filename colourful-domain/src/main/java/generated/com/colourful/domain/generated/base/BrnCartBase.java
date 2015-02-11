@@ -3,8 +3,11 @@ package com.colourful.domain.generated.base;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import com.colourful.domain.entity.BrnCartDetailEntity;
 import com.colourful.domain.generated.mapper.BrnCartMapper;
 import com.colourful.domain.generated.record.BrnCart;
+import com.colourful.domain.service.base.EntityFactory;
+import com.rainbow.fw.core.util.EntityChecker;
 
 /**
  * 购物车Base类
@@ -40,8 +43,16 @@ public class BrnCartBase extends BrnCart {
 			return false;
 		}
 
-		BeanUtils.copyProperties(mapper.readByPk(this), this);
+		BeanUtils.copyProperties(detail, this);
 		return true;
+	}
+
+	public BrnCartDetailEntity getCartDetailEntity(long productId) {
+		EntityChecker.isNotNull(cartId);
+
+		BrnCartDetailEntity cartDetailEntity = EntityFactory.newBrnCartDetailEntity(cartId, productId);
+		return cartDetailEntity;
+
 	}
 
 	/**

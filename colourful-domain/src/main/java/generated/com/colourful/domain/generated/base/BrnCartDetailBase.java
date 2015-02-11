@@ -1,5 +1,7 @@
 package com.colourful.domain.generated.base;
 
+import java.util.List;
+
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -40,8 +42,13 @@ public class BrnCartDetailBase extends BrnCartDetail {
 			return false;
 		}
 
-		BeanUtils.copyProperties(mapper.readByPk(this), this);
+		BeanUtils.copyProperties(detail, this);
 		return true;
+	}
+
+	public List<BrnCartDetail> getRecords() {
+		return mapper.getRecords();
+
 	}
 
 	/**

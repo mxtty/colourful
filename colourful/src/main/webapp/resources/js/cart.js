@@ -1,14 +1,18 @@
 $(document).ready(function() { 
-var subtotal = document.querySelector('.js-subtotal'),
+	
+	var subtotal = document.querySelector('.js-subtotal'),
     itemList = document.querySelector('.item-list'),
     priceFields = document.querySelectorAll('.item .js-item-price'),
     taxes = document.querySelector('.js-taxes'),
     shipping = document.querySelector('.js-shipping'),
     total = document.querySelector('.js-total'),
+    summaryFields = document.querySelectorAll('.js-summary'),
     checkoutButton = document.querySelector('.js-checkout-button'),
-    //modalWrapper = document.querySelector('.js-modal-wrapper'),
+    modalWrapper = document.querySelector('.js-modal-wrapper'),
     initialList = itemList.innerHTML
 
+
+    
 function loop (which, callback) {
   var len = which.length
       
@@ -19,21 +23,19 @@ function loop (which, callback) {
 
 function handleCalculations () {
   var subTotalPrice = 0,
-      taxesPrice = 0
-      
+      taxesPrice = 0,
+      totalPrice = 0
+
   loop(priceFields, function (price) {
     subTotalPrice += +price.textContent.substr(1)
   })
-      
-  subTotalPrice = subTotalPrice.toFixed(2)
-      
-  taxesPrice = (subTotalPrice * 0.05).toFixed(2)
-      
-  subtotal.textContent = '$' + subTotalPrice
-  taxes.textContent = '$' + taxesPrice
-  shipping.textContent = subTotalPrice !== '0.00' ? '$5.00' : 'Free'
+
   
-  total.textContent = '$' + ((+subTotalPrice) + (+taxesPrice) + (+subTotalPrice > 0 ? 5 : 0)).toFixed(2)
+  subtotal.textContent = '¥' + subTotalPrice.toFixed(2)
+  
+  total.textContent = '¥' + (subTotalPrice + (+shipping.textContent.substr(1))).toFixed(2)
+
+
 }
 
 function changeQuantity (emitter, action) {
@@ -57,7 +59,7 @@ function changeQuantity (emitter, action) {
 
   price = emitter.parentElement.parentElement.parentElement.querySelector('.js-item-price')
 
-  price.textContent = '$' + (quantity * price.getAttribute('data-price')).toFixed(2)
+  price.textContent = '¥' + (quantity * price.getAttribute('data-price')).toFixed(2)
       
   handleCalculations()
 }
@@ -78,8 +80,18 @@ function removeItem (emitter) {
     if (!priceFields.length) {
       itemList.innerHTML = '<li class="item empty-hint"><p>结账的东西都没有啦 <a class="js-restore-list">再看看我的购物车</a>?</li>'
       itemList.firstElementChild.classList.add('is-visible')
-    }
+      $(".js-summary").hide();
       
+      //summaryFields = document.querySelectorAll('.js-summary')
+      //summaryFields.hide()
+      //alert(summaryFields.val())
+      //summaryFields.addClass('is-not-visible')
+      //summaryFields.style.marginTop = -(summaryFields.offsetHeight + 600) + 'px'
+      //summaryFields.classList.add('item--disappearing')
+     // alert(summaryFields.add('is-not-visible'))
+    }
+
+    
     handleCalculations()
   }, 500)
 }
@@ -95,6 +107,7 @@ function restoreList () {
     itemList.classList.remove('appearing')
     priceFields = document.querySelectorAll('.item .js-item-price')
     handleCalculations()
+    $(".js-summary").show();
   }, 500)
     
   setTimeout(function () {

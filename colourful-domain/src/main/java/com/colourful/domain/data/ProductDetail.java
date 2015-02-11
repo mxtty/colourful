@@ -26,6 +26,10 @@ public class ProductDetail {
 
 	private String description;
 
+	public BigDecimal getSubTotal() {
+		return quantity.multiply(unitPrice);
+	}
+
 	/** 商品ID */
 	private long productId;
 

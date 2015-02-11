@@ -24,7 +24,7 @@
 						<form:hidden path="productId" value ="${productDetail.productId}"/>
 						<fieldset>
 							<label>
-							    <Strong> 单价:${productDetail.unitPrice} ¥&nbsp;&nbsp;&nbsp;&nbsp; 数量:</Strong><input type ="number" name="quantity" value="1" class="width40" max="999" min="1"/>
+							    <Strong> 单价:¥${productDetail.unitPrice} &nbsp;&nbsp;&nbsp;&nbsp; 数量:</Strong><input type ="number" name="quantity" value="1" class="width40" max="999" min="1"/>
 							    <Strong> ${productDetail.unit}</Strong>
 							</label>
 						</fieldset>
