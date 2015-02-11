@@ -3,7 +3,7 @@ import java.util.List;
 import com.colourful.domain.generated.record.BrnCartDetail;
 
 public interface BrnCartDetailMapper {
-	List<BrnCartDetail> getBrnCartDetailList();
+	List<BrnCartDetail> getRecords();
 	int insert(BrnCartDetail brncartdetail);
 	BrnCartDetail readByPk(BrnCartDetail brncartdetail);
 	int update(BrnCartDetail brncartdetail);

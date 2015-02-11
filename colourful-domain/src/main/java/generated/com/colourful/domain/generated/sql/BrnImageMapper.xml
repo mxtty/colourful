@@ -34,7 +34,7 @@
     where
        UPDATE_DATE = #{updateDate} and DEL_FLG = 0
     </update>
-	<select id="getBrnImages" parameterType="com.colourful.domain.generated.record.BrnImage" resultType="com.colourful.domain.generated.record.BrnImage">
+	<select id="getRecords" parameterType="com.colourful.domain.generated.record.BrnImage" resultType="com.colourful.domain.generated.record.BrnImage">
     select
        IMAGE_ID imageId,ID id,SEQ seq,NOTE note,DESCRIPTION description,IMAGE_FILE imageFile,CREATE_DATE createDate,UPDATE_DATE updateDate,DEL_FLG delFlg 
     from

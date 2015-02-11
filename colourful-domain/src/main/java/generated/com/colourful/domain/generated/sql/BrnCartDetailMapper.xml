@@ -34,4 +34,20 @@
     where
        UPDATE_DATE = #{updateDate} and DEL_FLG = 0
     </update>
+	<select id="getRecords" parameterType="com.colourful.domain.generated.record.BrnCartDetail" resultType="com.colourful.domain.generated.record.BrnCartDetail">
+    select
+       CART_ID cartId,PRODUCT_ID productId,QUANTITY quantity,STATUS status,CREATE_DATE createDate,UPDATE_DATE updateDate,DEL_FLG delFlg 
+    from
+       BRN_CART_DETAIL 
+	<where>
+	    <if test="cartId != null" > AND CART_ID = #{cartId} </if>
+	    <if test="productId != 0" > AND PRODUCT_ID = #{productId} </if>
+	    <if test="quantity != 0" > AND QUANTITY = #{quantity} </if>
+	    <if test="status != null" > AND STATUS = #{status} </if>
+	    <if test="createDate != null" > AND CREATE_DATE = #{createDate} </if>
+	    <if test="updateDate != null" > AND UPDATE_DATE = #{updateDate} </if>
+	    <if test="delFlg != null" > AND DEL_FLG = #{delFlg} </if>
+	</where>
+
+    </select>
 </mapper>

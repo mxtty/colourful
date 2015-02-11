@@ -8,9 +8,9 @@
 		<div class="box-4 border-3">
 		<c:forEach var="product" items="${products.productList}">
 			<div>
-				<h4>${product.productName}</h4>
+				<h4><c:out value="${product.productName}"></c:out></h4>
 				<div class="img-border"><img height ="110px" src="image/imageDisplay/${product.imgFileMain}" /></div>
-				<div class="price">¥${product.unitPrice}/${product.unit} </div>
+				<div class="price">¥<c:out value="${product.unitPrice}/${product.unit}"></c:out> </div>
 				<a href="product/showProduct/${product.productId}" class="myButton addToCartBtn" >加入购物车</a>
 			</div>
 		</c:forEach>

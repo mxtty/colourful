@@ -1,15 +1,22 @@
 package com.colourful.domain.entity;
 
 import java.math.BigDecimal;
+import java.util.List;
 
-import com.colourful.domain.exception.ExceptionId;
+import org.springframework.beans.factory.annotation.Autowired;
+
+import com.colourful.domain.data.ProductDetail;
+import com.colourful.domain.entity.mapper.CartEntityMapper;
 import com.colourful.domain.generated.base.BrnCartBase;
-import com.colourful.domain.service.base.EntityFactory;
 import com.colourful.domain.stereotype.Entity;
+import com.rainbow.fw.core.util.EntityChecker;
 
 @Entity
 @SuppressWarnings("serial")
 public class BrnCartEntity extends BrnCartBase {
+
+	@Autowired
+	private CartEntityMapper cartEntityMapper;
 
 	public void addCartDetail(long productId, BigDecimal quantity) {
 		BrnCartDetailEntity cartDetailEntity = getCartDetailEntity(productId);
@@ -25,13 +32,8 @@ public class BrnCartEntity extends BrnCartBase {
 
 	}
 
-	public BrnCartDetailEntity getCartDetailEntity(long productId) {
-		if (null == cartId) {
-			ExceptionId.E1001.rejectApp("CART ID 未设定");
-
-		}
-		BrnCartDetailEntity cartDetailEntity = EntityFactory.newBrnCartDetailEntity(cartId, productId);
-		return cartDetailEntity;
-
+	public List<ProductDetail> getSelectedProductDetailList() {
+		EntityChecker.isNotNull(cartId);
+		return cartEntityMapper.getSelectedProductDetailList(cartId);
 	}
 }

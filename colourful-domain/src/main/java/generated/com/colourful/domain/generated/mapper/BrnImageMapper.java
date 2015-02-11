@@ -5,7 +5,7 @@ import java.util.List;
 import com.colourful.domain.generated.record.BrnImage;
 
 public interface BrnImageMapper {
-	List<BrnImage> getBrnImages(BrnImage brnImage);
+	List<BrnImage> getRecords(BrnImage brnImage);
 
 	int insert(BrnImage brnimage);
 

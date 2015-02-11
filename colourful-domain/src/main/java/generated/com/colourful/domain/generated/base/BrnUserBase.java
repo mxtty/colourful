@@ -39,7 +39,7 @@ public class BrnUserBase extends BrnUser {
 	    return false;
 	}
 
-	BeanUtils.copyProperties(mapper.readByPk(this), this);
+	BeanUtils.copyProperties(detail, this);
 	return true;
     }
 
