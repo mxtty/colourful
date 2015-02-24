@@ -22,5 +22,22 @@
        CART_DETAIL.PRODUCT_ID = PRODUCT.PRODUCT_ID AND
        CART_DETAIL.CART_ID = #{cartId}
   </select>
-  
+  	<select id="getRecords" parameterType="com.colourful.domain.generated.record.BrnOrder" resultType="com.colourful.domain.generated.record.BrnOrder">
+    select
+       ORDER_ID orderId,CART_ID cartId,STATUS status,SHIP_NAME shipName,SHIP_ZIP shipZip,SHIP_COUNTRY shipCountry,SHIP_CITY shipCity,SHIP_DATE shipDate,SHIP_ADDRESS shipAddress,PHONE phone,CELL_PHONE cellPhone,EMAIL email,CRTCARD_NO crtcardNo,CRTCARD_HOLDER crtcardHolder,EXPRDATE exprdate,CARDTYPE cardtype,CREATE_DATE createDate,UPDATE_DATE updateDate,DEL_FLG delFlg 
+    from
+       BRN_ORDER 
+	where
+	    DEL_FLG = 0 and
+	    <if test="detailId != 0" > AND DETAIL_ID = #{detailId} </if>
+	    <if test="orderId != 0" > AND ORDER_ID = #{orderId} </if>
+	    <if test="productId != 0" > AND PRODUCT_ID = #{productId} </if>
+	    <if test="quantity != 0" > AND QUANTITY = #{quantity} </if>
+	    <if test="listPrice != 0" > AND LIST_PRICE = #{listPrice} </if>
+	    <if test="unitCost != 0" > AND UNIT_COST = #{unitCost} </if>
+	    <if test="subtotal != 0" > AND SUBTOTAL = #{subtotal} </if>
+	    <if test="status != 0" > AND STATUS = #{status} </if>
+	    <if test="createDate != null" > AND CREATE_DATE = #{createDate} </if>
+	    <if test="updateDate != null" > AND UPDATE_DATE = #{updateDate} </if>
+    </select>
 </mapper>

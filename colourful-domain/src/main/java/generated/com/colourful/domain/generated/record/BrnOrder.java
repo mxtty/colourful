@@ -1,17 +1,17 @@
 ﻿package com.colourful.domain.generated.record;
 import java.io.Serializable;
 import lombok.Data;
-import java.math.BigDecimal;import java.util.Date;
+import java.util.Date;
 @Data
 public class BrnOrder implements Serializable{
 	/** SerialVersion */
 	private static final long serialVersionUID = 1L;
 	/** 订单ID */
 	protected long orderId;
+	/** 购物车ID */
+	protected String cartId;
 	/** 订单状态 */
 	protected int status;
-	/** 总价 */
-	protected BigDecimal totalPrice;
 	/** 收件人 */
 	protected String shipName;
 	/** 邮编 */
@@ -20,6 +20,8 @@ public class BrnOrder implements Serializable{
 	protected String shipCountry;
 	/** 收件城市 */
 	protected String shipCity;
+	/** 收件希望时间 */
+	protected Date shipDate;
 	/** 收件地址 */
 	protected String shipAddress;
 	/** 固定电话 */

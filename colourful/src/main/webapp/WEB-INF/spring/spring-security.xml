@@ -14,19 +14,18 @@
 		<intercept-url pattern="/cart/checkout1/**" access="hasRole('ROLE_USER')"/>
  		<intercept-url pattern="/order1/*" access="hasRole('ROLE_USER')"/>
 
-		
 		<form-login 
-				login-page="/auth/login" 
+				login-page="/user/SignOn" 
 				login-processing-url="/processLogin"
-				authentication-failure-url="/auth/login?error=true" 
+				authentication-failure-url="/user/SignOn?error=true" 
 				always-use-default-target="false"
-				default-target-url="/index/home"/>
+				username-parameter="userId" password-parameter="passwd"
+				default-target-url="/catalog"/>
 		
 		<logout 
 				invalidate-session="true" 
 				logout-success-url="/index/home" 
 				logout-url="/auth/logout"/>
-				
 	</http>
 
 	<!-- A custom service where Spring will retrieve users and their corresponding access levels  -->

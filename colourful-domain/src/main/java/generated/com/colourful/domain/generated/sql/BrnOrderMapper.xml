@@ -6,7 +6,7 @@
 	<cache/>
 	<select id="readByPk" parameterType="com.colourful.domain.generated.record.BrnOrder" resultType="com.colourful.domain.generated.record.BrnOrder">
     select
-       ORDER_ID orderId,STATUS status,TOTAL_PRICE totalPrice,SHIP_NAME shipName,SHIP_ZIP shipZip,SHIP_COUNTRY shipCountry,SHIP_CITY shipCity,SHIP_ADDRESS shipAddress,PHONE phone,CELL_PHONE cellPhone,EMAIL email,CRTCARD_NO crtcardNo,CRTCARD_HOLDER crtcardHolder,EXPRDATE exprdate,CARDTYPE cardtype,CREATE_DATE createDate,UPDATE_DATE updateDate,DEL_FLG delFlg 
+       ORDER_ID orderId,CART_ID cartId,STATUS status,SHIP_NAME shipName,SHIP_ZIP shipZip,SHIP_COUNTRY shipCountry,SHIP_CITY shipCity,SHIP_DATE shipDate,SHIP_ADDRESS shipAddress,PHONE phone,CELL_PHONE cellPhone,EMAIL email,CRTCARD_NO crtcardNo,CRTCARD_HOLDER crtcardHolder,EXPRDATE exprdate,CARDTYPE cardtype,CREATE_DATE createDate,UPDATE_DATE updateDate,DEL_FLG delFlg 
     from
        BRN_ORDER 
     where
@@ -16,13 +16,13 @@
     insert into
        BRN_ORDER 
     values
-       (#{orderId},#{status},#{totalPrice},#{shipName},#{shipZip},#{shipCountry},#{shipCity},#{shipAddress},#{phone},#{cellPhone},#{email},#{crtcardNo},#{crtcardHolder},#{exprdate},#{cardtype},CURRENT_TIMESTAMP,CURRENT_TIMESTAMP,0)
+       (#{orderId},#{cartId},#{status},#{shipName},#{shipZip},#{shipCountry},#{shipCity},#{shipDate},#{shipAddress},#{phone},#{cellPhone},#{email},#{crtcardNo},#{crtcardHolder},#{exprdate},#{cardtype},CURRENT_TIMESTAMP,CURRENT_TIMESTAMP,0)
     </insert>
 	<update id="update" parameterType="com.colourful.domain.generated.record.BrnOrder">
     update
        BRN_ORDER 
     set
-       STATUS = #{status} ,TOTAL_PRICE = #{totalPrice} ,SHIP_NAME = #{shipName} ,SHIP_ZIP = #{shipZip} ,SHIP_COUNTRY = #{shipCountry} ,SHIP_CITY = #{shipCity} ,SHIP_ADDRESS = #{shipAddress} ,PHONE = #{phone} ,CELL_PHONE = #{cellPhone} ,EMAIL = #{email} ,CRTCARD_NO = #{crtcardNo} ,CRTCARD_HOLDER = #{crtcardHolder} ,EXPRDATE = #{exprdate} ,CARDTYPE = #{cardtype} ,UPDATE_DATE = CURRENT_TIMESTAMP 
+       CART_ID = #{cartId} ,STATUS = #{status} ,SHIP_NAME = #{shipName} ,SHIP_ZIP = #{shipZip} ,SHIP_COUNTRY = #{shipCountry} ,SHIP_CITY = #{shipCity} ,SHIP_DATE = #{shipDate} ,SHIP_ADDRESS = #{shipAddress} ,PHONE = #{phone} ,CELL_PHONE = #{cellPhone} ,EMAIL = #{email} ,CRTCARD_NO = #{crtcardNo} ,CRTCARD_HOLDER = #{crtcardHolder} ,EXPRDATE = #{exprdate} ,CARDTYPE = #{cardtype} ,UPDATE_DATE = CURRENT_TIMESTAMP 
     where
        ORDER_ID = #{orderId} and UPDATE_DATE = #{updateDate}
     </update>

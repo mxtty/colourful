@@ -19,13 +19,13 @@ import com.colourful.domain.service.base.EntityFactory;
 import com.colourful.form.RegisterUserForm;
 
 @Controller
-@RequestMapping("/registerUser")
-public class RegisterUserController {
+@RequestMapping("/user")
+public class UserController {
 
 	@Autowired
 	private MessageSource messageSource;
 
-	private static Logger log = Logger.getLogger(RegisterUserController.class);
+	private static Logger log = Logger.getLogger(UserController.class);
 
 	@ModelAttribute("registerUserForm")
 	public RegisterUserForm initForm(Model model) {
@@ -43,16 +43,30 @@ public class RegisterUserController {
 		detailEntity.insert();
 		BrnUserEntity userEntity = EntityFactory.newBrnUserEntity(registerUserForm.getUserId());
 		userEntity.fromObject(registerUserForm);
-
+		userEntity.setAddressId(detailEntity.getAddressId());
 		boolean ret = userEntity.insert();
 		System.out.println("============IN ADD NEW==============" + ret);
-		return "registerUser/done";
+		return "account/RegisterDone";
 	}
 
-	@RequestMapping(value = "", method = RequestMethod.GET)
+	@RequestMapping(value = "auth", method = RequestMethod.GET)
+	public String signOnShow(ModelMap model) {
+
+		return "account/SignOn";
+
+	}
+	
+	@RequestMapping(value = "SignOn", method = RequestMethod.GET)
+	public String signOn(ModelMap model) {
+
+		return "account/SignOn";
+
+	}
+	
+	@RequestMapping(value = "new", method = RequestMethod.GET)
 	public String displayRegisterUserForm(ModelMap model) {
 
-		return "registerUser/new";
+		return "account/RegisterUser";
 
 	}
 }

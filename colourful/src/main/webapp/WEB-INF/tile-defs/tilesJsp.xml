@@ -14,14 +14,19 @@
 		<put-attribute name="body" value="/WEB-INF/views/common/Error.jsp" />
 	</definition>
 	
-	<definition name="registerUser/new" extends="defaultLayout">
+	<definition name="account/RegisterUser" extends="defaultLayout">
 		<put-attribute name="title" value="注册新用户" />
 		<put-attribute name="body" value="/WEB-INF/views/account/RegisterUser.jsp" />
 	</definition>
 
-	<definition name="registerUser/done" extends="defaultLayout">
+	<definition name="account/RegisterDone" extends="defaultLayout">
 		<put-attribute name="title" value="注册新用户" />
 		<put-attribute name="body" value="/WEB-INF/views/account/RegisterDone.jsp" />
+	</definition>
+	
+	<definition name="account/SignOn" extends="defaultLayout">
+		<put-attribute name="title" value="用户登录" />
+		<put-attribute name="body" value="/WEB-INF/views/account/SignOn.jsp" />
 	</definition>
 	
 	<definition name="product/displayProducts" extends="defaultLayout">

@@ -5,6 +5,6 @@ import java.util.List;
 import com.colourful.domain.data.ProductDetail;
 
 public interface CartEntityMapper {
-	List<ProductDetail> getSelectedProductDetailList(String cartId);
+	List<ProductDetail> getCartProductDetailList(String cartId);
 
 }

@@ -11,6 +11,12 @@ public class EntityChecker {
 		}
 	}
 
+	public static void isEmpty(Object arg, Object... desc) {
+		if (null == arg) {
+			throw new SysException("E9001", desc);
+		}
+	}
+	
 	public static void isNotZero(long arg, Object... desc) {
 		if (0 == arg) {
 			throw new SysException("E9001", desc);

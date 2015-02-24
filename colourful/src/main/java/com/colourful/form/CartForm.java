@@ -9,6 +9,7 @@ import com.colourful.domain.data.ProductDetail;
 
 @Data
 public class CartForm {
+	private String cartId;
 	private BigDecimal total;
 	private BigDecimal shipping;
 	private List<ProductDetail> productDetailList;

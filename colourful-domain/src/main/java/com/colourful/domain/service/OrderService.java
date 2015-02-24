@@ -7,22 +7,15 @@ import org.springframework.stereotype.Service;
 import com.colourful.domain.data.ProductDetail;
 import com.colourful.domain.entity.BrnCartDetailEntity;
 import com.colourful.domain.entity.BrnOrderDetailEntity;
-import com.colourful.domain.entity.BrnOrderEntity;
-import com.colourful.domain.generated.record.BrnOrder;
 import com.colourful.domain.service.base.EntityFactory;
 
 @Service
 public class OrderService {
 
-	public void newOrder(String cartId, BrnOrder brnOrder, List<ProductDetail> productDetailList) {
-
-		// 生成订单
-		BrnOrderEntity orderEntity = EntityFactory.newEntity(BrnOrderEntity.class);
-		orderEntity.fromObject(brnOrder);
-		orderEntity.newOrder();
+	public void newOrder(long orderId, String cartId, List<ProductDetail> productDetailList) {
 
 		BrnOrderDetailEntity orderDetailEntity = EntityFactory.newEntity(BrnOrderDetailEntity.class);
-		orderDetailEntity.setOrderId(orderEntity.getOrderId());
+		orderDetailEntity.setOrderId(orderId);
 
 		BrnCartDetailEntity cartDetailEntity = EntityFactory.newEntity(BrnCartDetailEntity.class);
 		cartDetailEntity.setCartId(cartId);
@@ -36,9 +29,11 @@ public class OrderService {
 			orderDetailEntity.insert();
 			// 从购物车移出
 			cartDetailEntity.setProductId(pd.getProductId());
-			cartDetailEntity.removeProduct(pd.getQuantity());
+			cartDetailEntity.removeProduct();
 
 		}
 
 	}
+	
+
 }

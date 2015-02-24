@@ -3,7 +3,7 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.colourful.domain.entity.mapper.CartEntityMapper">
-    <select id="getSelectedProductDetailList"  parameterType="String" resultType="com.colourful.domain.data.ProductDetail">
+    <select id="getCartProductDetailList"  parameterType="String" resultType="com.colourful.domain.data.ProductDetail">
     SELECT
        PRODUCT.PRODUCT_NAME productName,
        PRODUCT.UNIT_PRICE unitPrice,
@@ -20,7 +20,8 @@
        IMAGE.SEQ = 1 
     WHERE
        CART_DETAIL.PRODUCT_ID = PRODUCT.PRODUCT_ID AND
-       CART_DETAIL.CART_ID = #{cartId}
+       CART_DETAIL.CART_ID = #{cartId} AND
+       CART_DETAIL.DEL_FLG = 0
   </select>
   
 </mapper>

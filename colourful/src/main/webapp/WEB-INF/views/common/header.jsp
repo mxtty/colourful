@@ -7,8 +7,8 @@
 		<nav class="navbar cl-effect-21">
 			<a class="basket-summary" href="cart/showCart">购物车</a>
 			<a href="#">退出</a>
-			<a href="#">登录</a>
-			<a href="#">注册新用户</a>
+			<a href="user/SignOn">登录</a>
+			<a href="user/new">注册新用户</a>
 		</nav>
 	</div>
     <h1><a href="index.html"><img src="<c:url value = "/resources/images/logo1.jpg"/>"></a></h1>

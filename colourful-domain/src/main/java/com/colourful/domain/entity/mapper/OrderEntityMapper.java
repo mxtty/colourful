@@ -6,7 +6,7 @@ import com.colourful.domain.data.ProductDetail;
 import com.colourful.domain.generated.record.BrnOrder;
 
 public interface OrderEntityMapper {
-	List<ProductDetail> getSelectedProductDetailList(String cartId);
+	List<ProductDetail> getOrderedProductDetailList(long orderId);
 
 	long insert(BrnOrder brnOrder);
 }

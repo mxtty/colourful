@@ -6,7 +6,7 @@
 	<cache/>
 	<select id="readByPk" parameterType="com.colourful.domain.generated.record.BrnUser" resultType="com.colourful.domain.generated.record.BrnUser">
     select
-       USER_ID,REAL_NAME,PASSWD,STATUS,CREATE_DATE,UPDATE_DATE,DEL_FLG 
+       USER_ID userId,REAL_NAME realName,PASSWD passwd,ADDRESS_ID addressId,STATUS status,CREATE_DATE createDate,UPDATE_DATE updateDate,DEL_FLG delFlg 
     from
        BRN_USER 
     where
@@ -16,13 +16,13 @@
     insert into
        BRN_USER 
     values
-       (#{userId},#{realName},#{passwd},#{status},CURRENT_TIMESTAMP,CURRENT_TIMESTAMP,0)
+       (#{userId},#{realName},#{passwd},#{addressId},#{status},CURRENT_TIMESTAMP,CURRENT_TIMESTAMP,0)
     </insert>
 	<update id="update" parameterType="com.colourful.domain.generated.record.BrnUser">
     update
        BRN_USER 
     set
-       REAL_NAME = #{realName} ,PASSWD = #{passwd} ,STATUS = #{status} ,UPDATE_DATE = CURRENT_TIMESTAMP 
+       REAL_NAME = #{realName} ,PASSWD = #{passwd} ,ADDRESS_ID = #{addressId} ,STATUS = #{status} ,UPDATE_DATE = CURRENT_TIMESTAMP 
     where
        USER_ID = #{userId} and UPDATE_DATE = #{updateDate}
     </update>

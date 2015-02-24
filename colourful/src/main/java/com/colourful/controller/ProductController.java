@@ -1,7 +1,5 @@
 package com.colourful.controller;
 
-import javax.validation.Valid;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.colourful.domain.data.ProductDetail;
 import com.colourful.domain.service.ProductService;
-import com.colourful.form.OrderEntryForm;
+import com.colourful.form.CartEntryForm;
 
 /**
  * 
@@ -24,9 +22,9 @@ public class ProductController {
 	@Autowired
 	private ProductService productService;
 
-	@ModelAttribute("orderEntryForm")
-	public OrderEntryForm initForm(Model model) {
-		return new OrderEntryForm();
+	@ModelAttribute("cartEntryForm")
+	public CartEntryForm initForm(Model model) {
+		return new CartEntryForm();
 	}
 
 	@RequestMapping(value = "showProduct/{productId}", method = RequestMethod.GET)

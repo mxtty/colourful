@@ -46,7 +46,7 @@
 			<fmt:formatNumber value="${product.unitPrice}" pattern="¥###0.00" />
 			<form:hidden class = "js-unit-price" path="productDetailList[${status.index}].unitPrice" />
 		 </p>
-		  <a class="item_remove js-item-remove" title="这次不买">&times;</a>
+		  <a class="item_remove js-item-remove" title="这次不买">这次不买</a>
 		   <a class="item_remove js-item-remove1" title="从购物车清除"><img height="18" src="<c:url value = "/resources/images/icon_trash.png"/>"></a> 
 		</div>
 	  </li>

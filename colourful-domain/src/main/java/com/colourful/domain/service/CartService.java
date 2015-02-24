@@ -10,10 +10,10 @@ import com.colourful.domain.service.base.EntityFactory;
 @Service
 public class CartService {
 
-	public void addToCart(long productId, BigDecimal quantity, String cartId) {
+	public void updateCart(long productId, BigDecimal quantity, String cartId) {
 
 		BrnCartEntity cartEntity = EntityFactory.newBrnCartEntity(cartId);
-		cartEntity.getBrnCartDetailEntity(productId).addProduct(quantity);
+		cartEntity.getBrnCartDetailEntity(productId).updateProduct(quantity);
 
 	}
 
@@ -25,7 +25,7 @@ public class CartService {
 
 		}
 
-		cartEntity.getBrnCartDetailEntity(productId).removeProduct(quantity);
+		cartEntity.getBrnCartDetailEntity(productId).removeProduct();
 	}
 
 }

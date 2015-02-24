@@ -3,7 +3,7 @@
 
 <div class="col-10">
 <h3 class="h3-line">注册新用户</h3>
-<form:form id="add_user_form" method="post"  modelAttribute="registerUserForm" action="registerUser/register">
+<form:form id="add_user_form" method="post"  modelAttribute="registerUserForm" action="user/register">
    <fieldset>
      <label><strong class="right width-15">用户ID:</strong><form:input path="userId" class="width25" required="required"/><form:errors path="userId" class="errormsg" /><strong class="float-left">4-20位字母，数字，连字符（-），下划线（_）组合</strong></label>
      <label><strong class="right width-15">用户姓名:</strong><form:input path="realName" class="width25" /><form:errors path="realName" class="errormsg" /><strong class="float-left">送餐联系人</strong></label>

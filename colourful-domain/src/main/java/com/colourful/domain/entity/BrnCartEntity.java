@@ -27,7 +27,7 @@ public class BrnCartEntity extends BrnCartBase {
 
 	public List<ProductDetail> getSelectedProductDetailList() {
 		EntityChecker.isNotNull(cartId);
-		return cartEntityMapper.getSelectedProductDetailList(cartId);
+		return cartEntityMapper.getCartProductDetailList(cartId);
 	}
 
 }

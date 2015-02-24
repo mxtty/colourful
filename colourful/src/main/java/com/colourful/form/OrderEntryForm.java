@@ -1,15 +1,20 @@
 package com.colourful.form;
 
-import java.math.BigDecimal;
-
-import javax.validation.constraints.Min;
+import java.util.Date;
 
 import lombok.Data;
 
 @Data
 public class OrderEntryForm {
 
-	private long productId;
-	@Min(value = 1)
-	private BigDecimal quantity;
+	private long orderId;
+
+	private String shipName;
+
+	private String phone;
+
+	private Date shipDate;
+
+	private String shipAddress;
+
 }

@@ -16,22 +16,17 @@ public class BrnCartDetailEntity extends BrnCartDetailBase {
 		return entity;
 	}
 
-	public void removeProduct(BigDecimal subQuantity) {
-		EntityChecker.isNotNull(cartId, productId, subQuantity);
+	public void removeProduct() {
+		EntityChecker.isNotNull(cartId, productId);
 
 		if (!getEntityByPk() || null == quantity) {
 			throw new RuntimeException();
 		}
 
-		if (quantity.compareTo(subQuantity) > 0) {
-			quantity = quantity.subtract(subQuantity);
-			update();
-		} else {
-			delete();
-		}
+		delete();
 	}
 
-	public void addProduct(BigDecimal addQuantity) {
+	public void updateProduct(BigDecimal addQuantity) {
 		EntityChecker.isNotNull(cartId, productId);
 		if (!getEntityByPk()) {
 			quantity = addQuantity;
@@ -39,11 +34,7 @@ public class BrnCartDetailEntity extends BrnCartDetailBase {
 			return;
 		}
 
-		if (null == quantity) {
-			quantity = addQuantity;
-		} else {
-			quantity = quantity.add(addQuantity);
-		}
+		quantity = addQuantity;
 		update();
 	}
 

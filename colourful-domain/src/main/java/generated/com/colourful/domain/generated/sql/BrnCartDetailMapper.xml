@@ -6,25 +6,28 @@
 	<cache/>
 	<select id="readByPk" parameterType="com.colourful.domain.generated.record.BrnCartDetail" resultType="com.colourful.domain.generated.record.BrnCartDetail">
     select
-       CART_ID cartId,PRODUCT_ID productId,QUANTITY quantity,STATUS status,CREATE_DATE createDate,UPDATE_DATE updateDate,DEL_FLG delFlg 
+       CART_DETAIL_ID cartDetailId,CART_ID cartId,PRODUCT_ID productId,QUANTITY quantity,STATUS status,CREATE_DATE createDate,UPDATE_DATE updateDate,DEL_FLG delFlg 
     from
        BRN_CART_DETAIL 
     where
-       CART_ID = #{cartId} and PRODUCT_ID = #{productId}
+       CART_ID = #{cartId} and PRODUCT_ID = #{productId} and DEL_FLG =0
     </select>
 	<insert id="insert" parameterType="com.colourful.domain.generated.record.BrnCartDetail">
+    <selectKey keyProperty="cartDetailId" resultType="Long" order="BEFORE">
+        select cast(nextval('cart_detail_id_seq') as INTEGER) 
+    </selectKey>
     insert into
        BRN_CART_DETAIL 
     values
-       (#{cartId},#{productId},#{quantity},#{status},CURRENT_TIMESTAMP,CURRENT_TIMESTAMP,0)
+       (#{cartDetailId},#{cartId},#{productId},#{quantity},#{status},CURRENT_TIMESTAMP,CURRENT_TIMESTAMP,0)
     </insert>
 	<update id="update" parameterType="com.colourful.domain.generated.record.BrnCartDetail">
     update
        BRN_CART_DETAIL 
     set
-       QUANTITY = #{quantity} ,STATUS = #{status} ,UPDATE_DATE = CURRENT_TIMESTAMP 
+       CART_ID = #{cartId} ,PRODUCT_ID = #{productId} ,QUANTITY = #{quantity} ,STATUS = #{status} ,UPDATE_DATE = CURRENT_TIMESTAMP 
     where
-       CART_ID = #{cartId} and PRODUCT_ID = #{productId} and UPDATE_DATE = #{updateDate}
+       CART_DETAIL_ID = #{cartDetailId} and UPDATE_DATE = #{updateDate}
     </update>
 	<update id="delete" parameterType="com.colourful.domain.generated.record.BrnCartDetail">
     update
@@ -39,15 +42,13 @@
        CART_ID cartId,PRODUCT_ID productId,QUANTITY quantity,STATUS status,CREATE_DATE createDate,UPDATE_DATE updateDate,DEL_FLG delFlg 
     from
        BRN_CART_DETAIL 
-	<where>
+	where
+	    DEL_FLG = 0
 	    <if test="cartId != null" > AND CART_ID = #{cartId} </if>
 	    <if test="productId != 0" > AND PRODUCT_ID = #{productId} </if>
 	    <if test="quantity != 0" > AND QUANTITY = #{quantity} </if>
 	    <if test="status != null" > AND STATUS = #{status} </if>
 	    <if test="createDate != null" > AND CREATE_DATE = #{createDate} </if>
 	    <if test="updateDate != null" > AND UPDATE_DATE = #{updateDate} </if>
-	    <if test="delFlg != null" > AND DEL_FLG = #{delFlg} </if>
-	</where>
-
     </select>
 </mapper>

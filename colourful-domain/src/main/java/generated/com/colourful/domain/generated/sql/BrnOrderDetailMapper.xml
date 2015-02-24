@@ -13,6 +13,9 @@
        DETAIL_ID = #{detailId}
     </select>
 	<insert id="insert" parameterType="com.colourful.domain.generated.record.BrnOrderDetail">
+    <selectKey keyProperty="detailId" resultType="Long" order="BEFORE">
+        select cast(nextval('order_detail_id_seq') as INTEGER) 
+    </selectKey>
     insert into
        BRN_ORDER_DETAIL 
     values

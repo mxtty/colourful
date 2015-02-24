@@ -20,7 +20,7 @@
 			<div>
 				${productDetail.description}
 				<div>
-					<form:form id="product_detail_form" method="post"	modelAttribute="orderEntryForm" action="cart/add">
+					<form:form id="product_detail_form" method="post"	modelAttribute="cartEntryForm" action="cart/add">
 						<form:hidden path="productId" value ="${productDetail.productId}"/>
 						<fieldset>
 							<label>

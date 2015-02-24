@@ -18,7 +18,11 @@ public class BrnOrderEntity extends BrnOrderBase {
 	private OrderEntityMapper orderEntityMapper;
 
 	public void newOrder() {
-		orderId = orderEntityMapper.insert(this);
+		orderEntityMapper.insert(this);
+	}
+
+	public List<ProductDetail> getOrderedProductDetailList() {
+		return orderEntityMapper.getOrderedProductDetailList(orderId);
 	}
 
 	private void addOrderDetail(ProductDetail productDetail) {

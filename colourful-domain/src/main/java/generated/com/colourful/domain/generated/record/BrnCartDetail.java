@@ -6,6 +6,8 @@ import java.math.BigDecimal;import java.util.Date;
 public class BrnCartDetail implements Serializable{
 	/** SerialVersion */
 	private static final long serialVersionUID = 1L;
+	/** 商品详细ID */
+	protected long cartDetailId;
 	/** 购物车ID */
 	protected String cartId;
 	/** 商品ID */
