@@ -34,7 +34,7 @@ public class CategoryController {
 	List<CategoryDetail> categories = categoryService.getAllCategories();
 
 	model.addAttribute("categories", categories);
-	return "catalog/displayCategories";
+	return "catalog/Category";
     }
 
     @RequestMapping(value = "/{categoryId}", method = RequestMethod.GET)
@@ -62,7 +62,8 @@ public class CategoryController {
 
 	model.addAttribute("products", categoryEntity.getProducts());
 	// model.addAttribute("products", products);
-	return "product/displayProducts";
+	return "product/ProductList";
 
     }
+    
 }

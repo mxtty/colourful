@@ -77,10 +77,10 @@ public class CartController {
 		// cartService.addItem(itemId);
 
 		// model.addAttribute("cart", cartService.getCartEntity());
-		return "forward:/cart/showCart";
+		return "forward:/cart/Cart";
 	}
 
-	@RequestMapping(value = "showCart")
+	@RequestMapping(value = "Cart")
 	public String showCart(@CookieValue(value = "cartId", defaultValue = "") String cartId,
 			@ModelAttribute CartForm cartForm, ModelMap model) {
 		cartForm.setCartId(cartId);
@@ -117,7 +117,7 @@ public class CartController {
 
 	}
 
-	@RequestMapping(value = "checkout", method = RequestMethod.POST)
+	@RequestMapping(value = "Checkout", method = RequestMethod.POST)
 	public String checkOut(@ModelAttribute CartForm cartForm, ModelMap model) {
 
 		for (ProductDetail pd : cartForm.getProductDetailList()) {
@@ -127,7 +127,7 @@ public class CartController {
 		return "cart/Checkout";
 	}
 
-	@RequestMapping(value = "orderFinish")
+	@RequestMapping(value = "OrderFinish")
 	public String submit(@Valid @ModelAttribute OrderEntryForm orderEntryForm, @ModelAttribute CartForm cartForm,
 			ModelMap model) {
 
@@ -144,7 +144,7 @@ public class CartController {
 
 	}
 
-	@RequestMapping(value = "viewOrder/{orderId}")
+	@RequestMapping(value = "ViewOrder/{orderId}")
 	public String viewOrder(@ModelAttribute CartForm cartForm, @PathVariable long orderId, ModelMap model,
 			BindingResult result) {
 

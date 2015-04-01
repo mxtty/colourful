@@ -3,6 +3,8 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <link rel="StyleSheet" href="<c:url value = "/resources/css/cart.css"/>" type="text/css" media="screen" />
+
+<p id ="navId" class ="catalogNav">
 <!--==============================content================================-->
   <div class="block-4 col-3">
   <c:if test="${!empty productDetailList}">

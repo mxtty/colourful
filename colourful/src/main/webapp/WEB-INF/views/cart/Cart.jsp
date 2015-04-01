@@ -4,8 +4,9 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <link rel="StyleSheet" href="<c:url value = "/resources/css/cart.css"/>" type="text/css" media="screen" />
 <%-- <script src="<c:url value = "/resources/js/cart.js"/>"></script> --%>
+<p id ="navId" class ="catalogNav">
 <!--==============================content================================-->
-<form:form method="post" action="cart/checkout" modelAttribute="cartForm">
+<form:form method="post" action="cart/Checkout" modelAttribute="cartForm">
 
        <div class="block-4 col-3">
        <div class="h2">

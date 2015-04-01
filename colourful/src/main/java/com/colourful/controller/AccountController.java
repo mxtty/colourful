@@ -2,10 +2,11 @@ package com.colourful.controller;
 
 import javax.validation.Valid;
 
-import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
@@ -15,25 +16,29 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.colourful.domain.entity.BrnUserDetailEntity;
 import com.colourful.domain.entity.BrnUserEntity;
+import com.colourful.domain.exception.ExceptionId;
 import com.colourful.domain.service.base.EntityFactory;
 import com.colourful.form.RegisterUserForm;
+import com.rainbow.fw.core.exception.AppException;
+import com.rainbow.fw.core.exception.SysException;
+import com.rainbow.fw.core.exception.handler.ExceptionHandlerAdvice;
 
 @Controller
-@RequestMapping("/user")
-public class UserController {
+@RequestMapping("/account")
+public class AccountController {
 
 	@Autowired
 	private MessageSource messageSource;
-
-	private static Logger log = Logger.getLogger(UserController.class);
 
 	@ModelAttribute("registerUserForm")
 	public RegisterUserForm initForm(Model model) {
 		return new RegisterUserForm();
 	}
 
-	@RequestMapping(value = "register", method = RequestMethod.POST)
-	// @ExceptionHandlerAdvice(errorPath = "registerUser/register")
+	@RequestMapping(value = "RegisterDone", method = RequestMethod.POST)
+	@ExceptionHandlerAdvice(errorPath = "account/RegisterUser")
+	//@Transactional(propagation = Propagation.REQUIRED, rollbackFor = { RuntimeException.class, SysException.class,
+	//		AppException.class })
 	public String addNewUser(@Valid @ModelAttribute RegisterUserForm registerUserForm, BindingResult result, Model model) {
 
 		BrnUserDetailEntity detailEntity = EntityFactory.newBrnUserDetailEntity(registerUserForm.getUserId());
@@ -46,6 +51,8 @@ public class UserController {
 		userEntity.setAddressId(detailEntity.getAddressId());
 		boolean ret = userEntity.insert();
 		System.out.println("============IN ADD NEW==============" + ret);
+
+		//ExceptionId.appeid.rejectApp("业务异常");
 		return "account/RegisterDone";
 	}
 
@@ -55,18 +62,25 @@ public class UserController {
 		return "account/SignOn";
 
 	}
-	
+
 	@RequestMapping(value = "SignOn", method = RequestMethod.GET)
 	public String signOn(ModelMap model) {
 
 		return "account/SignOn";
 
 	}
-	
-	@RequestMapping(value = "new", method = RequestMethod.GET)
+
+	@RequestMapping(value = "RegisterUser", method = RequestMethod.GET)
 	public String displayRegisterUserForm(ModelMap model) {
 
 		return "account/RegisterUser";
+
+	}
+
+	@RequestMapping(value = "MyAccount", method = RequestMethod.GET)
+	public String displayMyAccount(ModelMap model) {
+
+		return "account/MyAccount";
 
 	}
 }

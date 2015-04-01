@@ -19,7 +19,7 @@ public class OrderController {
 		return new OrderEntryForm();
 	}
 
-	@RequestMapping(value = "viewOrder")
+	@RequestMapping(value = "ViewOrder")
 	public String addToCart(Model model) {
 
 		// cartService.addItem(itemId);
