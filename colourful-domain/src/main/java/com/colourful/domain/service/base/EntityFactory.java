@@ -1,7 +1,5 @@
 package com.colourful.domain.service.base;
 
-import java.util.concurrent.atomic.AtomicInteger;
-
 import com.colourful.domain.entity.BrnCartDetailEntity;
 import com.colourful.domain.entity.BrnCartEntity;
 import com.colourful.domain.entity.BrnCategoryEntity;
@@ -20,11 +18,9 @@ public class EntityFactory {
 		return entity;
 	}
 
-	public static BrnUserDetailEntity newBrnUserDetailEntity(String userId) {
+	public static BrnUserDetailEntity newBrnUserDetailEntity(long addressId) {
 		BrnUserDetailEntity entity = ContextProvider.getBean(BrnUserDetailEntity.class);
-		AtomicInteger ai = new AtomicInteger();
-		entity.setAddressId(ai.getAndIncrement());
-		entity.setUserId(userId);
+		entity.setAddressId(addressId);
 		return entity;
 	}
 

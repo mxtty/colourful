@@ -4,7 +4,14 @@ import com.rainbow.fw.core.exception.AppException;
 import com.rainbow.fw.core.exception.SysException;
 
 public enum ExceptionId {
-	E1001, E1002, appeid, syseid,PK_NULL;
+	RB10001I,
+	RB10002I,
+	RB10003E,
+	E1001,
+	E1002,
+	appeid,
+	syseid,
+	PK_NULL;
 
 	private String messageId;
 

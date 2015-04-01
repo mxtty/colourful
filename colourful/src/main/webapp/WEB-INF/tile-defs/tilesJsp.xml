@@ -3,22 +3,107 @@
 <tiles-definitions>
 
 	<definition name="defaultLayout" template="/WEB-INF/views/templates/template.jsp">
-		<put-attribute name="title" value="Sample Title" />
-		<put-attribute name="header" value="/WEB-INF/views/common/header.jsp" />
+		<put-attribute name="title" value="五彩饺子" />
+		<put-attribute name="commonHeader" value="/WEB-INF/views/common/header.jsp" />
 		<put-attribute name="body" value="" />
 		<put-attribute name="footer" value="/WEB-INF/views/common/footer.jsp" />
 	</definition>	
 
+	<definition name="homeLayout" template="/WEB-INF/views/templates/homeTemplate.jsp">
+		<put-attribute name="title" value="首页" />
+		<put-attribute name="commonHeader" value="/WEB-INF/views/common/header.jsp" />
+		<put-attribute name="homeHeader" value="/WEB-INF/views/common/homeHeader.jsp" />
+		<put-attribute name="body" value="" />
+		<put-attribute name="footer" value="/WEB-INF/views/common/footer.jsp" />
+	</definition>
+	
+
+    <!-- 共通 -->	
 	<definition name="common/Error" extends="defaultLayout">
 		<put-attribute name="title" value="错误" />
 		<put-attribute name="body" value="/WEB-INF/views/common/Error.jsp" />
 	</definition>
+
+    <!-- 首页 -->
+	<definition name="home/Home" extends="homeLayout">
+		<put-attribute name="title" value="首页" />
+		<put-attribute name="body" value="/WEB-INF/views/home/Home.jsp" />
+	</definition>
+	<definition name="home/Menu" extends="defaultLayout">
+		<put-attribute name="title" value="菜单" />
+		<put-attribute name="body" value="/WEB-INF/views/menu/Menu.jsp" />
+	</definition>
+	<definition name="home/Philosophy" extends="defaultLayout">
+		<put-attribute name="title" value="经营理念" />
+		<put-attribute name="body" value="/WEB-INF/views/home/Philosophy.jsp" />
+	</definition>
+	<definition name="home/Gallery" extends="defaultLayout">
+		<put-attribute name="title" value="相册" />
+		<put-attribute name="body" value="/WEB-INF/views/home/Gallery.jsp" />
+	</definition>
+	<definition name="home/Access" extends="defaultLayout">
+		<put-attribute name="title" value="来店就餐" />
+		<put-attribute name="body" value="/WEB-INF/views/home/Access.jsp" />
+	</definition>
 	
+	<!-- 在线购物 -->
+	<definition name="catalog/Category" extends="defaultLayout">
+		<put-attribute name="title" value="菜单分类" />
+		<put-attribute name="body" value="/WEB-INF/views/catalog/Category.jsp" />
+	</definition>
+	
+	<definition name="catalog/ProductList" extends="defaultLayout">
+		<put-attribute name="title" value="菜单分类" />
+		<put-attribute name="body" value="/WEB-INF/views/product/ProductList.jsp" />
+	</definition>
+
+    <!-- 产品 -->
+	<definition name="product/ProductList" extends="defaultLayout">
+		<put-attribute name="title" value="菜单" />
+		<put-attribute name="body" value="/WEB-INF/views/product/ProductList.jsp" />
+	</definition>
+	
+	<definition name="product/ProductDetail" extends="defaultLayout">
+		<put-attribute name="title" value="详细" />
+		<put-attribute name="body" value="/WEB-INF/views/product/ProductDetail.jsp" />
+	</definition>
+	
+	<!-- 购物车 订单-->
+	<definition name="cart/Cart" extends="defaultLayout">
+		<put-attribute name="title" value="购物车" />
+		<put-attribute name="body" value="/WEB-INF/views/cart/Cart.jsp" />
+	</definition>
+
+	<definition name="order/Checkout" extends="defaultLayout">
+		<put-attribute name="title" value="结算" />
+		<put-attribute name="body" value="/WEB-INF/views/order/Checkout.jsp" />
+	</definition>
+
+	<definition name="order/MakeOrder" extends="defaultLayout">
+		<put-attribute name="title" value="结算" />
+		<put-attribute name="body" value="/WEB-INF/views/order/Checkout.jsp" />
+	</definition>
+
+	<definition name="order/OrderFinish" extends="defaultLayout">
+		<put-attribute name="title" value="订单完成" />
+		<put-attribute name="body" value="/WEB-INF/views/order/OrderFinish.jsp" />
+	</definition>
+	
+	<definition name="order/ViewOrder" extends="defaultLayout">
+		<put-attribute name="title" value="查看订单" />
+		<put-attribute name="body" value="/WEB-INF/views/order/ViewOrder.jsp" />
+	</definition>
+
+	<definition name="order/SelectAddress" extends="defaultLayout">
+		<put-attribute name="title" value="选择地址" />
+		<put-attribute name="body" value="/WEB-INF/views/order/SelectAddress.jsp" />
+	</definition>
+	
+    <!-- 用户 -->
 	<definition name="account/RegisterUser" extends="defaultLayout">
 		<put-attribute name="title" value="注册新用户" />
 		<put-attribute name="body" value="/WEB-INF/views/account/RegisterUser.jsp" />
 	</definition>
-
 	<definition name="account/RegisterDone" extends="defaultLayout">
 		<put-attribute name="title" value="注册新用户" />
 		<put-attribute name="body" value="/WEB-INF/views/account/RegisterDone.jsp" />
@@ -28,50 +113,17 @@
 		<put-attribute name="title" value="用户登录" />
 		<put-attribute name="body" value="/WEB-INF/views/account/SignOn.jsp" />
 	</definition>
-	
-	<definition name="product/displayProducts" extends="defaultLayout">
-		<put-attribute name="title" value="菜单" />
-		<put-attribute name="body" value="/WEB-INF/views/product/ProductList.jsp" />
-	</definition>
-	
-	<definition name="product/showProduct" extends="defaultLayout">
-		<put-attribute name="title" value="详细" />
-		<put-attribute name="body" value="/WEB-INF/views/product/ProductDetail.jsp" />
-	</definition>
-	
-	<definition name="cart/Cart" extends="defaultLayout">
-		<put-attribute name="title" value="购物车" />
-		<put-attribute name="body" value="/WEB-INF/views/cart/Cart.jsp" />
+
+	<definition name="account/SignOnError" extends="defaultLayout">
+		<put-attribute name="title" value="登录失败" />
+		<put-attribute name="body" value="/WEB-INF/views/account/SignOn.jsp" />
 	</definition>
 
-	<definition name="cart/CartEmpty" extends="defaultLayout">
-		<put-attribute name="title" value="购物车是空的" />
-		<put-attribute name="body" value="/WEB-INF/views/cart/CartEmpty.jsp" />
+	<definition name="account/MyAccount" extends="defaultLayout">
+		<put-attribute name="title" value="我的帐户" />
+		<put-attribute name="body" value="/WEB-INF/views/account/MyAccount.jsp" />
 	</definition>
+	
 
-	
-	<definition name="catalog/displayCategories" extends="defaultLayout">
-		<put-attribute name="title" value="菜单分类" />
-		<put-attribute name="body" value="/WEB-INF/views/catalog/Category.jsp" />
-	</definition>
-	
-	<definition name="catalog/showProducts" extends="defaultLayout">
-		<put-attribute name="title" value="菜单分类" />
-		<put-attribute name="body" value="/WEB-INF/views/product/ProductList.jsp" />
-	</definition>
-	
-	<definition name="cart/Checkout" extends="defaultLayout">
-		<put-attribute name="title" value="结算" />
-		<put-attribute name="body" value="/WEB-INF/views/cart/Checkout.jsp" />
-	</definition>
-	
-	<definition name="order/OrderFinish" extends="defaultLayout">
-		<put-attribute name="title" value="订单完成" />
-		<put-attribute name="body" value="/WEB-INF/views/order/OrderFinish.jsp" />
-	</definition>
-	
-	<definition name="order/ViewOrder" extends="defaultLayout">
-		<put-attribute name="title" value="订单完成" />
-		<put-attribute name="body" value="/WEB-INF/views/order/ViewOrder.jsp" />
-	</definition>
-</tiles-definitions>  
+
+</tiles-definitions>

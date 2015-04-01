@@ -4,6 +4,7 @@ import java.lang.reflect.Method;
 
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.reflect.MethodSignature;
+import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
@@ -54,9 +55,19 @@ public class ControllerUtil {
 		return null;
 	}
 
+	public static ModelMap getCurrentModelMap(ProceedingJoinPoint pjp) {
+		Object[] argObjects = pjp.getArgs();
+		for (Object arg : argObjects) {
+			if (arg instanceof ModelMap) {
+				return (ModelMap) arg;
+
+			}
+		}
+		return null;
+	}
+
 	/**
-	 * Request里设置Key和Value的对应属性，以便JSP中使用
-	 * 例:setRequestAttribute("errors","发生异常")
+	 * Request里设置Key和Value的对应属性，以便JSP中使用 例:setRequestAttribute("errors","发生异常")
 	 * JSP中使用{$errors}即可取得"发生异常"字符串
 	 * 
 	 * @param key

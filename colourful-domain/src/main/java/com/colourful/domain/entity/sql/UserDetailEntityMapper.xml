@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.colourful.domain.entity.mapper.UserDetailEntityMapper">
+  <select id="getRecords" parameterType="com.colourful.domain.generated.record.BrnUserDetail" resultType="com.colourful.domain.generated.record.BrnUserDetail">
+    select
+       ADDRESS_ID addressId,USER_ID userId,DEFAULT_FLG defaultFlg,ZIP zip,COUNTRY country,CITY city,ADDRESS address,PHONE phone,CELL_PHONE cellPhone,EMAIL email,CREATE_DATE createDate,UPDATE_DATE updateDate,DEL_FLG delFlg 
+    from
+       BRN_USER_DETAIL
+	where
+	    DEL_FLG = 0
+	    <if test="addressId != 0" > AND ADDRESS_ID = #{addressId} </if>
+	    <if test="userId != null" > AND USER_ID = #{userId} </if>
+	    <if test="createDate != null" > AND CREATE_DATE = #{createDate} </if>
+	    <if test="updateDate != null" > AND UPDATE_DATE = #{updateDate} </if>
+    </select>
+</mapper>

@@ -28,7 +28,7 @@
     from
        BRN_ORDER 
 	where
-	    DEL_FLG = 0 and
+	    DEL_FLG = 0
 	    <if test="detailId != 0" > AND DETAIL_ID = #{detailId} </if>
 	    <if test="orderId != 0" > AND ORDER_ID = #{orderId} </if>
 	    <if test="productId != 0" > AND PRODUCT_ID = #{productId} </if>

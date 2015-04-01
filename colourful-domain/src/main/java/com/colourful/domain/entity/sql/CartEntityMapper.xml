@@ -23,5 +23,36 @@
        CART_DETAIL.CART_ID = #{cartId} AND
        CART_DETAIL.DEL_FLG = 0
   </select>
-  
+  <select id="getCartByUserId"  parameterType="String" resultType="com.colourful.domain.generated.record.BrnCart">
+    SELECT
+       PRODUCT.PRODUCT_NAME productName,
+       PRODUCT.UNIT_PRICE unitPrice,
+       PRODUCT.UNIT unit,
+       PRODUCT.DESCRIPTION description,
+       PRODUCT.PRODUCT_ID productId,
+       CART_DETAIL.QUANTITY quantity,
+       IMAGE.IMAGE_FILE imgFileMain
+    FROM
+       BRN_CART_DETAIL as CART_DETAIL, 
+       BRN_PRODUCT as PRODUCT
+    LEFT JOIN BRN_IMAGE as IMAGE ON
+       IMAGE.ID  =  PRODUCT.PRODUCT_ID  AND
+       IMAGE.SEQ = 1 
+    WHERE
+       CART_DETAIL.PRODUCT_ID = PRODUCT.PRODUCT_ID AND
+       CART_DETAIL.CART_ID = #{cartId} AND
+       CART_DETAIL.DEL_FLG = 0
+  </select>
+  <select id="getRecords" parameterType="com.colourful.domain.generated.record.BrnCart" resultType="com.colourful.domain.generated.record.BrnCart">
+    select
+       CART_ID cartId,USER_ID userId,CREATE_DATE createDate,UPDATE_DATE updateDate,DEL_FLG delFlg 
+    from
+       BRN_CART 
+	where
+	    DEL_FLG = 0
+	    <if test="cartId != null" > AND CART_ID = #{cartId} </if>
+	    <if test="userId != null" > AND USER_ID = #{userId} </if>
+	    <if test="createDate != null" > AND CREATE_DATE = #{createDate} </if>
+	    <if test="updateDate != null" > AND UPDATE_DATE = #{updateDate} </if>
+    </select>
 </mapper>

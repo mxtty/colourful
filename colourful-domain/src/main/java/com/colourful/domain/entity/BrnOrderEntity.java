@@ -25,15 +25,11 @@ public class BrnOrderEntity extends BrnOrderBase {
 		return orderEntityMapper.getOrderedProductDetailList(orderId);
 	}
 
-	private void addOrderDetail(ProductDetail productDetail) {
+	public BrnCartEntity getBrnCartEntity() {
+		BrnCartEntity cartEntity = EntityFactory.newBrnCartEntity(cartId);
+		cartEntity.getEntityByPk();
 
-		BrnOrderDetailEntity orderDetailEntity = EntityFactory.newEntity(BrnOrderDetailEntity.class);
-		orderDetailEntity.setOrderId(orderId);
-		orderDetailEntity.setProductId(productDetail.getProductId());
-		orderDetailEntity.setQuantity(productDetail.getQuantity());
-		orderDetailEntity.setListPrice(productDetail.getUnitPrice());
-		orderDetailEntity.setSubtotal(productDetail.getQuantity().multiply(productDetail.getUnitPrice()));
-		orderDetailEntity.insert();
+		return cartEntity;
 
 	}
 

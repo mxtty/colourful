@@ -29,6 +29,7 @@ public class OrderService {
 			orderDetailEntity.insert();
 			// 从购物车移出
 			cartDetailEntity.setProductId(pd.getProductId());
+			cartDetailEntity.setQuantity(pd.getQuantity());
 			cartDetailEntity.removeProduct();
 
 		}

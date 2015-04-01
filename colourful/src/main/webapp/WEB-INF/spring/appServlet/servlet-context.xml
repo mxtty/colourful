@@ -26,6 +26,7 @@
 		<property name="suffix" value=".jsp" />
 	</bean>-->
 
+<!-- --> 
     <bean id="tilesConfigurer"
           class="org.springframework.web.servlet.view.tiles3.TilesConfigurer"
           p:definitions="/WEB-INF/tile-defs/tilesJsp.xml"/>
@@ -34,7 +35,7 @@
     <bean id="viewResolver"
           class="org.springframework.web.servlet.view.UrlBasedViewResolver"
           p:viewClass="org.springframework.web.servlet.view.tiles3.TilesView"/>
-          
+        
 
     <bean id="messageSource"
 	class="org.springframework.context.support.ReloadableResourceBundleMessageSource" autowire="byName">

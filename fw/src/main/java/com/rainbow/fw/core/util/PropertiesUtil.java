@@ -1,7 +1,6 @@
 package com.rainbow.fw.core.util;
 
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.Map;
 import java.util.Properties;
 
@@ -20,7 +19,7 @@ public class PropertiesUtil extends PropertyPlaceholderConfigurer {
 		propertiesMap = new HashMap<String, String>();
 		for (Object key : props.keySet()) {
 			String keyStr = key.toString();
-			propertiesMap.put(keyStr, parseStringValue(props.getProperty(keyStr), props, new HashSet()));
+			propertiesMap.put(keyStr, resolvePlaceholder(props.getProperty(keyStr), props));
 		}
 	}
 

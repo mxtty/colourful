@@ -1,9 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" language="java"%>
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<p id ="navId" class ="accountNav">
 <!--==============================content================================-->
 <div class="col-10">
-<h3 class="h3-line">新用户<c:out value="${registerUserForm.realName}"/>注册成功</h3>
+<h3 class="h3-line">新用户 &nbsp;&nbsp;&nbsp;<c:out value="${registerUserForm.realName}"/>&nbsp;&nbsp;&nbsp;注册成功</h3>
 <form:form id="form" method="post"  modelAttribute="registerUserForm" action="registerUser/register">
        <fieldset>
          <label><strong class="right width-15">用户ID:</strong><strong class="left"><c:out value="${registerUserForm.userId}"/></strong></label>

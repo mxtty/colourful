@@ -23,46 +23,47 @@ import com.colourful.domain.service.base.EntityFactory;
 @RequestMapping("/catalog")
 public class CategoryController {
 
-    private static final Logger logger = LoggerFactory.getLogger(CategoryController.class);
+	private static final Logger logger = LoggerFactory.getLogger(CategoryController.class);
 
-    @Autowired
-    private CategoryService categoryService;
+	@Autowired
+	private CategoryService categoryService;
 
-    @RequestMapping(value = "", method = RequestMethod.GET)
-    public String showCategories(ModelMap model) {
+	@RequestMapping(value = "", method = RequestMethod.GET)
+	public String showCategories(ModelMap model) {
 
-	List<CategoryDetail> categories = categoryService.getAllCategories();
+		List<CategoryDetail> categories = categoryService.getAllCategories();
 
-	model.addAttribute("categories", categories);
-	return "catalog/displayCategories";
-    }
+		model.addAttribute("categories", categories);
+		return "catalog/Category";
+	}
 
-    @RequestMapping(value = "/{categoryId}", method = RequestMethod.GET)
-    public String showProducts(@PathVariable long categoryId, ModelMap model) {
-	System.out.println(categoryId);
+	@RequestMapping(value = "/{categoryId}", method = RequestMethod.GET)
+	public String showProducts(@PathVariable long categoryId, ModelMap model) {
+		System.out.println(categoryId);
 
-	// ProductDetail pd1 = new ProductDetail();
-	// pd1.setImgFileMain("c1001_10001_img3.jpg");
-	// pd1.setUnit("份");
-	// pd1.setUnitPrice(BigDecimal.valueOf(11.8));
-	// pd1.setProductId(10001);
-	// pd1.setProductName("猪肉水饺");
-	//
-	// Products products = new Products();
-	// products.setCategoryId(categoryId);
-	// products.setCategoryName("水饺类");
-	// products.addProduct(pd1);
-	// products.addProduct(pd1);
-	// products.addProduct(pd1);
-	// products.addProduct(pd1);
-	// products.addProduct(pd1);
-	// products.addProduct(pd1);
+		// ProductDetail pd1 = new ProductDetail();
+		// pd1.setImgFileMain("c1001_10001_img3.jpg");
+		// pd1.setUnit("份");
+		// pd1.setUnitPrice(BigDecimal.valueOf(11.8));
+		// pd1.setProductId(10001);
+		// pd1.setProductName("猪肉水饺");
+		//
+		// Products products = new Products();
+		// products.setCategoryId(categoryId);
+		// products.setCategoryName("水饺类");
+		// products.addProduct(pd1);
+		// products.addProduct(pd1);
+		// products.addProduct(pd1);
+		// products.addProduct(pd1);
+		// products.addProduct(pd1);
+		// products.addProduct(pd1);
 
-	BrnCategoryEntity categoryEntity = EntityFactory.newBrnCategoryEntity(categoryId);
+		BrnCategoryEntity categoryEntity = EntityFactory.newBrnCategoryEntity(categoryId);
 
-	model.addAttribute("products", categoryEntity.getProducts());
-	// model.addAttribute("products", products);
-	return "product/displayProducts";
+		model.addAttribute("products", categoryEntity.getProducts());
+		// model.addAttribute("products", products);
+		return "product/ProductList";
 
-    }
+	}
+
 }

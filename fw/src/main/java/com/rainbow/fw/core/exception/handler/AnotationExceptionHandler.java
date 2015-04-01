@@ -8,7 +8,13 @@ import org.apache.log4j.Logger;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.support.ReloadableResourceBundleMessageSource;
+import org.springframework.jdbc.datasource.DataSourceTransactionManager;
+import org.springframework.transaction.TransactionDefinition;
+import org.springframework.transaction.TransactionStatus;
+import org.springframework.transaction.support.DefaultTransactionDefinition;
+import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 
 import com.rainbow.fw.core.exception.AppException;
@@ -47,6 +53,9 @@ public class AnotationExceptionHandler {
 	 */
 	private static Logger syslog = Logger.getLogger("SysLogger");
 
+	@Autowired
+	private DataSourceTransactionManager transactionManager;
+
 	/**
 	 * 
 	 * 
@@ -66,16 +75,18 @@ public class AnotationExceptionHandler {
 			syslog.error("系统错误", e);
 		}
 
-		// System.out.println("beginning----" + method.getName());
+		System.out.println("beginning----" + method.getName());
 		// 方法异常处理结果
-		BindingResult bindingResult = ControllerUtil
-				.getCurrentBindingResult(pjp);
+		BindingResult bindingResult = ControllerUtil.getCurrentBindingResult(pjp);
 
 		// 方法注解
-		ExceptionHandlerAdvice ea = method
-				.getAnnotation(ExceptionHandlerAdvice.class);
+		ExceptionHandlerAdvice ea = method.getAnnotation(ExceptionHandlerAdvice.class);
 		if (null != bindingResult && bindingResult.hasErrors()) {
+
 			// 方法执行有错，并且定义了返回错误页面
+
+			ModelMap mm = ControllerUtil.getCurrentModelMap(pjp);
+			mm.put(BindingResult.class.getName() + ".orderEntryForm", bindingResult);
 			return ea.errorPath();
 		}
 
@@ -83,30 +94,37 @@ public class AnotationExceptionHandler {
 		try {
 			object = pjp.proceed();
 		} catch (Throwable e) {
+
+			DefaultTransactionDefinition def = new DefaultTransactionDefinition();
+			def.setPropagationBehavior(TransactionDefinition.PROPAGATION_REQUIRED);
+
+			TransactionStatus status = transactionManager.getTransaction(def);
 			e.printStackTrace();
+
+			// 异常发生时，所有数据回滚
+			transactionManager.rollback(status);
+
 			String errMsg = null;
 			// BaseException时，根据ID获取消息体
 			if (e instanceof BaseException) {
 				BaseException exception = (BaseException) e;
 
-				errMsg = messageSource
-						.getMessage(exception.getMessageId(),
-								exception.getArges(), null).concat("(")
+				errMsg = messageSource.getMessage(exception.getMessageId(), exception.getArges(), null).concat("(")
 						.concat(exception.getMessageId()).concat(")");
+				ControllerUtil.setRequestAttribute("errors", errMsg);
 			}
 
 			if (e instanceof AppException) {
 				// 业务异常
 				AppException appException = (AppException) e;
-				bindingResult.reject(appException.getMessageId(),
-						appException.getArges(), "");
+				bindingResult.reject(appException.getMessageId(), appException.getArges(), "");
 				applog.info(errMsg, e);
+
 				return (null != ea) ? ea.errorPath() : commExceptionUrl;
 			} else if (e instanceof SysException) {
 				// 系统异常
 				syslog.error(errMsg, e);
-				ControllerUtil.setRequestAttribute("errors",
-						(null == errMsg) ? "System Error!" : errMsg);
+				ControllerUtil.setRequestAttribute("errors", (null == errMsg) ? "System Error!" : errMsg);
 				return commExceptionUrl;
 			} else {
 				// 未知致命异常
@@ -116,13 +134,14 @@ public class AnotationExceptionHandler {
 					fatalMsg.append("\n");
 					fatalMsg.append("\t".concat(ste.toString()));
 				}
-				//syslog.fatal(fatalMsg.toString());
-				ControllerUtil.setRequestAttribute("errors",
-						"系统发生错误，请重新操作或与管理员联系！");
-				System.out.println("Return "+commExceptionUrl);
+				syslog.fatal(fatalMsg.toString());
+				ControllerUtil.setRequestAttribute("errors", "系统发生错误，请重新操作或与管理员联系！");
+
 				return commExceptionUrl;
 			}
 		}
+		// 处理正常结束时，提交至数据库
+		// transactionManager.commit(status);
 
 		return object;
 	}

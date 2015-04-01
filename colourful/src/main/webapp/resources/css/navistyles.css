@@ -153,7 +153,7 @@
 	display: inline-block;
 	margin: 5px 5px;
 	outline: none;
-	color: #696969;
+	color: #400040;
 	text-decoration: none;
 	text-transform: uppercase;
 	letter-spacing: 1px;
@@ -161,6 +161,21 @@
 	font-weight: 200;
 	text-shadow: 0 0 1px rgba(255,255,255,0.3);
 	font-size: 0.75em;
+}
+
+.navbar nav b {
+	position: relative;
+	display: inline-block;
+	margin: 15px 5px;
+	outline: none;
+	color: #000080;
+	text-decoration: none;
+	text-transform: uppercase;
+	letter-spacing: 1px;
+	float:left;
+	font-weight: 200;
+	text-shadow: 0 0 1px rgba(255,255,255,0.3);
+	font-size: 1em;
 }
 
 .navbar nav a:hover,
