@@ -13,7 +13,8 @@
        BRN_CATEGORY as CATEGORY LEFT JOIN 
        BRN_IMAGE as IMAGE
      ON
-       CATEGORY.CATEGORY_ID = IMAGE.ID AND
+       CATEGORY.CATEGORY_ID = IMAGE.ID
+    WHERE
        IMAGE.SEQ =1
   </select>
   
@@ -28,7 +29,9 @@
        BRN_PRODUCT as PRODUCT LEFT JOIN 
        BRN_IMAGE as IMAGE
      ON
-       PRODUCT.PRODUCT_ID = IMAGE.ID AND
+       PRODUCT.PRODUCT_ID = IMAGE.ID
+     WHERE  
+       PRODUCT.CATEGORY_ID1 = #{categoryId}  AND    
        IMAGE.SEQ =1
   </select>
   

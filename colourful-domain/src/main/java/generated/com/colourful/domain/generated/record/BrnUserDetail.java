@@ -10,6 +10,8 @@ public class BrnUserDetail implements Serializable{
 	protected long addressId;
 	/** 用户ID */
 	protected String userId;
+	/** 用户名 */
+	protected String userName;
 	/** 默认住址 */
 	protected int defaultFlg;
 	/** 邮编 */

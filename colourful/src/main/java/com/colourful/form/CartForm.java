@@ -13,4 +13,5 @@ public class CartForm {
 	private BigDecimal total;
 	private BigDecimal shipping;
 	private List<ProductDetail> productDetailList;
+	
 }

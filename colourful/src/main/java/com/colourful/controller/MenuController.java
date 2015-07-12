@@ -13,13 +13,13 @@ import com.colourful.form.MenuForm;
 @RequestMapping("/menu")
 public class MenuController {
 
-	@ModelAttribute("selectedMenuForm")
+	@ModelAttribute("menuForm")
 	public MenuForm initCartForm(Model model) {
 		return new MenuForm();
 	}
 
-	@RequestMapping(value = "showMenu", method = RequestMethod.GET)
-	public String menu(ModelMap model) {
+	@RequestMapping(value = "showMenu")
+	public String menu(Model model) {
 
 		return "menu/Menu";
 

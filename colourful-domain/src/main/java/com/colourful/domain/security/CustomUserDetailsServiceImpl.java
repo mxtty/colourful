@@ -74,6 +74,7 @@ public class CustomUserDetailsServiceImpl implements UserDetailsService {
 			String phone = (!"".equals(brnUserDetail.getCellPhone()) ? brnUserDetail.getCellPhone() : brnUserDetail
 					.getPhone());
 			user.setPhone(phone);
+			user.setShipName(brnUserDetail.getUserName());
 			user.setShipAddress(brnUserDetail.getAddress());
 		}
 

@@ -46,36 +46,6 @@ public class RainbowUserDetails extends User implements WebUser {
 		return !CollectionUtils.isEmpty(addressList) && addressList.size() > 1;
 	}
 
-	public List<OptionAddress> createOptionAddressList() {
-		List<OptionAddress> optionAddressList = new ArrayList<OptionAddress>();
-
-		if (!hasMultiAddress())
-			return optionAddressList;
-
-		int i = 0;
-		for (BrnUserDetail userDetail : addressList) {
-
-			StringBuffer sb = new StringBuffer();
-			sb.append(" 邮政编码:");
-			sb.append(userDetail.getZip());
-			sb.append(" 地址:");
-			sb.append(userDetail.getAddress());
-
-			String phone = (!"".equals(userDetail.getCellPhone()) ? userDetail.getCellPhone() : userDetail.getPhone());
-
-			sb.append(" 联系人:");
-			sb.append(userDetail.getAddressId());
-
-			sb.append(" 联系电话:");
-			sb.append(phone);
-
-			OptionAddress oa = new OptionAddress(i++, sb.toString());
-			optionAddressList.add(oa);
-
-		}
-
-		return optionAddressList;
-	}
 
 	public String getUserId() {
 		return getUsername();

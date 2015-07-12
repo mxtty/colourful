@@ -99,8 +99,8 @@ public class AnotationExceptionHandler {
 			def.setPropagationBehavior(TransactionDefinition.PROPAGATION_REQUIRED);
 
 			TransactionStatus status = transactionManager.getTransaction(def);
-			e.printStackTrace();
-
+			
+			syslog.error("系统错误", e);
 			// 异常发生时，所有数据回滚
 			transactionManager.rollback(status);
 

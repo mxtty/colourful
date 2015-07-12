@@ -5,7 +5,8 @@
 
 <p id ="navId" class ="catalogNav">
 <!--==============================content================================-->
-
+<form:form id="product_detail_form" method="post"	modelAttribute="cartEntryForm" action="product/add">
+	<c:set var="productDetail" value="${cartEntryForm.productDetail}" />
 	<div class="block-4 col-3">
 		<div class="col-5">
 			<div class="detail-pic">
@@ -22,17 +23,17 @@
 			<div>
 				${productDetail.description}
 				<div>
-					<form:form id="product_detail_form" method="post"	modelAttribute="cartEntryForm" action="cart/add">
+
 						<form:hidden path="productId" value ="${productDetail.productId}"/>
 						<fieldset>
 							<label>
-							    <Strong> 单价:¥${productDetail.unitPrice} &nbsp;&nbsp;&nbsp;&nbsp; 数量:</Strong><input type ="number" name="quantity" value="1" class="width40" max="999" min="1"/>
-							    <Strong> ${productDetail.unit}</Strong>
+							    <Strong> 单价:¥${productDetail.unitPrice} &nbsp;&nbsp;&nbsp;&nbsp; 数量:</Strong><form:input type ="number" path="quantity" value="1" class="width40" max="999" min="1"/>
+							    <Strong> ${productDetail.unit}</Strong><form:errors path="quantity" class="errormsg" />
 							</label>
 						</fieldset>
 							<a class="myButton">立即购买</a>
-					</form:form>
 				</div>
 			</div>
 		</div>
 	</div>
+</form:form>

@@ -39,15 +39,16 @@ final class StringToNumberConverterFactory implements ConverterFactory<String, N
 		}
 
 		public T convert(String source) {
+			System.out.println("in string to number converter factory!");
 			if (source.length() == 0) {
-				return null;
+				throw new IllegalArgumentException(String.format("类型转换失败，需要数字格式"));
 			}
 			System.out.println("in string to number converter factory!");
 			if (!source.matches("[0-9]*")) {
 				// return null;
 				// ValidationUtils.rejectIfEmptyOrWhitespace(errors,
 				// "firstName", "First name can't be blank");
-				throw new IllegalArgumentException(String.format("类型转换失败，需要格式[010-12345678]，但格式是[%s]", source));
+				throw new IllegalArgumentException(String.format("类型转换失败，需要数字格式，但格式是[%s]", source));
 			}
 
 			return NumberUtils.parseNumber(source, this.targetType);

@@ -28,6 +28,10 @@
 				invalidate-session="true" 
 				logout-success-url="/home" 
 				logout-url="/processLogout"/>
+				
+       <security:custom-filter ref="csrfFilter" before="LOGOUT_FILTER" />  <!-- (1) -->
+       <security:session-management
+         session-authentication-strategy-ref="sessionAuthenticationStrategy" />  <!-- (2) -->
     </security:http>
 
 	<!-- A custom service where Spring will retrieve users and their corresponding access levels  -->
@@ -43,5 +47,36 @@
 	 <constructor-arg name="strength" value="11" />
    </bean>
   
+   <bean id="csrfFilter" class="org.springframework.security.web.csrf.CsrfFilter">  <!-- (3) -->
+     <constructor-arg index="0" ref="csrfTokenRepository" />  <!-- (4) -->
+     <property name="accessDeniedHandler">
+         <bean
+             class="org.springframework.security.web.access.AccessDeniedHandlerImpl">  <!-- (5) -->
+             <property name="errorPage"
+                 value="/home/Error403" />  <!-- (6) -->
+         </bean>
+     </property>
+ </bean>
+
+ <bean id="csrfTokenRepository"
+     class="org.springframework.security.web.csrf.HttpSessionCsrfTokenRepository" />  <!-- (7) -->
+
+ <bean id="sessionAuthenticationStrategy"
+     class="org.springframework.security.web.authentication.session.CompositeSessionAuthenticationStrategy"> <!-- (8) -->
+     <constructor-arg index="0">
+         <list>
+             <!-- omitted -->
+             <bean
+                 class="org.springframework.security.web.csrf.CsrfAuthenticationStrategy">  <!-- (9) -->
+                 <constructor-arg index="0"
+                     ref="csrfTokenRepository" />  <!-- (10) -->
+             </bean>
+         </list>
+     </constructor-arg>
+ </bean>
+ 
+  <bean id="requestDataValueProcessor"
+     class="org.springframework.security.web.servlet.support.csrf.CsrfRequestDataValueProcessor"> <!-- (1)  -->
+ </bean>
 </beans>
          

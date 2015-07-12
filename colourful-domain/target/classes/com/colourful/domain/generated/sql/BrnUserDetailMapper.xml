@@ -6,26 +6,23 @@
 	<cache/>
 	<select id="readByPk" parameterType="com.colourful.domain.generated.record.BrnUserDetail" resultType="com.colourful.domain.generated.record.BrnUserDetail">
     select
-       ADDRESS_ID addressId,USER_ID userId,DEFAULT_FLG defaultFlg,ZIP zip,COUNTRY country,CITY city,ADDRESS address,PHONE phone,CELL_PHONE cellPhone,EMAIL email,CREATE_DATE createDate,UPDATE_DATE updateDate,DEL_FLG delFlg 
+       ADDRESS_ID addressId,USER_ID userId,USER_NAME userName,DEFAULT_FLG defaultFlg,ZIP zip,COUNTRY country,CITY city,ADDRESS address,PHONE phone,CELL_PHONE cellPhone,EMAIL email,CREATE_DATE createDate,UPDATE_DATE updateDate,DEL_FLG delFlg 
     from
        BRN_USER_DETAIL 
     where
        ADDRESS_ID = #{addressId}
     </select>
 	<insert id="insert" parameterType="com.colourful.domain.generated.record.BrnUserDetail">
-    <selectKey keyProperty="addressId" resultType="Long" order="BEFORE">
-        select cast(nextval('address_id_seq') as INTEGER) 
-    </selectKey>
     insert into
        BRN_USER_DETAIL 
     values
-       (#{addressId},#{userId},#{defaultFlg},#{zip},#{country},#{city},#{address},#{phone},#{cellPhone},#{email},CURRENT_TIMESTAMP,CURRENT_TIMESTAMP,0)
+       (#{addressId},#{userId},#{userName},#{defaultFlg},#{zip},#{country},#{city},#{address},#{phone},#{cellPhone},#{email},CURRENT_TIMESTAMP,CURRENT_TIMESTAMP,0)
     </insert>
 	<update id="update" parameterType="com.colourful.domain.generated.record.BrnUserDetail">
     update
        BRN_USER_DETAIL 
     set
-       USER_ID = #{userId} ,DEFAULT_FLG = #{defaultFlg} ,ZIP = #{zip} ,COUNTRY = #{country} ,CITY = #{city} ,ADDRESS = #{address} ,PHONE = #{phone} ,CELL_PHONE = #{cellPhone} ,EMAIL = #{email} ,UPDATE_DATE = CURRENT_TIMESTAMP 
+       USER_ID = #{userId} ,USER_NAME = #{userName} ,DEFAULT_FLG = #{defaultFlg} ,ZIP = #{zip} ,COUNTRY = #{country} ,CITY = #{city} ,ADDRESS = #{address} ,PHONE = #{phone} ,CELL_PHONE = #{cellPhone} ,EMAIL = #{email} ,UPDATE_DATE = CURRENT_TIMESTAMP 
     where
        ADDRESS_ID = #{addressId} and UPDATE_DATE = #{updateDate}
     </update>

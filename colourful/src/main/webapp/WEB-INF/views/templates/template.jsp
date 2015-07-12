@@ -22,7 +22,8 @@
 
 <script src="<c:url value = "/resources/js/colour.js"/>"></script>
 
-
+<link rel="StyleSheet" href="<c:url value = "/resources/css/service.flatcheckbox.jquery.css"/>" type="text/css" media="screen" />
+<script src="<c:url value = "/resources/js/service.flatcheckbox.jquery.min.js"/>"></script>
 
 
 <base href="${pageContext.request.scheme}://${pageContext.request.serverName}:${pageContext.request.serverPort}${pageContext.request.contextPath}/" />

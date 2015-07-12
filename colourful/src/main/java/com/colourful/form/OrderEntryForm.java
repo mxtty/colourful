@@ -10,8 +10,8 @@ import lombok.Data;
 
 import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.util.CollectionUtils;
 
-import com.colourful.domain.data.OptionAddress;
 import com.colourful.domain.generated.record.BrnUserDetail;
 
 @Data
@@ -21,9 +21,9 @@ public class OrderEntryForm {
 
 	private long orderId;
 
-	private List<OptionAddress> optionAddressList;
+	private List<BrnUserDetail> optionAddressList;
 
-	private int selectedAddressIdx;
+	// private int selectedAddressIdx;
 
 	@Size(min = 1, max = 20)
 	@NotEmpty
@@ -41,12 +41,20 @@ public class OrderEntryForm {
 	@NotEmpty
 	private String shipAddress;
 
-	public void setAddress(BrnUserDetail brnUserDetail) {
+	public void setSelectedAddress(int selectedAddressIdx) {
+		if (CollectionUtils.isEmpty(this.optionAddressList) || selectedAddressIdx < 0
+				|| this.optionAddressList.size() < selectedAddressIdx)
+			return;
 
-		this.shipName = brnUserDetail.getUserId();
+		BrnUserDetail brnUserDetail = this.optionAddressList.get(selectedAddressIdx);
+		this.shipName = brnUserDetail.getUserName();
 		this.phone = brnUserDetail.getCellPhone();
 		this.shipAddress = brnUserDetail.getAddress();
 
+	}
+
+	public boolean hasMultiAddress() {
+		return !CollectionUtils.isEmpty(this.optionAddressList) && this.optionAddressList.size() > 1;
 	}
 
 }

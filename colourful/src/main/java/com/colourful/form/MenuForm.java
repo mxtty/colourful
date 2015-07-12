@@ -1,14 +1,22 @@
 package com.colourful.form;
 
-import java.math.BigDecimal;
 import java.util.List;
+
+import javax.validation.constraints.NotNull;
 
 import lombok.Data;
 
-import com.colourful.domain.data.ProductDetail;
+import com.colourful.domain.data.Products;
 
 @Data
 public class MenuForm {
 
-	private List<ProductDetail> productDetailList;
+	private List<Products> productsList;
+	@NotNull(message = "选择不能为空")
+	private List<Long> selectedProductIdList;
+
+	public void addProducts(Products products) {
+		if (null != products)
+			this.productsList.add(products);
+	}
 }

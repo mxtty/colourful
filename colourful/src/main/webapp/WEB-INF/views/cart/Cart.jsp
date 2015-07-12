@@ -3,6 +3,10 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <link rel="StyleSheet" href="<c:url value = "/resources/css/cart.css"/>" type="text/css" media="screen" />
+<link rel="StyleSheet" href="<c:url value = "/resources/css/bootstrap.min.css"/>" type="text/css" media="screen" />
+<script src="<c:url value = "/resources/js/bootstrap-number-input.js"/>"></script>
+
+
 <%-- <script src="<c:url value = "/resources/js/cart.js"/>"></script> --%>
 <p id ="navId" class ="catalogNav">
 <!--==============================content================================-->
@@ -37,15 +41,12 @@
 		  </div>
 		  <div class="item_price js-item-price"><fmt:formatNumber value="${product.unitPrice * product.quantity}" pattern="¥###0.00" /></div>
 		</div>
-		<div class="item_interactions" id ="aaa">
+		<div class="item_interactions" id ="interactions">
 		  <p class="item_quantity">
-			<a class="js-item-increase" title="加上一${product.unit}">+</a>
-			<a class="js-item-decrease" title="去掉一${product.unit}">-</a>
-			<form:hidden class = "js-quantity" path="productDetailList[${status.index}].quantity" />
-			<span>${product.quantity}&nbsp;</span>
+			<form:input id="after" type="number" path="productDetailList[${status.index}].quantity" value="1" class=" kat"  style="width:50px;height:20px;" max="999" min="1"/><form:errors path="productDetailList[${status.index}].quantity" class="errormsg" />
 			<c:out value="${product.unit}/每${product.unit}"/>
 			<fmt:formatNumber value="${product.unitPrice}" pattern="¥###0.00" />
-			<form:hidden class = "js-unit-price" path="productDetailList[${status.index}].unitPrice" />
+<%-- 			<form:hidden class = "js-unit-price" path="productDetailList[${status.index}].unitPrice" /> --%>
 		 </p>
 		  <a class="item_remove js-item-remove" title="这次不买">这次不买</a>
 		   <a class="item_remove js-item-remove1" title="从购物车清除"><img height="18" src="<c:url value = "/resources/images/icon_trash.png"/>"></a> 
@@ -83,3 +84,8 @@
 
 	</div> 
 </form:form>
+	<script>
+		$(document).ready(function(){
+			$('.kat').bootstrapNumber();
+		});
+	</script>

@@ -23,7 +23,11 @@
 		<put-attribute name="title" value="错误" />
 		<put-attribute name="body" value="/WEB-INF/views/common/Error.jsp" />
 	</definition>
-
+	<definition name="common/Error403" extends="defaultLayout">
+		<put-attribute name="title" value="错误" />
+		<put-attribute name="body" value="/WEB-INF/views/common/csrfTokenError.jsp" />
+	</definition>
+	
     <!-- 首页 -->
 	<definition name="home/Home" extends="homeLayout">
 		<put-attribute name="title" value="首页" />
@@ -33,6 +37,7 @@
 		<put-attribute name="title" value="菜单" />
 		<put-attribute name="body" value="/WEB-INF/views/menu/Menu.jsp" />
 	</definition>
+
 	<definition name="home/Philosophy" extends="defaultLayout">
 		<put-attribute name="title" value="经营理念" />
 		<put-attribute name="body" value="/WEB-INF/views/home/Philosophy.jsp" />
@@ -45,7 +50,7 @@
 		<put-attribute name="title" value="来店就餐" />
 		<put-attribute name="body" value="/WEB-INF/views/home/Access.jsp" />
 	</definition>
-	
+
 	<!-- 在线购物 -->
 	<definition name="catalog/Category" extends="defaultLayout">
 		<put-attribute name="title" value="菜单分类" />

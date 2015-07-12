@@ -8,7 +8,6 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.util.CollectionUtils;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -17,14 +16,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
-import com.colourful.domain.data.OptionAddress;
 import com.colourful.domain.data.ProductDetail;
 import com.colourful.domain.data.RainbowUserDetails;
 import com.colourful.domain.entity.BrnCartEntity;
 import com.colourful.domain.entity.BrnOrderEntity;
-import com.colourful.domain.exception.ExceptionId;
 import com.colourful.domain.generated.record.BrnOrder;
-import com.colourful.domain.generated.record.BrnUserDetail;
 import com.colourful.domain.service.CartService;
 import com.colourful.domain.service.OrderService;
 import com.colourful.domain.service.base.EntityFactory;
@@ -56,9 +52,21 @@ public class OrderController {
 	}
 
 	@RequestMapping(value = "Checkout", method = RequestMethod.POST)
-	@ExceptionHandlerAdvice(errorPath = "order/MakeOrder")
-	public String checkOut(Principal principal, @ModelAttribute CartForm cartForm,
-			@ModelAttribute OrderEntryForm orderEntryForm, Model model) {
+	// @ExceptionHandlerAdvice(errorPath = "order/MakeOrder")
+	@ExceptionHandlerAdvice(errorPath = "cart/Cart")
+	public String checkOut(Principal principal, @Valid @ModelAttribute CartForm cartForm, BindingResult result,
+			Model model, @ModelAttribute OrderEntryForm orderEntryForm, SessionStatus status) {
+
+		List<ProductDetail> productDetailList = cartForm.getProductDetailList();
+		for (int i = 0; i < productDetailList.size(); i++) {
+			ProductDetail detail = productDetailList.get(i);
+			if (null == detail.getQuantity()) {
+				result.rejectValue("productDetailList[" + i++ + "].quantity", "typeMismatch.int");
+			}
+		}
+
+		if (result.hasErrors())
+			return "cart/Cart";
 
 		String cartId = cartService.getCartId();
 
@@ -67,41 +75,30 @@ public class OrderController {
 		}
 
 		if (!appContext.isAuthenticated())
-			return "forward:/account/auth";
+			return "order/Checkout";
 
 		RainbowUserDetails userDetails = appContext.getUserDetails(RainbowUserDetails.class);
 
-		orderEntryForm.setShipName(userDetails.getRealName());
+		orderEntryForm.setShipName(userDetails.getShipName());
 		orderEntryForm.setPhone(userDetails.getPhone());
 		orderEntryForm.setShipAddress(userDetails.getShipAddress());
+		orderEntryForm.setShipDate(null);
 
 		if (userDetails.hasMultiAddress()) {
-			orderEntryForm.setOptionAddressList(userDetails.createOptionAddressList());
+			orderEntryForm.setOptionAddressList(userDetails.getAddressList());
 			return "forward:/order/SelectAddress";
 		} else
-			return "forward:/order/MakeOrder";
+			// 仅有一个地址时，将第一个地址设为送货地址
+			return "forward:/order/MakeOrder/0";
 
 	}
 
-	@RequestMapping(value = "MakeOrder")
-	public String makeOrder(@ModelAttribute OrderEntryForm orderEntryForm, Model model) {
+	@RequestMapping(value = "MakeOrder/{selectedIdx}")
+	public String makeOrderLogin(@PathVariable int selectedIdx, @ModelAttribute OrderEntryForm orderEntryForm,
+			Model model) {
 
-		if (appContext.isAuthenticated()) {
-			List<OptionAddress> optionAddressList = orderEntryForm.getOptionAddressList();
-
-			int selectedAddressIdx = orderEntryForm.getSelectedAddressIdx();
-
-			if (CollectionUtils.isEmpty(optionAddressList) || optionAddressList.size() < selectedAddressIdx
-					|| selectedAddressIdx < 0) {
-				ExceptionId.E1001.rejectSys("系统异常");
-			}
-
-			RainbowUserDetails userDetails = appContext.getUserDetails(RainbowUserDetails.class);
-
-			BrnUserDetail brnUserDetail = userDetails.getAddressList().get(selectedAddressIdx);
-			orderEntryForm.setAddress(brnUserDetail);
-
-		}
+		if (orderEntryForm.hasMultiAddress())
+			orderEntryForm.setSelectedAddress(selectedIdx);
 
 		return "order/Checkout";
 	}
@@ -146,7 +143,7 @@ public class OrderController {
 			cartEntity.update();
 		}
 
-		status.setComplete();
+		// status.setComplete();
 		return "order/OrderFinish";
 
 	}
