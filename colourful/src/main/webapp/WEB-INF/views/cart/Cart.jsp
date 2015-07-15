@@ -6,7 +6,6 @@
 <link rel="StyleSheet" href="<c:url value = "/resources/css/bootstrap.min.css"/>" type="text/css" media="screen" />
 <script src="<c:url value = "/resources/js/bootstrap-number-input.js"/>"></script>
 
-
 <%-- <script src="<c:url value = "/resources/js/cart.js"/>"></script> --%>
 <p id ="navId" class ="catalogNav">
 <!--==============================content================================-->
@@ -43,13 +42,14 @@
 		</div>
 		<div class="item_interactions" id ="interactions">
 		  <p class="item_quantity">
-			<form:input id="after" type="number" path="productDetailList[${status.index}].quantity" value="1" class=" kat"  style="width:50px;height:20px;" max="999" min="1"/><form:errors path="productDetailList[${status.index}].quantity" class="errormsg" />
+			<form:input type="number" path="productDetailList[${status.index}].quantity" value="1" class="inQuantity"  style="width:50px;height:20px;" max="999" min="1"/><form:errors path="productDetailList[${status.index}].quantity" class="errormsg" />
 			<c:out value="${product.unit}/每${product.unit}"/>
 			<fmt:formatNumber value="${product.unitPrice}" pattern="¥###0.00" />
+			<form:hidden path="productDetailList[${status.index}].status" value="0" class = "status"/>
 <%-- 			<form:hidden class = "js-unit-price" path="productDetailList[${status.index}].unitPrice" /> --%>
 		 </p>
-		  <a class="item_remove js-item-remove" title="这次不买">这次不买</a>
-		   <a class="item_remove js-item-remove1" title="从购物车清除"><img height="18" src="<c:url value = "/resources/images/icon_trash.png"/>"></a> 
+		  <a class="item_remove" title="这次不买"><img height="18" src="<c:url value = "/resources/images/icon_remove.png"/>"></a>
+		   <a class="item_delete" title="从购物车清除"><img height="18" src="<c:url value = "/resources/images/icon_delete_2.png"/>"></a> 
 		</div>
 	  </li>
 	</c:forEach>
@@ -81,11 +81,101 @@
 	  </ul>
 	</div> 
 	</c:if>
-
 	</div> 
 </form:form>
 	<script>
 		$(document).ready(function(){
-			$('.kat').bootstrapNumber();
+			$('.inQuantity').bootstrapNumber();
+		
+			$('.item_delete').click(function(e) {
+	
+				  removeItem(this,1);
+
+			});
+			
+			$('.item_remove').click(function(e) {
+
+				  removeItem(this,2);
+
+			});
+			
+			
+			 var  itemList = document.querySelector('.item-list');  
+			 var initialList = itemList.innerHTML;
+			 //alert(initialList);
+			// alert("initialList:"+initialList);
+
+			
+			function removeItem (emitter,value) {
+				//alert("In Remove"+value);
+				$(emitter).closest("div").find(".status").val(value);
+				
+				var item = emitter.parentElement.parentElement;
+				// alert("OK1");      
+				 
+				 var priceFields = $('.item .js-item-price');
+				 
+				 
+				 var len = priceFields.length;
+				 //alert("OK2");      
+				var marginBottom = len > 1 ? parseInt(getComputedStyle(item).marginBottom, 10) : 0;
+				  
+				 //alert("OK3");
+				  item.classList.add('item--disappearing');
+				  item.style.marginTop = -(item.offsetHeight + marginBottom) + 'px';
+	
+				// var  itemList = document.querySelector('.item-list');
+				  
+				  setTimeout(function () {
+				    //itemList.removeChild(item);
+				   
+				    //alert("remove");
+				    //alert((item.innerHTML));
+				    //alert ("after");
+
+					//item.remove();
+					itemList = document.querySelector('.item-list'); 
+					//alert(itemList.innerHTML);
+				    priceFields = document.querySelectorAll('.status');
+				    
+				    var selectedItemCount = 0;
+
+			/* 	    for (var i =0;i<priceFields.length;i++){
+				    	priceFields[i].val
+				    } */
+				    
+				    $.each(priceFields, function() {
+	                  if ($(this).val()==0 ) {
+	                
+	                	  //alert(selectedItemCount);
+	                	  selectedItemCount++;
+	                  }
+				   	});
+				    
+				    
+				    
+				    if (0==selectedItemCount) {
+				      itemList.innerHTML = '<li class="item empty-hint"><p>结账的东西都没有啦 <a id="js-restore-list" class="js-restore-list" href="cart/Cart">再看看我的购物车</a>?</li>';
+				      itemList.firstElementChild.classList.add('is-visible');
+				      $(".js-summary").hide();
+				      
+				      //summaryFields = document.querySelectorAll('.js-summary')
+				      //summaryFields.hide()
+				      //alert(summaryFields.val())
+				      //summaryFields.addClass('is-not-visible')
+				      //summaryFields.style.marginTop = -(summaryFields.offsetHeight + 600) + 'px'
+				      //summaryFields.classList.add('item--disappearing')
+				     // alert(summaryFields.add('is-not-visible'))
+				    }
+
+				    //alert($(".js-summary").closest('form').html());
+				    handleCalculations()
+				  }, 500)
+				};
+				
+				function handleCalculations(){
+					alert("In cal");
+				};
+
 		});
 	</script>
