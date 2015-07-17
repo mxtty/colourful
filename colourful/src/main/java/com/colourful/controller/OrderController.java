@@ -56,36 +56,14 @@ public class OrderController {
 	public String checkoutNoLogin(@Valid @ModelAttribute CartForm cartForm, BindingResult result, Model model) {
 
 		List<ProductDetail> productDetailList = cartForm.getProductDetailList();
-		for (int i = 0; i < productDetailList.size(); i++) {
-			ProductDetail detail = productDetailList.get(i);
-			if (null == detail.getQuantity()) {
-				result.rejectValue("productDetailList[" + i++ + "].quantity", "typeMismatch.int");
-			}
-		}
+		checkInputProductList(productDetailList, result);
 
 		if (result.hasErrors())
 			return "cart/Cart";
-		
-		String cartId = cartService.getCartId();
 
-		List<ProductDetail> deleteProductDetailList = new ArrayList<ProductDetail>();
-		for (ProductDetail pd : productDetailList) {
-			if (1 == pd.getStatus()) {
-				cartService.removeFromCart(pd.getProductId(), pd.getQuantity(), cartId);
-				deleteProductDetailList.add(pd);
-			} else if (2 == pd.getStatus()) {
-				deleteProductDetailList.add(pd);
-			} else {
-				cartService.updateCart(pd.getProductId(), pd.getQuantity(), cartId);
-			}
-		}
+		updateCart(productDetailList);
 
-		if (0 < deleteProductDetailList.size()) {
-			productDetailList.removeAll(deleteProductDetailList);
-		}
-
-		
-		return "forward:order/Checkout";
+		return "order/Checkout";
 	}
 
 	@RequestMapping(value = "Checkout", method = RequestMethod.POST)
@@ -95,36 +73,12 @@ public class OrderController {
 			@ModelAttribute OrderEntryForm orderEntryForm, SessionStatus status) {
 
 		List<ProductDetail> productDetailList = cartForm.getProductDetailList();
-		for (int i = 0; i < productDetailList.size(); i++) {
-			ProductDetail detail = productDetailList.get(i);
-			if (null == detail.getQuantity()) {
-				result.rejectValue("productDetailList[" + i++ + "].quantity", "typeMismatch.int");
-			}
-		}
+		checkInputProductList(productDetailList, result);
 
 		if (result.hasErrors())
 			return "cart/Cart";
 
-		String cartId = cartService.getCartId();
-
-		List<ProductDetail> deleteProductDetailList = new ArrayList<ProductDetail>();
-		for (ProductDetail pd : productDetailList) {
-			if (1 == pd.getStatus()) {
-				cartService.removeFromCart(pd.getProductId(), pd.getQuantity(), cartId);
-				deleteProductDetailList.add(pd);
-			} else if (2 == pd.getStatus()) {
-				deleteProductDetailList.add(pd);
-			} else {
-				cartService.updateCart(pd.getProductId(), pd.getQuantity(), cartId);
-			}
-		}
-
-		if (0 < deleteProductDetailList.size()) {
-			productDetailList.removeAll(deleteProductDetailList);
-		}
-
-		if (!appContext.isAuthenticated())
-			return "order/Checkout";
+		updateCart(productDetailList);
 
 		RainbowUserDetails userDetails = appContext.getUserDetails(RainbowUserDetails.class);
 
@@ -140,6 +94,35 @@ public class OrderController {
 			// 仅有一个地址时，将第一个地址设为送货地址
 			return "forward:/order/MakeOrder/0";
 
+	}
+
+	private void checkInputProductList(List<ProductDetail> productDetailList, BindingResult result) {
+		for (int i = 0; i < productDetailList.size(); i++) {
+			ProductDetail detail = productDetailList.get(i);
+			if (null == detail.getQuantity()) {
+				result.rejectValue("productDetailList[" + i++ + "].quantity", "typeMismatch.int");
+			}
+		}
+	}
+
+	private void updateCart(List<ProductDetail> productDetailList) {
+		String cartId = cartService.getCartId();
+
+		List<ProductDetail> deleteProductDetailList = new ArrayList<ProductDetail>();
+		for (ProductDetail pd : productDetailList) {
+			if (1 == pd.getStatus()) {
+				cartService.removeFromCart(pd.getProductId(), pd.getQuantity(), cartId);
+				deleteProductDetailList.add(pd);
+			} else if (2 == pd.getStatus()) {
+				deleteProductDetailList.add(pd);
+			} else {
+				cartService.updateCart(pd.getProductId(), pd.getQuantity(), cartId);
+			}
+		}
+
+		if (0 < deleteProductDetailList.size()) {
+			productDetailList.removeAll(deleteProductDetailList);
+		}
 	}
 
 	@RequestMapping(value = "MakeOrder/{selectedIdx}")

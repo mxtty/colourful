@@ -24,13 +24,13 @@
 
 <script type="text/javascript">
   function checked(el) {
-	  var id = $(el).attr('id');
-    alert("id:"+id.val());
-    $('#prompt').html(id + ': checked');
+	  //var id = $(el).attr('id');
+    //alert("id:"+id.val());
+    //$('#prompt').html(id + ': checked');
   }
   function unChecked(el) {
-    var id = $(el).attr('id');
-    $('#prompt').html(id + ': unchecked');
+    //var id = $(el).attr('id');
+    //$('#prompt').html(id + ': unchecked');
   }
  
   // Execute on page load

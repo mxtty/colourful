@@ -2,6 +2,8 @@
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
+
 <link rel="StyleSheet" href="<c:url value = "/resources/css/cart.css"/>" type="text/css" media="screen" />
 <link rel="StyleSheet" href="<c:url value = "/resources/css/bootstrap.min.css"/>" type="text/css" media="screen" />
 <script src="<c:url value = "/resources/js/bootstrap-number-input.js"/>"></script>
@@ -76,7 +78,10 @@
 		  <span class="sum js-total"><fmt:formatNumber value="${cartForm.total+shipping}" pattern="¥###0.00" /></span>
 		</li>
 		<li>
-		  <a class="myButton width-8">会员结算</a> <a href="order/CheckoutNoLogin" class="myButton width-8">非会员结算</a>
+		  <a class="myButton width-8">会员结算</a>
+		  <sec:authorize access="isAnonymous()">
+		    <a href="order/CheckoutNoLogin" class="myButton width-8">非会员结算</a>
+		  </sec:authorize>
 		</li>
 	  </ul>
 	</div> 
@@ -153,10 +158,10 @@
 				   	});
 				    
 				    
-				    
 				    if (0==selectedItemCount) {
 				      itemList.innerHTML = '<li class="item empty-hint"><p>结账的东西都没有啦 <a id="js-restore-list" class="js-restore-list" href="cart/Cart">再看看我的购物车</a>?</li>';
-				      itemList.firstElementChild.classList.add('is-visible');
+				      
+				      //itemList.firstElementChild.classList.add('is-visible');
 				      $(".js-summary").hide();
 				      
 				      //summaryFields = document.querySelectorAll('.js-summary')
