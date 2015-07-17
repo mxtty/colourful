@@ -1,6 +1,6 @@
 package com.colourful.controller;
 
-import java.security.Principal;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.validation.Valid;
@@ -51,11 +51,48 @@ public class OrderController {
 		return new OrderEntryForm();
 	}
 
+	@RequestMapping(value = "CheckoutNoLogin", method = RequestMethod.POST)
+	@ExceptionHandlerAdvice(errorPath = "cart/Cart")
+	public String checkoutNoLogin(@Valid @ModelAttribute CartForm cartForm, BindingResult result, Model model) {
+
+		List<ProductDetail> productDetailList = cartForm.getProductDetailList();
+		for (int i = 0; i < productDetailList.size(); i++) {
+			ProductDetail detail = productDetailList.get(i);
+			if (null == detail.getQuantity()) {
+				result.rejectValue("productDetailList[" + i++ + "].quantity", "typeMismatch.int");
+			}
+		}
+
+		if (result.hasErrors())
+			return "cart/Cart";
+		
+		String cartId = cartService.getCartId();
+
+		List<ProductDetail> deleteProductDetailList = new ArrayList<ProductDetail>();
+		for (ProductDetail pd : productDetailList) {
+			if (1 == pd.getStatus()) {
+				cartService.removeFromCart(pd.getProductId(), pd.getQuantity(), cartId);
+				deleteProductDetailList.add(pd);
+			} else if (2 == pd.getStatus()) {
+				deleteProductDetailList.add(pd);
+			} else {
+				cartService.updateCart(pd.getProductId(), pd.getQuantity(), cartId);
+			}
+		}
+
+		if (0 < deleteProductDetailList.size()) {
+			productDetailList.removeAll(deleteProductDetailList);
+		}
+
+		
+		return "forward:order/Checkout";
+	}
+
 	@RequestMapping(value = "Checkout", method = RequestMethod.POST)
 	// @ExceptionHandlerAdvice(errorPath = "order/MakeOrder")
 	@ExceptionHandlerAdvice(errorPath = "cart/Cart")
-	public String checkOut(Principal principal, @Valid @ModelAttribute CartForm cartForm, BindingResult result,
-			Model model, @ModelAttribute OrderEntryForm orderEntryForm, SessionStatus status) {
+	public String checkOut(@Valid @ModelAttribute CartForm cartForm, BindingResult result, Model model,
+			@ModelAttribute OrderEntryForm orderEntryForm, SessionStatus status) {
 
 		List<ProductDetail> productDetailList = cartForm.getProductDetailList();
 		for (int i = 0; i < productDetailList.size(); i++) {
@@ -70,8 +107,20 @@ public class OrderController {
 
 		String cartId = cartService.getCartId();
 
-		for (ProductDetail pd : cartForm.getProductDetailList()) {
-			cartService.updateCart(pd.getProductId(), pd.getQuantity(), cartId);
+		List<ProductDetail> deleteProductDetailList = new ArrayList<ProductDetail>();
+		for (ProductDetail pd : productDetailList) {
+			if (1 == pd.getStatus()) {
+				cartService.removeFromCart(pd.getProductId(), pd.getQuantity(), cartId);
+				deleteProductDetailList.add(pd);
+			} else if (2 == pd.getStatus()) {
+				deleteProductDetailList.add(pd);
+			} else {
+				cartService.updateCart(pd.getProductId(), pd.getQuantity(), cartId);
+			}
+		}
+
+		if (0 < deleteProductDetailList.size()) {
+			productDetailList.removeAll(deleteProductDetailList);
 		}
 
 		if (!appContext.isAuthenticated())

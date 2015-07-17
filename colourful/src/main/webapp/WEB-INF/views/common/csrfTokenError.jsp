@@ -6,7 +6,7 @@
 <div class="block-4 col-3">
 
       		<div class="col-4 left-2">
-			<h3 class="h3-line">403 系统出错啦！</h3>
+			<h3 class="h3-line">糟糕 出错啦！</h3>
 		</div>
 
 </div>

@@ -49,7 +49,7 @@
 <%-- 			<form:hidden class = "js-unit-price" path="productDetailList[${status.index}].unitPrice" /> --%>
 		 </p>
 		  <a class="item_remove" title="这次不买"><img height="18" src="<c:url value = "/resources/images/icon_remove.png"/>"></a>
-		   <a class="item_delete" title="从购物车清除"><img height="18" src="<c:url value = "/resources/images/icon_delete_2.png"/>"></a> 
+		   <a class="item_delete" title="从购物车清除"><img height="18" src="<c:url value = "/resources/images/icon_delete_3.png"/>"></a> 
 		</div>
 	  </li>
 	</c:forEach>
@@ -76,7 +76,7 @@
 		  <span class="sum js-total"><fmt:formatNumber value="${cartForm.total+shipping}" pattern="¥###0.00" /></span>
 		</li>
 		<li>
-		  <a class="myButton width-8">结算</a>
+		  <a class="myButton width-8">会员结算</a> <a href="order/CheckoutNoLogin" class="myButton width-8">非会员结算</a>
 		</li>
 	  </ul>
 	</div> 
@@ -174,7 +174,7 @@
 				};
 				
 				function handleCalculations(){
-					alert("In cal");
+					//alert("In cal");
 				};
 
 		});

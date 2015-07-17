@@ -54,6 +54,7 @@
 			});
 			var up = $("<a>+</a>").attr('class', 'cart-button' ).click(function() {
 				//alert(settings.upClass);
+				//handleCalculations();
 				setText(parseInt(clone.val()) + 1);
 			});
 			$("<span class='input-group-btn'></span>").append(down).appendTo(group);

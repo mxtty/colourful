@@ -2,9 +2,16 @@ $(document).ready(function() {
     
 
 	$('.myButton').click(function(e) {
-    	//按钮最接近的Form提交
-//		var ul = $("base").attr("href");
-//		alert (ul);
+        e.preventDefault();
+		//按钮最接近的Form提交
+		var submitTarget = $(this).attr("href");
+
+		//alert(submitTarget);
+		if ("" != submitTarget) {
+			$(this).closest('form').attr("action",submitTarget);
+		}
+		//		alert (ul);
+		//alert($(this).closest('form').attr("action"));
 		$(this).closest('form').submit();
     });
 	//var $navId = $("#navId").attr("class");

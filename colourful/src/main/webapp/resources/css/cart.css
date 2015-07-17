@@ -339,6 +339,10 @@ ul {
 .item_remove {
   float: right;
 }
+.item_delete {
+  float: right;
+   margin-right: 7px;
+}
 
 /* ---------- Summary ---------- */
 .summary {

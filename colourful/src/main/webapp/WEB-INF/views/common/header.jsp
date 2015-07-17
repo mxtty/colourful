@@ -6,7 +6,7 @@
 <header>
 	<div  class="navbar">
 		<nav class="navbar cl-effect-21">
-			<a class="basket-summary" href="cart/Cart">购物车</a>
+			<a id="basket" class="basket-summary" href="cart/Cart">购物车</a>
             <sec:authorize access="hasRole('ROLE_USER')">
 			   <b><sec:authentication property="principal.realName" />，您好!</b>
 			   <a href="processLogout">退出</a>

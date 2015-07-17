@@ -1,5 +1,7 @@
 $(document).ready(function() { 
 	
+
+	
 	$('.js-item-increase').click(function(e) {
     	//按钮最接近的Form提交
 //		var ul = $("base").attr("href");
