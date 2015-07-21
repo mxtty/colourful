@@ -53,7 +53,7 @@ public class OrderController {
 
 	@RequestMapping(value = "CheckoutNoLogin", method = RequestMethod.POST)
 	@ExceptionHandlerAdvice(errorPath = "cart/Cart")
-	public String checkoutNoLogin(@Valid @ModelAttribute CartForm cartForm, BindingResult result, Model model) {
+	public String checkoutNoLogin(	@ModelAttribute OrderEntryForm orderEntryForm,@Valid @ModelAttribute CartForm cartForm, BindingResult result, Model model) {
 
 		List<ProductDetail> productDetailList = cartForm.getProductDetailList();
 		checkInputProductList(productDetailList, result);
@@ -63,6 +63,11 @@ public class OrderController {
 
 		updateCart(productDetailList);
 
+		orderEntryForm.setShipName(null);
+		orderEntryForm.setPhone(null);
+		orderEntryForm.setShipAddress(null);
+		orderEntryForm.setShipDate(null);
+		
 		return "order/Checkout";
 	}
 

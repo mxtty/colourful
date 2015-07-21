@@ -5,7 +5,7 @@
 <p id ="navId" class ="catalogNav">
 <!--==============================content================================-->
 <div class="block-4 col-3">
-	<form:form id="product_list_form" method="post"  modelAttribute="registerUserForm" action="registerUser/register">
+	<form:form id="product_list_form" method="post"  modelAttribute="registerUserForm" action="">
 		<div class="h2"><h2 class="h2-line-2">${products.categoryName}</h2></div>
 		<div class="box-4 border-3">
 		<c:forEach var="product" items="${products.productList}">
@@ -13,7 +13,7 @@
 				<h4><c:out value="${product.productName}"></c:out></h4>
 				<div class="img-border"><img height ="110px" src="image/imageDisplay/${product.imgFileMain}" /></div>
 				<div class="price">¥<c:out value="${product.unitPrice}/${product.unit}"></c:out> </div>
-				<a href="product/showProduct/${product.productId}" class="myButton addToCartBtn" >加入购物车</a>
+				<a href="product/showProduct/${product.productId}" class="myLink" >加入购物车</a>
 			</div>
 		</c:forEach>
 		</div>

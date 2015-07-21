@@ -8,7 +8,7 @@
 <c:forEach var="category" items="${categories}">
 	<div>
 		<h4>${category.categoryName}</h4>
-		<div class="img-border"><a href="catalog/<c:url value="${category.categoryId}"/>"> <img src="image/imageDisplay/${category.imgFile}" /></a></div>
+		<div class="img-border"><a href="catalog/<c:url value="${category.categoryId}"/>"> <img src="image/imageDisplay/${category.imgFile}" height ="180px"/></a></div>
 		<div class="catetoryDesc">${category.description}</div>
 	</div>
 </c:forEach>

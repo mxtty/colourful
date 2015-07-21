@@ -39,11 +39,11 @@ final class StringToNumberConverterFactory implements ConverterFactory<String, N
 		}
 
 		public T convert(String source) {
-			System.out.println("in string to number converter factory!");
+			//System.out.println("in string to number converter factory!");
 			if (source.length() == 0) {
 				throw new IllegalArgumentException(String.format("类型转换失败，需要数字格式"));
 			}
-			System.out.println("in string to number converter factory!");
+			//System.out.println("in string to number converter factory!");
 			if (!source.matches("[0-9]*")) {
 				// return null;
 				// ValidationUtils.rejectIfEmptyOrWhitespace(errors,

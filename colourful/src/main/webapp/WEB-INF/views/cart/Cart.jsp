@@ -7,6 +7,8 @@
 <link rel="StyleSheet" href="<c:url value = "/resources/css/cart.css"/>" type="text/css" media="screen" />
 <link rel="StyleSheet" href="<c:url value = "/resources/css/bootstrap.min.css"/>" type="text/css" media="screen" />
 <script src="<c:url value = "/resources/js/bootstrap-number-input.js"/>"></script>
+<script src="<c:url value = "/resources/js/jquery.numberformatter-1.2.4.jsmin.js"/>"></script>
+
 
 <%-- <script src="<c:url value = "/resources/js/cart.js"/>"></script> --%>
 <p id ="navId" class ="catalogNav">
@@ -42,13 +44,13 @@
 		  </div>
 		  <div class="item_price js-item-price"><fmt:formatNumber value="${product.unitPrice * product.quantity}" pattern="¥###0.00" /></div>
 		</div>
-		<div class="item_interactions" id ="interactions">
+		<div class="item_interactions" >
 		  <p class="item_quantity">
-			<form:input type="number" path="productDetailList[${status.index}].quantity" value="1" class="inQuantity"  style="width:50px;height:20px;" max="999" min="1"/><form:errors path="productDetailList[${status.index}].quantity" class="errormsg" />
+			<form:input type="number" path="productDetailList[${status.index}].quantity" class="in_quantity"  style="width:50px;height:20px;" max="999" min="1"/><form:errors path="productDetailList[${status.index}].quantity" class="errormsg" />
 			<c:out value="${product.unit}/每${product.unit}"/>
 			<fmt:formatNumber value="${product.unitPrice}" pattern="¥###0.00" />
-			<form:hidden path="productDetailList[${status.index}].status" value="0" class = "status"/>
-<%-- 			<form:hidden class = "js-unit-price" path="productDetailList[${status.index}].unitPrice" /> --%>
+			<form:hidden path="productDetailList[${status.index}].status" class = "status"/>
+			<form:hidden class = "unit_price" path="productDetailList[${status.index}].unitPrice" />
 		 </p>
 		  <a class="item_remove" title="这次不买"><img height="18" src="<c:url value = "/resources/images/icon_remove.png"/>"></a>
 		   <a class="item_delete" title="从购物车清除"><img height="18" src="<c:url value = "/resources/images/icon_delete_3.png"/>"></a> 
@@ -75,7 +77,7 @@
 	  <ul class="checkout">
 		<li>
 		  <b>总计:</b>
-		  <span class="sum js-total"><fmt:formatNumber value="${cartForm.total+shipping}" pattern="¥###0.00" /></span>
+		  <span class="sum js-total"><fmt:formatNumber value="${cartForm.total+cartForm.shipping}" pattern="¥###0.00" /></span>
 		</li>
 		<li>
 		  <a class="myButton width-8">会员结算</a>
@@ -89,8 +91,60 @@
 	</div> 
 </form:form>
 	<script>
-		$(document).ready(function(){
-			$('.inQuantity').bootstrapNumber();
+
+	    $(document).ready(function(){
+	    
+			function handleCalculations(el){
+				//alert("In cal");
+
+				var subTotalPrice = 0;
+				var priceFields = $('.item');
+		    	$.each($('.item'),function(){
+		    		//alert("b:"+$(this).find('.status').val());
+
+		    	
+	    		//alert("In each");
+	    		    var inQuantity = $(this).find('.in_quantity').val();
+	    		    
+		    		//alert($(this).find('.in_quantity').val());
+		    		
+		    		//alert($(this).find('.js_unit_price').val());
+		    		
+		    		var unitPrice = $(this).find('.unit_price').val();
+		    		
+		    		
+		    		var itemPrice = inQuantity*unitPrice;
+		    		if (0 == $(this).find('.status').val()) {
+		    			//alert("return ");
+		    			subTotalPrice+=itemPrice;
+		    		}
+		    		itemPrice = "¥" + itemPrice.toFixed(2);
+		    		//alert (itemPrice);
+		    		
+		    		$(this).find('.item_price').text(itemPrice);
+		    		
+		    		
+		    		//alert($(this).find('.item_price').val());
+		    	  
+		    	  
+		    	});
+		    	
+		    	var shipping = $('div.summary').find('.js-shipping').text().substr(1);
+		    	var totalPrice = parseFloat(shipping) + subTotalPrice;
+		    	//alert(totalPrice);
+		    	
+		    	
+		    			    	
+		    	$('div.summary').find('.js-subtotal').text("¥" +subTotalPrice.toFixed(2));
+		    	$('div.summary').find('.js-total').text("¥" +totalPrice.toFixed(2));
+		    	
+			};
+	    	
+	    	$('.in_quantity').bootstrapNumber({
+			      onValueChanged: function (el) {
+			    	  handleCalculations(el);
+				   }
+		      });
 		
 			$('.item_delete').click(function(e) {
 	
@@ -107,7 +161,7 @@
 			
 			 var  itemList = document.querySelector('.item-list');  
 			 var initialList = itemList.innerHTML;
-			 //alert(initialList);
+			// alert(initialList);
 			// alert("initialList:"+initialList);
 
 			
@@ -150,18 +204,23 @@
 				    } */
 				    
 				    $.each(priceFields, function() {
-	                  if ($(this).val()==0 ) {
+	                  if ($(this).val() ==0 ) {
 	                
-	                	  //alert(selectedItemCount);
+	                	// alert(selectedItemCount);
 	                	  selectedItemCount++;
 	                  }
 				   	});
 				    
 				    
-				    if (0==selectedItemCount) {
-				      itemList.innerHTML = '<li class="item empty-hint"><p>结账的东西都没有啦 <a id="js-restore-list" class="js-restore-list" href="cart/Cart">再看看我的购物车</a>?</li>';
+				    if (selectedItemCount < 1) {
+				    	//alert("hide");
+				    	// var  itemList = $('.item-list').innerHTML;  
+				    	// itemList.empty();
+				    	// alert(itemList.innerHTML);
+				    	 itemList.innerHTML = '<li class="item empty-hint"><p>结账的东西都没有啦 <a id="js-restore-list" class="js-restore-list" href="cart/Cart">再看看我的购物车</a>?</li>';
 				      
-				      //itemList.firstElementChild.classList.add('is-visible');
+				    	//alert(itemList.innerHTML);
+				      itemList.firstElementChild.classList.add('is-visible');
 				      $(".js-summary").hide();
 				      
 				      //summaryFields = document.querySelectorAll('.js-summary')
@@ -178,9 +237,5 @@
 				  }, 500)
 				};
 				
-				function handleCalculations(){
-					//alert("In cal");
-				};
-
 		});
 	</script>

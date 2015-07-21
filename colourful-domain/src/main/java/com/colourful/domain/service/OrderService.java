@@ -21,6 +21,9 @@ public class OrderService {
 		cartDetailEntity.setCartId(cartId);
 
 		for (ProductDetail pd : productDetailList) {
+			if (pd.isDeleted() || pd.isRemoved())
+				continue;
+
 			// 插入订单详细
 			orderDetailEntity.setProductId(pd.getProductId());
 			orderDetailEntity.setQuantity(pd.getQuantity());
@@ -35,6 +38,5 @@ public class OrderService {
 		}
 
 	}
-	
 
 }

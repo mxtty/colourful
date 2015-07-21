@@ -6,8 +6,6 @@ import java.util.List;
 
 import lombok.Data;
 
-import com.sun.istack.internal.NotNull;
-
 @Data
 public class ProductDetail {
 
@@ -28,10 +26,19 @@ public class ProductDetail {
 	/** 单位 */
 	private String unit;
 
-	@NotNull
+	private int status;
+
 	private BigDecimal quantity;
 
 	private String description;
+
+	public boolean isDeleted() {
+		return 1 == status;
+	}
+
+	public boolean isRemoved() {
+		return 2 == status;
+	}
 
 	public BigDecimal getSubTotal() {
 		return quantity.multiply(unitPrice);

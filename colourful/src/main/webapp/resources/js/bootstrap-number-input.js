@@ -24,12 +24,19 @@
 
 	$.fn.bootstrapNumber = function( options ) {
 
+		var defaults = {
+			onValueChanged:function(){}
+		};
+		
+		
 		var settings = $.extend({
 			upClass: 'default',
 			downClass: 'default',
 			center: true
-			}, options );
+			}, defaults,options );
 
+		
+		
 		return this.each(function(e) {
 			var self = $(this);
 			var clone = self.clone();
@@ -50,12 +57,15 @@
 			var down = $("<a>-</a>").attr('class', 'cart-button' ).click(function() {
 				
 				setText(parseInt(clone.val()) - 1);
-				//alert(settings.downClass);
+				settings.onValueChanged(clone);
+				//alert(clone.val());
 			});
 			var up = $("<a>+</a>").attr('class', 'cart-button' ).click(function() {
 				//alert(settings.upClass);
 				//handleCalculations();
 				setText(parseInt(clone.val()) + 1);
+				settings.onValueChanged(clone);
+				//alert($(clone).val());
 			});
 			$("<span class='input-group-btn'></span>").append(down).appendTo(group);
 			clone.appendTo(group);
