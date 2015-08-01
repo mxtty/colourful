@@ -12,7 +12,7 @@
       </fieldset>  
 
      <label><strong class="left-18"><a class="myButton width-6">登录</a></strong></label>
-     <br><label><strong class="left-12"> <a href="checkout.html" >忘记密码?</a> &nbsp;&nbsp;&nbsp;<a href="registerUser.html" >立即注册新用户</a></strong></label>
+    <strong class="left-12"> <a href="checkout.html" >忘记密码?</a> &nbsp;&nbsp;<a href="account/RegisterUser" >注册新用户</a></strong>
      
     </form:form>
 </div>
