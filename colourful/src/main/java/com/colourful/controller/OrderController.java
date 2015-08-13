@@ -115,10 +115,14 @@ public class OrderController {
 
 		List<ProductDetail> deleteProductDetailList = new ArrayList<ProductDetail>();
 		for (ProductDetail pd : productDetailList) {
+			
 			if (1 == pd.getStatus()) {
+			
+				//TODO:移除购物车（需要定数化）
 				cartService.removeFromCart(pd.getProductId(), pd.getQuantity(), cartId);
 				deleteProductDetailList.add(pd);
 			} else if (2 == pd.getStatus()) {
+				//TODO:从购物车删除（需要定数化）
 				deleteProductDetailList.add(pd);
 			} else {
 				cartService.updateCart(pd.getProductId(), pd.getQuantity(), cartId);

@@ -1,10 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" language="java"%>
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
-
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
 <p id ="navId" class ="accountNav">
 <div class="col-10">
+<sec:authorize access="isAnonymous()">
 <h3 class="h3-line">注册新用户</h3>
-
 
 <form:form id="add_user_form" method="post"  modelAttribute="registerUserForm" action="account/RegisterDone">
    <fieldset>
@@ -20,4 +20,9 @@
     </fieldset>
    <label ><strong class="left-25" id="lb1"><a class="myButton width-8" >注册新用户</a></strong></label>
 </form:form>
+</sec:authorize>
+
+<sec:authorize access="hasRole('ROLE_USER')">
+    <h3 class="h3-line"><sec:authentication property="principal.realName" />，您好!<br>您已经登录成功，如需注册新用户，请<a href="processLogout">退出</a>登录。</h3> 
+</sec:authorize>
 </div>

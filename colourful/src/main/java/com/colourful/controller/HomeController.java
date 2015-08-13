@@ -20,12 +20,14 @@ import org.springframework.web.bind.support.SessionStatus;
 
 import com.colourful.domain.data.CategoryDetail;
 import com.colourful.domain.data.HomeContents;
-import com.colourful.domain.data.News;
 import com.colourful.domain.data.ProductDetail;
 import com.colourful.domain.data.Products;
 import com.colourful.domain.entity.BrnCategoryEntity;
 import com.colourful.domain.entity.BrnImageEntity;
+import com.colourful.domain.entity.BrnNewsEntity;
+import com.colourful.domain.entity.BrnProductEntity;
 import com.colourful.domain.generated.record.BrnImage;
+import com.colourful.domain.generated.record.BrnNews;
 import com.colourful.domain.service.CartService;
 import com.colourful.domain.service.base.EntityFactory;
 import com.colourful.form.MenuForm;
@@ -52,28 +54,22 @@ public class HomeController {
 	@RequestMapping(value = "", method = RequestMethod.GET)
 	public String homePage(Model model) {
 
+		BrnNewsEntity brnNewsEntity = EntityFactory.newEntity(BrnNewsEntity.class);
+		List<BrnNews> newsList = brnNewsEntity.readHomeNews();
+
 		HomeContents homeContents = new HomeContents();
 		homeContents.setSliderFile("200_slider-1.jpg");
 		homeContents.setHomeSubImgFile("200_page1-img1.jpg");
 
-		News newsletter = new News();
-		newsletter.setTitle("我们的目标是健康饮食");
-		newsletter.setContents("五彩爽口饺子成立于2005年，各类饺子凉菜等美味佳肴，欢迎品尝");
-		homeContents.setNewsletter(newsletter);
+		homeContents.setNewsletter(newsList.get(0));
 
-		News n1 = new News();
-		n1.setAuthor("店长");
-		n1.setTitle("10月大优惠");
-		n1.setContents("凡在本店消费超过50元，均赠送价值20元优惠券一张，欢迎选购。");
+		newsList.remove(0);
 
-		News n2 = new News();
-		n2.setAuthor("收银员");
-		n2.setTitle("支付宝支付开始啦");
-		n2.setContents("本店现已开通支付宝支付，在线下单支付，方便快捷。");
+		homeContents.addNews(newsList);
 
-		homeContents.addNews(n1);
-		homeContents.addNews(n2);
-
+		BrnProductEntity productEntity = EntityFactory.newEntity(BrnProductEntity.class);
+       // productEntity.
+		
 		ProductDetail p1 = new ProductDetail();
 		p1.setProductId(20001);
 		p1.setImgFileMain("thumbs_200_page1-img2.jpg");

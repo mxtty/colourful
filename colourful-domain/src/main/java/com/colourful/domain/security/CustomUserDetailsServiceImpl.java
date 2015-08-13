@@ -5,7 +5,6 @@ import java.util.Collection;
 import java.util.List;
 
 import org.apache.log4j.Logger;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -18,7 +17,6 @@ import com.colourful.domain.data.RainbowUserDetails;
 import com.colourful.domain.entity.BrnUserEntity;
 import com.colourful.domain.generated.record.BrnUserDetail;
 import com.colourful.domain.service.base.EntityFactory;
-import com.rainbow.fw.web.context.WebApplicationContext;
 
 /**
  * A custom service for retrieving users from a custom datasource, such as a
@@ -32,9 +30,6 @@ public class CustomUserDetailsServiceImpl implements UserDetailsService {
 	private static Logger syslog = Logger.getLogger("SysLogger");
 
 	private static Logger applog = Logger.getLogger("AppLogger");
-
-	@Autowired
-	private WebApplicationContext appContext;
 
 	/**
 	 * Retrieves a user record containing the user's credentials and access.

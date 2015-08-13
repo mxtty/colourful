@@ -54,9 +54,8 @@
 		<div class="col-4 left-2">
 			<h3 class="h3-line">${productDetail.productName}</h3>
 			<div>
-				${productDetail.description}
+				<br><label>${productDetail.description}</label>
 				<div>
-
 						<form:hidden path="productId" value ="${productDetail.productId}"/>
 						<fieldset>
 							<label>

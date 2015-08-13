@@ -24,8 +24,6 @@ public class WebApplicationContext {
 	@Autowired
 	private HttpSession session;
 
-	private static final String CURRENT_CART_ID = "currentCartId";
-
 	public <T> T getUserDetails(Class<T> cls) {
 
 		@SuppressWarnings("unchecked")
@@ -33,15 +31,6 @@ public class WebApplicationContext {
 
 		return principal;
 
-	}
-
-	public String getCurrentCartId() {
-		Object currentCartId = session.getAttribute(CURRENT_CART_ID);
-		return null != currentCartId ? currentCartId.toString() : null;
-	}
-
-	public void setCurrentCartId(String cartId) {
-		session.setAttribute(CURRENT_CART_ID, cartId);
 	}
 
 	public String getSessionId() {

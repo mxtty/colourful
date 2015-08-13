@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.colourful.domain.entity.mapper.NewsEntityMapper">
+	<cache/>
+	<select id="readHomeNews" parameterType="com.colourful.domain.generated.record.BrnNews" resultType="com.colourful.domain.generated.record.BrnNews">
+    select
+       * 
+    from
+       BRN_NEWS 
+    where
+       NEWS_TYPE != 0
+    order by
+       NEWS_TYPE
+    </select>
+
+  <select id="getRecords" parameterType="com.colourful.domain.generated.record.BrnNews" resultType="com.colourful.domain.generated.record.BrnNews">
+    select
+       CART_ID cartId,USER_ID userId,CREATE_DATE createDate,UPDATE_DATE updateDate,DEL_FLG delFlg 
+    from
+       BRN_NEWS 
+	where
+	    DEL_FLG = 0 and
+	    <if test="newsId != 0" > AND NEWS_ID = #{newsId} </if>
+	    <if test="title != null" > AND TITLE = #{title} </if>
+	    <if test="contents != null" > AND CONTENTS = #{contents} </if>
+	    <if test="author != null" > AND AUTHOR = #{author} </if>
+	    <if test="newsType != 0" > AND NEWS_TYPE = #{newsType} </if>
+	    <if test="createDate != null" > AND CREATE_DATE = #{createDate} </if>
+	    <if test="updateDate != null" > AND UPDATE_DATE = #{updateDate} </if>
+    </select>
+</mapper>

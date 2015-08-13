@@ -98,7 +98,7 @@ public class AccountController {
 			Authentication authentication = (Authentication) principal;
 
 			RainbowUserDetails userDetails = (RainbowUserDetails) authentication.getPrincipal();
-			userDetails.setCartId(cartId);
+			//userDetails.setCartId(cartId);
 		}
 
 		return "account/SignOn";

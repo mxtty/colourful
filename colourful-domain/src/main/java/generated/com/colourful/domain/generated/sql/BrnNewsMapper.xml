@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.colourful.domain.generated.mapper.BrnNewsMapper">
+	<cache/>
+	<select id="readByPk" parameterType="com.colourful.domain.generated.record.BrnNews" resultType="com.colourful.domain.generated.record.BrnNews">
+    select
+       NEWS_ID newsId,TITLE title,CONTENTS contents,AUTHOR author,NEWS_TYPE newsType,CREATE_DATE createDate,UPDATE_DATE updateDate,DEL_FLG delFlg 
+    from
+       BRN_NEWS 
+    where
+       NEWS_ID = #{newsId}
+    </select>
+	<insert id="insert" parameterType="com.colourful.domain.generated.record.BrnNews">
+    insert into
+       BRN_NEWS 
+    values
+       (#{newsId},#{title},#{contents},#{author},#{newsType},CURRENT_TIMESTAMP,CURRENT_TIMESTAMP,0)
+    </insert>
+	<update id="update" parameterType="com.colourful.domain.generated.record.BrnNews">
+    update
+       BRN_NEWS 
+    set
+       TITLE = #{title} ,CONTENTS = #{contents} ,AUTHOR = #{author} ,NEWS_TYPE = #{newsType} ,UPDATE_DATE = CURRENT_TIMESTAMP 
+    where
+       NEWS_ID = #{newsId} and UPDATE_DATE = #{updateDate}
+    </update>
+	<update id="delete" parameterType="com.colourful.domain.generated.record.BrnNews">
+    update
+       BRN_NEWS 
+    set
+       UPDATE_DATE = CURRENT_TIMESTAMP,DEL_FLG = 1 
+    where
+       UPDATE_DATE = #{updateDate} and DEL_FLG = 0
+    </update>
+</mapper>

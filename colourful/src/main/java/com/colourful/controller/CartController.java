@@ -21,7 +21,6 @@ import com.colourful.domain.service.base.EntityFactory;
 import com.colourful.form.CartEntryForm;
 import com.colourful.form.CartForm;
 import com.colourful.form.OrderEntryForm;
-import com.rainbow.fw.core.exception.handler.ExceptionHandlerAdvice;
 import com.rainbow.fw.web.context.WebApplicationContext;
 
 /**
@@ -64,7 +63,6 @@ public class CartController {
 	}
 
 	@RequestMapping(value = "Cart")
-
 	public String showCart(@ModelAttribute CartForm cartForm, Model model) {
 
 		String cartId = cartService.getCartId();

@@ -16,7 +16,6 @@
 	<bean id="codeListService" class="com.colourful.domain.codelist.CodeListServiceImpl" >
 	   <property name="codeListMapper" ref="codeListMapper"/>
 	</bean>
-    
 
 <!-- 	<bean id="messageSource"
 	class="org.springframework.context.support.ReloadableResourceBundleMessageSource" autowire="byName">
@@ -33,8 +32,8 @@
 	
 	<!-- Autowired into CartServiceImpl -->
 	<!-- Create a proxy to generate session-scoped shopping carts -->
-    <!--  This requires CGLIB 
-	<bean id="cart" class="com.colourful.domain.CartEntity" scope="session">
+    <!--  This requires CGLIB -->
+	<bean id="cart" class="com.rainbow.fw.core.env.CartIdService" scope="session">
 		<aop:scoped-proxy/>
-	</bean> -->
+	</bean> 
 </beans>

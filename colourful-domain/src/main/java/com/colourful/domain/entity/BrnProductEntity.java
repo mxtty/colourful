@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
+import com.colourful.domain.data.ProductDetail;
 import com.colourful.domain.entity.mapper.ProductEntityMapper;
 import com.colourful.domain.generated.base.BrnProductBase;
 import com.colourful.domain.generated.record.BrnImage;
@@ -19,6 +20,10 @@ public class BrnProductEntity extends BrnProductBase {
 	public List<BrnImage> getAllImages() {
 		checkPkNotNull();
 		return productEntityMapper.getAllImages(productId);
+	}
+
+	public List<ProductDetail> readRecommendedProduct() {
+		return productEntityMapper.readRecommendedProduct();
 	}
 
 }

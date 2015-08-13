@@ -30,21 +30,27 @@
       setMapEvent();//设置地图事件
       addMapControl();//向地图添加控件
       addMapOverlay();//向地图添加覆盖物
+
+      
+	  map.addControl(top_left_control);        
+	  map.addControl(top_left_navigation);     
+
     }
     function createMap(){ 
-     var map = new BMap.Map("map"); 
+     map = new BMap.Map("map"); 
      var point = new BMap.Point(87.579300,43.84587);
      map.centerAndZoom(point,19);
   	
-    var marker = new BMap.Marker(point);  // 创建标注
+     var marker = new BMap.Marker(point);  // 创建标注
 	 
 		var sContent ="<b>五彩爽口饺子:</b>温州街132号<br><b>电话：</b>13201258528";
 		var infoWindow = new BMap.InfoWindow(sContent);  // 创建信息窗口对象
 		map.openInfoWindow(infoWindow,point); //开启信息窗口
-
-	  	 map.addOverlay(marker);               // 将标注添加到地图中
-		 marker.setAnimation(BMAP_ANIMATION_BOUNCE); //跳动的动画
 		
+	  	 map.addOverlay(marker);               // 将标注添加到地图中
+		 marker.setAnimation(BMAP_ANIMATION_BOUNCE); //跳动的动画 
+		
+  
     }
     function setMapEvent(){
       map.enableScrollWheelZoom();

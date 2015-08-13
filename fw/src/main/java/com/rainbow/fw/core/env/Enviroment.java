@@ -25,11 +25,12 @@ public class Enviroment {
 
 	}
 
-	public String getCartId() {
-		if (!isAuthenticated())
-			return session.getId();
-		return getUserDetails().getCartId();
-	}
+	//
+	// public String getCartId() {
+	// if (!isAuthenticated())
+	// return session.getId();
+	// return getUserDetails().getCartId();
+	// }
 
 	public WebUser getUserDetails() {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
