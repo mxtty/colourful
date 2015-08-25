@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.colourful.domain.entity.mapper.ImageEntityMapper">
+	<select id="getImageListById" parameterType="Integer" resultType="com.colourful.domain.generated.record.BrnImage">
+		select
+		  IMAGE_ID imageId,
+		  ID id,
+		  SEQ seq,
+		  NOTE note,
+		  DESCRIPTION description,
+		  IMAGE_FILE imageFile,
+		  CREATE_DATE create_date,
+		  UPDATE_DATE update_date
+		from
+	 	  BRN_IMAGE as image
+		where
+		  ID =#{id} and
+		  DEL_FLG = 0 
+		order by
+		  seq
+	</select>
+</mapper>

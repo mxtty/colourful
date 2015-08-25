@@ -12,7 +12,7 @@
    <div class="col-1">
    	<h2 class="h2-line">欢迎光临五彩爽口饺子馆!<strong>健康饮食生活，从这里开始</strong></h2>
        <div class="box-1">
-       	<div class="img-border img-indent"><img src="image/imageDisplay/fulls_${homeContents.homeSubImgFile}" /></div>
+       	<div class="img-border img-indent"><img src="image/imageDisplay/thumbs_${homeContents.homeSubImgFile}" /></div>
            <div class="extra-wrap">
            	<p class="it-bold p2">${homeContents.newsletter.title}</p>
                <p class="border-1">${homeContents.newsletter.contents}</p>

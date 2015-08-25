@@ -19,16 +19,12 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
 import com.colourful.domain.data.CategoryDetail;
-import com.colourful.domain.data.HomeContents;
-import com.colourful.domain.data.ProductDetail;
 import com.colourful.domain.data.Products;
 import com.colourful.domain.entity.BrnCategoryEntity;
 import com.colourful.domain.entity.BrnImageEntity;
-import com.colourful.domain.entity.BrnNewsEntity;
-import com.colourful.domain.entity.BrnProductEntity;
 import com.colourful.domain.generated.record.BrnImage;
-import com.colourful.domain.generated.record.BrnNews;
 import com.colourful.domain.service.CartService;
+import com.colourful.domain.service.HomeService;
 import com.colourful.domain.service.base.EntityFactory;
 import com.colourful.form.MenuForm;
 import com.rainbow.fw.core.exception.handler.ExceptionHandlerAdvice;
@@ -46,6 +42,9 @@ public class HomeController {
 	@Autowired
 	private CartService cartService;
 
+	@Autowired
+	private HomeService homeService;
+
 	@ModelAttribute("menuForm")
 	public MenuForm initForm(Model model) {
 		return new MenuForm();
@@ -54,36 +53,7 @@ public class HomeController {
 	@RequestMapping(value = "", method = RequestMethod.GET)
 	public String homePage(Model model) {
 
-		BrnNewsEntity brnNewsEntity = EntityFactory.newEntity(BrnNewsEntity.class);
-		List<BrnNews> newsList = brnNewsEntity.readHomeNews();
-
-		HomeContents homeContents = new HomeContents();
-		homeContents.setSliderFile("200_slider-1.jpg");
-		homeContents.setHomeSubImgFile("200_page1-img1.jpg");
-
-		homeContents.setNewsletter(newsList.get(0));
-
-		newsList.remove(0);
-
-		homeContents.addNews(newsList);
-
-		BrnProductEntity productEntity = EntityFactory.newEntity(BrnProductEntity.class);
-       // productEntity.
-		
-		ProductDetail p1 = new ProductDetail();
-		p1.setProductId(20001);
-		p1.setImgFileMain("thumbs_200_page1-img2.jpg");
-		p1.setProductName("三鲜水饺");
-
-		ProductDetail p2 = new ProductDetail();
-		p2.setProductId(20002);
-		p2.setImgFileMain("thumbs_200_page1-img3.jpg");
-		p2.setProductName("猪肉水饺");
-
-		homeContents.addProduct(p1);
-		homeContents.addProduct(p2);
-
-		model.addAttribute("homeContents", homeContents);
+		model.addAttribute("homeContents", homeService.getHomeContents());
 
 		return "home/Home";
 

@@ -22,8 +22,8 @@ public class BrnProductEntity extends BrnProductBase {
 		return productEntityMapper.getAllImages(productId);
 	}
 
-	public List<ProductDetail> readRecommendedProduct() {
-		return productEntityMapper.readRecommendedProduct();
+	public List<ProductDetail> getRecommendedProduct(int topCount) {
+		return productEntityMapper.getRecommendedProduct(topCount);
 	}
 
 }

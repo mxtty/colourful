@@ -13,7 +13,7 @@
           <label><strong class="right width-10">电话:</strong><strong class="left width-10">${orderEntryForm.phone}</strong></label>
           <label><strong class="right width-10">送货时间:</strong><strong class="left width-10">${orderEntryForm.shipDate}</strong></label>
           <label><strong class="right width-10">送货地点:</strong><strong class="left width-30"><c:out value="${orderEntryForm.shipAddress}"></c:out> </strong></label>
-         <label><strong class="left-25"><a href="catalog" class="myButton width-8" >继续选购</a></strong></label>
+         <label><strong class="left-25"><a href="catalog" class="myLink width-8" >继续选购</a></strong></label>
     </div>
 	</form:form>
 </div>

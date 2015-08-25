@@ -6,6 +6,8 @@ import com.colourful.domain.data.ProductDetail;
 import com.colourful.domain.generated.record.BrnImage;
 
 public interface ProductEntityMapper {
+
 	List<BrnImage> getAllImages(long productId);
-	public List<ProductDetail> readRecommendedProduct();
+
+	public List<ProductDetail> getRecommendedProduct(int count);
 }

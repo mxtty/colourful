@@ -3,8 +3,22 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.colourful.domain.entity.mapper.ProductEntityMapper">
-  
+  <select id="getRecommendedProduct"  parameterType="Integer" resultType="com.colourful.domain.data.ProductDetail">
+    select
+       PRODUCT.PRODUCT_NAME productName,
+       IMAGE.IMAGE_FILE imgFileMain,
+       PRODUCT.UNIT_PRICE unitPrice,
+       PRODUCT.UNIT unit,
+       PRODUCT.PRODUCT_ID productId
+    from 
+       BRN_PRODUCT as PRODUCT left join 
+       BRN_IMAGE as IMAGE
+     on
+       PRODUCT.PRODUCT_ID = IMAGE.ID
+    where  
+       PRODUCT.STATUS = 4  and    
+       IMAGE.SEQ =1
+    offset 0 limit #{topCount}
 
-  
-  
+</select>
 </mapper>

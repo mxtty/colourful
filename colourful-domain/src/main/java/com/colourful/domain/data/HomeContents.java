@@ -32,4 +32,8 @@ public class HomeContents {
 		this.productDetailList.add(productDetail);
 	}
 
+	public void addProductList(List<ProductDetail> productDetailList) {
+		this.productDetailList.addAll(productDetailList);
+	}
+
 }
