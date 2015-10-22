@@ -50,7 +50,10 @@
 		<put-attribute name="title" value="来店就餐" />
 		<put-attribute name="body" value="/WEB-INF/views/home/Access.jsp" />
 	</definition>
-
+	<definition name="home/News" extends="defaultLayout">
+		<put-attribute name="title" value="消息" />
+		<put-attribute name="body" value="/WEB-INF/views/home/News.jsp" />
+	</definition>
 	<!-- 在线购物 -->
 	<definition name="catalog/Category" extends="defaultLayout">
 		<put-attribute name="title" value="菜单分类" />
@@ -103,6 +106,11 @@
 		<put-attribute name="title" value="选择地址" />
 		<put-attribute name="body" value="/WEB-INF/views/order/SelectAddress.jsp" />
 	</definition>
+
+	<definition name="order/ListOrders" extends="defaultLayout">
+		<put-attribute name="title" value="订单状况" />
+		<put-attribute name="body" value="/WEB-INF/views/order/ListOrders.jsp" />
+	</definition>
 	
     <!-- 用户 -->
 	<definition name="account/RegisterUser" extends="defaultLayout">
@@ -129,6 +137,13 @@
 		<put-attribute name="body" value="/WEB-INF/views/account/MyAccount.jsp" />
 	</definition>
 	
-
-
+	<definition name="account/AddMessageBoard" extends="defaultLayout">
+		<put-attribute name="title" value="用户留言" />
+		<put-attribute name="body" value="/WEB-INF/views/account/AddMessageBoard.jsp" />
+	</definition>
+	
+	<definition name="account/AddMessageBoardDone" extends="defaultLayout">
+		<put-attribute name="title" value="用户留言" />
+		<put-attribute name="body" value="/WEB-INF/views/account/AddMessageBoardDone.jsp" />
+	</definition>
 </tiles-definitions>

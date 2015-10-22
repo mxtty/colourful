@@ -7,11 +7,11 @@ public class BrnOrder implements Serializable{
 	/** SerialVersion */
 	private static final long serialVersionUID = 1L;
 	/** 订单ID */
-	protected long orderId;
+	protected Long orderId;
 	/** 购物车ID */
 	protected String cartId;
 	/** 订单状态 */
-	protected int status;
+	protected Integer status;
 	/** 收件人 */
 	protected String shipName;
 	/** 邮编 */
@@ -24,7 +24,7 @@ public class BrnOrder implements Serializable{
 	protected Date shipDate;
 	/** 收件地址 */
 	protected String shipAddress;
-	/** 固定电话 */
+	/** 电话 */
 	protected String phone;
 	/** 移动电话 */
 	protected String cellPhone;

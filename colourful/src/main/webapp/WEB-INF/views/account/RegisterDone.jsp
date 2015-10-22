@@ -15,6 +15,6 @@
          <label><strong class="right width-15">地址:</strong><strong class="left"><c:out value="${registerUserForm.address}"/></strong></label>
 
         </fieldset>  
-       <label><strong class="left-25"><a href="catalog" class="myButton width-8" >继续购物</a></strong></label>
+       <label><strong class="left-25"><a href="account/SignOn" class="myLink width-8" >立即登录</a></strong></label>
 </form:form>
 </div>

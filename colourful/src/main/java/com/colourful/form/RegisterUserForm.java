@@ -1,6 +1,5 @@
 package com.colourful.form;
 
-import javax.validation.constraints.AssertTrue;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 

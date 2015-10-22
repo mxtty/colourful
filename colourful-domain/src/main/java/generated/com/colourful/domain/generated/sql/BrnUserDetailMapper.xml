@@ -13,6 +13,9 @@
        ADDRESS_ID = #{addressId}
     </select>
 	<insert id="insert" parameterType="com.colourful.domain.generated.record.BrnUserDetail">
+      <selectKey keyProperty="addressId" resultType="Long" order="BEFORE">
+        select cast(nextval('address_id_seq') as INTEGER) 
+      </selectKey>
     insert into
        BRN_USER_DETAIL 
     values

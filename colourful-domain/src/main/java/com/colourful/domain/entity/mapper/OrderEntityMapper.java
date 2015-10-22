@@ -9,4 +9,6 @@ public interface OrderEntityMapper {
 	List<ProductDetail> getOrderedProductDetailList(long orderId);
 
 	long insert(BrnOrder brnOrder);
+
+	List<BrnOrder> getRecords(BrnOrder order);
 }

@@ -410,7 +410,7 @@ form label.float-right {font-weight:normal; float:right; text-align:right; displ
   font-family: Arial;
   color: #ffffff;
   font-size: 25px;
-  with:10px;
+  with:100px;
   padding: 10px 20px 10px 20px;
   text-decoration: none;
 }

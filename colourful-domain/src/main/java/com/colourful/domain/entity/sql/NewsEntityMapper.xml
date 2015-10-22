@@ -6,7 +6,13 @@
 	<cache/>
 	<select id="readHomeNews" parameterType="com.colourful.domain.generated.record.BrnNews" resultType="com.colourful.domain.generated.record.BrnNews">
     select
-       * 
+      NEWS_ID newsId,
+      TITLE title,
+      CONTENTS contents,
+      AUTHOR author,
+      NEWS_TYPE newsType,
+      CREATE_DATE createDate,
+      UPDATE_DATE updateDate
     from
        BRN_NEWS 
     where

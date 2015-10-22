@@ -16,7 +16,7 @@
            <div class="extra-wrap">
            	<p class="it-bold p2">${homeContents.newsletter.title}</p>
                <p class="border-1">${homeContents.newsletter.contents}</p>
-               <a href="#" class="link-1">阅读全文</a>
+               <a href="home/News/${homeContents.newsletter.newsId}" class="link-1">阅读全文</a>
            </div>
         </div>
     </div>
@@ -33,7 +33,7 @@
                 <span class="clr-1"><strong>${news.author}</strong></span>
             </div>
 			</c:forEach>
-            <a href="#" class="link-1">更多</a>
+           <!--  <a href="#" class="link-1">更多</a> -->
          </div> 
     </div>
     &nbsp;

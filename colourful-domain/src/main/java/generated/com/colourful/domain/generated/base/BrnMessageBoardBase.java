@@ -3,8 +3,8 @@ package com.colourful.domain.generated.base;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.colourful.domain.generated.mapper.BrnCartMapper;
-import com.colourful.domain.generated.record.BrnCart;
+import com.colourful.domain.generated.mapper.BrnMessageBoardMapper;
+import com.colourful.domain.generated.record.BrnMessageBoard;
 
 /**
  * 购物车Base类
@@ -14,11 +14,11 @@ import com.colourful.domain.generated.record.BrnCart;
  * 
  */
 @SuppressWarnings("serial")
-public class BrnCartBase extends BrnCart {
+public class BrnMessageBoardBase extends BrnMessageBoard {
 
 	/** 管理Mapper */
 	@Autowired
-	private BrnCartMapper mapper;
+	private BrnMessageBoardMapper mapper;
 
 	public void fromObject(Object from) {
 		BeanUtils.copyProperties(from, this);
@@ -35,7 +35,7 @@ public class BrnCartBase extends BrnCart {
 	 * @return 获取到的Entity
 	 */
 	public boolean getEntityByPk() {
-		BrnCart detail = mapper.readByPk(this);
+		BrnMessageBoard detail = mapper.readByPk(this);
 		if (null == detail) {
 			return false;
 		}

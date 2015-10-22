@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.colourful.domain.generated.mapper.BrnMessageBoardMapper">
+	<cache/>
+	<select id="readByPk" parameterType="com.colourful.domain.generated.record.BrnMessageBoard" resultType="com.colourful.domain.generated.record.BrnMessageBoard">
+    select
+       MESSAGE_BOARD_ID messageBoardId,TITLE title,CONTENTS contents,PHONE phone,EMAIL email,USER_NAME userName,USER_ID userId,CREATE_DATE createDate,UPDATE_DATE updateDate,DEL_FLG delFlg 
+    from
+       BRN_MESSAGE_BOARD 
+    where
+       MESSAGE_BOARD_ID = #{messageBoardId}
+    </select>
+	<insert id="insert" parameterType="com.colourful.domain.generated.record.BrnMessageBoard">
+      <selectKey keyProperty="messageBoardId" resultType="Long" order="BEFORE">
+        select cast(nextval('message_board_id_seq') as INTEGER) 
+      </selectKey>
+    insert into
+       BRN_MESSAGE_BOARD 
+    values
+       (#{messageBoardId},#{title},#{contents},#{phone},#{email},#{userName},#{userId},CURRENT_TIMESTAMP,CURRENT_TIMESTAMP,0)
+    </insert>
+	<update id="update" parameterType="com.colourful.domain.generated.record.BrnMessageBoard">
+    update
+       BRN_MESSAGE_BOARD 
+    set
+       TITLE = #{title} ,CONTENTS = #{contents} ,PHONE = #{phone} ,EMAIL = #{email} ,USER_NAME = #{userName} ,USER_ID = #{userId} ,UPDATE_DATE = CURRENT_TIMESTAMP 
+    where
+       MESSAGE_BOARD_ID = #{messageBoardId} and UPDATE_DATE = #{updateDate}
+    </update>
+	<update id="delete" parameterType="com.colourful.domain.generated.record.BrnMessageBoard">
+    update
+       BRN_MESSAGE_BOARD 
+    set
+       UPDATE_DATE = CURRENT_TIMESTAMP,DEL_FLG = 1 
+    where
+       UPDATE_DATE = #{updateDate} and DEL_FLG = 0
+    </update>
+</mapper>

@@ -53,7 +53,8 @@ public class OrderController {
 
 	@RequestMapping(value = "CheckoutNoLogin", method = RequestMethod.POST)
 	@ExceptionHandlerAdvice(errorPath = "cart/Cart")
-	public String checkoutNoLogin(	@ModelAttribute OrderEntryForm orderEntryForm,@Valid @ModelAttribute CartForm cartForm, BindingResult result, Model model) {
+	public String checkoutNoLogin(@ModelAttribute OrderEntryForm orderEntryForm,
+			@Valid @ModelAttribute CartForm cartForm, BindingResult result, Model model) {
 
 		List<ProductDetail> productDetailList = cartForm.getProductDetailList();
 		checkInputProductList(productDetailList, result);
@@ -67,7 +68,7 @@ public class OrderController {
 		orderEntryForm.setPhone(null);
 		orderEntryForm.setShipAddress(null);
 		orderEntryForm.setShipDate(null);
-		
+
 		return "order/Checkout";
 	}
 
@@ -115,14 +116,14 @@ public class OrderController {
 
 		List<ProductDetail> deleteProductDetailList = new ArrayList<ProductDetail>();
 		for (ProductDetail pd : productDetailList) {
-			
+
 			if (1 == pd.getStatus()) {
-			
-				//TODO:移除购物车（需要定数化）
+
+				// TODO:移除购物车（需要定数化）
 				cartService.removeFromCart(pd.getProductId(), pd.getQuantity(), cartId);
 				deleteProductDetailList.add(pd);
 			} else if (2 == pd.getStatus()) {
-				//TODO:从购物车删除（需要定数化）
+				// TODO:从购物车删除（需要定数化）
 				deleteProductDetailList.add(pd);
 			} else {
 				cartService.updateCart(pd.getProductId(), pd.getQuantity(), cartId);
@@ -168,6 +169,7 @@ public class OrderController {
 		BrnOrderEntity orderEntity = EntityFactory.newEntity(BrnOrderEntity.class);
 		orderEntity.fromObject(orderEntryForm);
 		orderEntity.setCartId(cartId);
+		orderEntity.setStatus(0);
 		orderEntity.newOrder();
 
 		orderEntryForm.setCartId(cartId);
@@ -219,4 +221,30 @@ public class OrderController {
 		model.addAttribute("productDetailList", orderDetailList);
 		return "order/ViewOrder";
 	}
+
+	@RequestMapping(value = "ListOrders/Unsigned")
+	public String listOrdersUnsigned(Model model) {
+		BrnOrderEntity orderEntity = EntityFactory.newEntity(BrnOrderEntity.class);
+
+		model.addAttribute("orderList", orderEntity.getOrdersUnsigned());
+		return "order/ListOrders";
+	}
+
+	@RequestMapping(value = "ListOrders/Signed")
+	public String listOrdersSigned(Model model) {
+		BrnOrderEntity orderEntity = EntityFactory.newEntity(BrnOrderEntity.class);
+
+		model.addAttribute("orderList", orderEntity.getOrdersSigned());
+		return "order/ListOrders";
+	}
+
+	@RequestMapping(value = "Sign/{orderId}")
+	public String listOrdersSign(@PathVariable Long orderId, Model model) {
+		BrnOrderEntity orderEntity = EntityFactory.newEntity(BrnOrderEntity.class);
+		orderEntity.setOrderId(orderId);
+		orderEntity.signOrder();
+		model.addAttribute("orderList", orderEntity.getOrdersUnsigned());
+		return "order/ListOrders";
+	}
+
 }

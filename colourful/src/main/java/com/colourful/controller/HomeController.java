@@ -13,6 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
@@ -22,7 +23,9 @@ import com.colourful.domain.data.CategoryDetail;
 import com.colourful.domain.data.Products;
 import com.colourful.domain.entity.BrnCategoryEntity;
 import com.colourful.domain.entity.BrnImageEntity;
+import com.colourful.domain.entity.BrnNewsEntity;
 import com.colourful.domain.generated.record.BrnImage;
+import com.colourful.domain.generated.record.BrnNews;
 import com.colourful.domain.service.CartService;
 import com.colourful.domain.service.HomeService;
 import com.colourful.domain.service.base.EntityFactory;
@@ -63,6 +66,7 @@ public class HomeController {
 	public String gallery(Model model) {
 
 		BrnImageEntity brnImageEntity = EntityFactory.newEntity(BrnImageEntity.class);
+		// TODO 使用常量
 		brnImageEntity.setId(100);
 		List<BrnImage> imageList = brnImageEntity.getRecords();
 
@@ -123,4 +127,18 @@ public class HomeController {
 		return "common/Error403";
 
 	}
+
+	@RequestMapping(value = "News/{newsId}")
+	public String newsDetail(@PathVariable long newsId, Model model) {
+		BrnNewsEntity newsEntity = EntityFactory.newEntity(BrnNewsEntity.class);
+		newsEntity.setNewsId(newsId);
+		newsEntity.getEntityByPk();
+
+		BrnNews news = new BrnNews();
+		newsEntity.toObject(news);
+		model.addAttribute("news", news);
+		return "home/News";
+
+	}
+
 }
